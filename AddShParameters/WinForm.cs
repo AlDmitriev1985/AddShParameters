@@ -80,5 +80,30 @@ namespace AddShParameters
         {
             //loading set of parameters
         }
+
+        private void listView1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+
+            Program.SelectedParametersList.Clear();
+
+            foreach(ListViewItem i in listView1.SelectedItems)
+            {
+                foreach(ShParameters ParItem in Program.ParameterList)
+                {
+                    if (ParItem.PName == i.Text)
+                    {
+                        if (!Program.SelectedParametersList.Contains(ParItem))
+                        {
+                            Program.SelectedParametersList.Add(ParItem);
+                        }
+                    }
+                }
+            }
+        }
     }
 }

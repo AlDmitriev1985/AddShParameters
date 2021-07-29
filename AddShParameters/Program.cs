@@ -137,26 +137,8 @@ namespace AddShParameters
 
             SelectedParametersList.Clear();
 
-            foreach (ShParameters shParameters in ParameterList)
-            {
-                if (MainWindow.listView1.SelectedItems.ToString().Contains(shParameters.PName))
-                {
-                    SelectedParametersList.Add(shParameters);
-                }
-            }
-
-            //comboBox2_SelectedIndexChanged
-            //foreach (ShParameters shParameters in Program.SelectedParameters)
-            //{
-            //    //shParameters.PDataCategory = comboBox2.SelectedItem as BuiltInParameterGroup;
-            //}
-
             MainWindow.ShowDialog();
 
-            foreach(ShParameters shParameters in SelectedParametersList)
-            {
-                MessageBox.Show(shParameters.PName);
-            }
             return Result.Succeeded;
         }
     }

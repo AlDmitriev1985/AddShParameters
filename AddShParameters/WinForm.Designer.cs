@@ -44,6 +44,7 @@ namespace AddShParameters
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -62,7 +63,7 @@ namespace AddShParameters
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(310, 16);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(396, 25);
+            this.comboBox1.Size = new System.Drawing.Size(316, 25);
             this.comboBox1.TabIndex = 1;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -85,21 +86,21 @@ namespace AddShParameters
             this.listView1.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(12, 86);
+            this.listView1.Location = new System.Drawing.Point(14, 86);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1114, 400);
+            this.listView1.Size = new System.Drawing.Size(612, 400);
             this.listView1.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listView1.TabIndex = 9;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listView1_ItemSelectionChanged);
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            this.listView1.Click += new System.EventHandler(this.listView1_Click);
             // 
             // columnHeader1
             // 
             this.columnHeader1.Tag = "";
             this.columnHeader1.Text = "Имя параметра";
-            this.columnHeader1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader1.Width = 300;
             // 
             // columnHeader2
@@ -111,7 +112,6 @@ namespace AddShParameters
             // columnHeader3
             // 
             this.columnHeader3.Text = "Описание параметра";
-            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader3.Width = 650;
             // 
             // radioButton1
@@ -167,14 +167,14 @@ namespace AddShParameters
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(219, 529);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(396, 25);
+            this.comboBox2.Size = new System.Drawing.Size(205, 25);
             this.comboBox2.TabIndex = 14;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.button1.Location = new System.Drawing.Point(637, 529);
+            this.button1.Location = new System.Drawing.Point(510, 529);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(148, 27);
             this.button1.TabIndex = 15;
@@ -204,11 +204,22 @@ namespace AddShParameters
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label5.Location = new System.Drawing.Point(648, 58);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(161, 19);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "Выбранные параметры:";
+            // 
             // WinForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1138, 570);
+            this.ClientSize = new System.Drawing.Size(1130, 570);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -221,7 +232,11 @@ namespace AddShParameters
             this.Controls.Add(this.label2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "WinForm";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Adding shared parameters to the family document";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
@@ -246,5 +261,6 @@ namespace AddShParameters
         public System.Windows.Forms.ColumnHeader columnHeader3;
         public System.Windows.Forms.RadioButton radioButton1;
         public System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.Label label5;
     }
 }
