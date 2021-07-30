@@ -40,25 +40,20 @@ namespace AddShParameters
                 }
             }
         }
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            foreach (ShParameters shParameters in Program.SelectedParametersList)
-            {
-                shParameters.PIsInstance = true;
-            }
+            //foreach (ShParameters shParameters in Program.SelectedParametersList)
+            //{
+            //    shParameters.PIsInstance = true;
+            //}
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            foreach (ShParameters shParameters in Program.SelectedParametersList)
-            {
-                shParameters.PIsInstance = false;
-            }
+            //foreach (ShParameters shParameters in Program.SelectedParametersList)
+            //{
+            //    shParameters.PIsInstance = false;
+            //}
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -81,19 +76,16 @@ namespace AddShParameters
             //loading set of parameters
         }
 
-        private void listView1_Click(object sender, EventArgs e)
+        private void listView2_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        private void button4_Click(object sender, EventArgs e)
         {
-
-            Program.SelectedParametersList.Clear();
-
-            foreach(ListViewItem i in listView1.SelectedItems)
+            foreach (ListViewItem i in listView1.SelectedItems)
             {
-                foreach(ShParameters ParItem in Program.ParameterList)
+                foreach (ShParameters ParItem in Program.ParameterList)
                 {
                     if (ParItem.PName == i.Text)
                     {
@@ -103,6 +95,40 @@ namespace AddShParameters
                         }
                     }
                 }
+            }
+            updatelistview();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem i in listView2.SelectedItems)
+            {
+                foreach (ShParameters ParItem in Program.SelectedParametersList)
+                {
+                    if (i.Text == ParItem.PName)
+                    {
+                        Program.SelectedParametersList.Remove(ParItem);
+                    }
+                }
+            }
+
+            updatelistview();
+        }
+
+        private void updatelistview()
+        {
+            listView2.Items.Clear();
+
+            foreach (ShParameters ParItem in Program.SelectedParametersList)
+            {
+                ListViewItem LvItem = new ListViewItem(ParItem.PName);
+
+                if (ParItem.PIsInstance == true)
+                { LvItem.SubItems.Add("Экземпляр"); }
+                else
+                { LvItem.SubItems.Add("Тип"); }
+
+                listView2.Items.Add(LvItem);
             }
         }
     }
