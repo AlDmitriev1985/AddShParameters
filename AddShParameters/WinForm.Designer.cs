@@ -37,7 +37,6 @@ namespace AddShParameters
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.label3 = new System.Windows.Forms.Label();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
@@ -46,10 +45,11 @@ namespace AddShParameters
             this.button3 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.listView2 = new System.Windows.Forms.ListView();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -121,7 +121,7 @@ namespace AddShParameters
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
             this.radioButton1.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.radioButton1.Location = new System.Drawing.Point(711, 583);
+            this.radioButton1.Location = new System.Drawing.Point(884, 508);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(57, 23);
             this.radioButton1.TabIndex = 10;
@@ -130,21 +130,11 @@ namespace AddShParameters
             this.radioButton1.UseVisualStyleBackColor = true;
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.label3.Location = new System.Drawing.Point(324, 637);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(481, 19);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Выбранный параметр(ы) при добавлении в семейство будет параметром:";
-            // 
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.radioButton2.Location = new System.Drawing.Point(784, 583);
+            this.radioButton2.Location = new System.Drawing.Point(957, 508);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(103, 23);
             this.radioButton2.TabIndex = 12;
@@ -232,6 +222,17 @@ namespace AddShParameters
             this.listView2.View = System.Windows.Forms.View.Details;
             this.listView2.SelectedIndexChanged += new System.EventHandler(this.listView2_SelectedIndexChanged);
             // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Имя параметра";
+            this.columnHeader4.Width = 250;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Тип/экземпляр";
+            this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader5.Width = 139;
+            // 
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("Segoe UI", 9.75F);
@@ -254,16 +255,16 @@ namespace AddShParameters
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // columnHeader4
+            // label3
             // 
-            this.columnHeader4.Text = "Имя параметра";
-            this.columnHeader4.Width = 250;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Тип/экземпляр";
-            this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader5.Width = 139;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label3.Location = new System.Drawing.Point(685, 508);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(174, 19);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Выбранный параметр(ы) :";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // WinForm
             // 
@@ -302,7 +303,6 @@ namespace AddShParameters
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
@@ -321,5 +321,6 @@ namespace AddShParameters
         private System.Windows.Forms.Button button5;
         public System.Windows.Forms.ColumnHeader columnHeader4;
         public System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.Label label3;
     }
 }

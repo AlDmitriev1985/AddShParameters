@@ -42,18 +42,32 @@ namespace AddShParameters
         }
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            //foreach (ShParameters shParameters in Program.SelectedParametersList)
-            //{
-            //    shParameters.PIsInstance = true;
-            //}
+            foreach (ListViewItem i in listView2.SelectedItems)
+            {
+                foreach (ShParameters shParameters in Program.SelectedParametersList)
+                {
+                    if (shParameters.PName == i.Text)
+                    {
+                        shParameters.PIsInstance = true;
+                    }
+                }
+            }
+            updatelistview();
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            //foreach (ShParameters shParameters in Program.SelectedParametersList)
-            //{
-            //    shParameters.PIsInstance = false;
-            //}
+            foreach (ListViewItem i in listView2.SelectedItems)
+            {
+                foreach (ShParameters shParameters in Program.SelectedParametersList)
+                {
+                    if (shParameters.PName == i.Text)
+                    {
+                        shParameters.PIsInstance = false;
+                    }
+                }
+            }
+            updatelistview();
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -96,6 +110,7 @@ namespace AddShParameters
                     }
                 }
             }
+
             updatelistview();
         }
 
@@ -103,15 +118,14 @@ namespace AddShParameters
         {
             foreach (ListViewItem i in listView2.SelectedItems)
             {
-                foreach (ShParameters ParItem in Program.SelectedParametersList)
+                for (int counter = 0; counter < Program.SelectedParametersList.Count; counter++)
                 {
-                    if (i.Text == ParItem.PName)
+                    if (i.Text == Program.SelectedParametersList[counter].PName)
                     {
-                        Program.SelectedParametersList.Remove(ParItem);
+                        Program.SelectedParametersList.Remove(Program.SelectedParametersList[counter]);
                     }
                 }
             }
-
             updatelistview();
         }
 
