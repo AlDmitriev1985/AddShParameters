@@ -139,8 +139,10 @@ namespace AddShParameters
 
             MainWindow.ShowDialog();
 
-            MessageBox.Show("В списке выбранных параметров" + " " + SelectedParametersList.Count.ToString()+" шт.");
-
+            foreach (var Item in SelectedParametersList)
+            {
+                MessageBox.Show(Item.PName.ToString() + Item.PIsInstance.ToString());
+            }
             return Result.Succeeded;
         }
     }
