@@ -138,11 +138,7 @@ namespace AddShParameters
             SelectedParametersList.Clear();
 
             MainWindow.ShowDialog();
-
-            foreach (var Item in SelectedParametersList)
-            {
-                MessageBox.Show(Item.PName.ToString() + Item.PIsInstance.ToString());
-            }
+                                               
             return Result.Succeeded;
         }
     }
