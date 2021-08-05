@@ -8,14 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Autodesk.Revit.DB;
+using Autodesk.Revit.Attributes;
+using Autodesk.Revit.UI;
 
 namespace AddShParameters
 {
+    [Transaction(TransactionMode.Manual)]
+    [Regeneration(RegenerationOption.Manual)]
 
     public partial class WinForm : System.Windows.Forms.Form
     {
         public List<string> Listgroup = new List<string>();
-        bool edit = false;
 
         public WinForm()
         {
@@ -45,7 +48,7 @@ namespace AddShParameters
         }
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            List<ShParameters> Selectedlist = new List<ShParameters>();
+            //List<ShParameters> Selectedlist = new List<ShParameters>();
 
             foreach (ListViewItem i in listView2.SelectedItems)
             {
@@ -53,28 +56,30 @@ namespace AddShParameters
                 {
                     if (shParameters.PName == i.Text)
                     {
-                        Selectedlist.Add(shParameters);
-                        shParameters.PIsInstance = false;
+                        //Selectedlist.Add(shParameters);
+                        shParameters.PIsInstance = true;
                     }
                 }
             }
+
             updatelistview();
-            foreach (ListViewItem i in listView2.Items)
-            {
-                foreach (ShParameters shParameters in Selectedlist)
-                {
-                    if (shParameters.PName == i.Text)
-                    {
-                        i.Selected = true;
-                    }
-                }
-            }
+
+            //foreach (ListViewItem i in listView2.Items)
+            //{
+            //    foreach (ShParameters shParameters in Selectedlist)
+            //    {
+            //        if (shParameters.PName == i.Text)
+            //        {
+            //            i.Checked = true;
+            //        }
+            //    }
+            //}
 
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            List<ShParameters> Selectedlist = new List<ShParameters>();
+            //List<ShParameters> Selectedlist = new List<ShParameters>();
 
             foreach (ListViewItem i in listView2.SelectedItems)
             {
@@ -82,34 +87,162 @@ namespace AddShParameters
                 {
                     if (shParameters.PName == i.Text)
                     {
-                        Selectedlist.Add(shParameters);
-                        shParameters.PIsInstance = true;
+                        //Selectedlist.Add(shParameters);
+                        shParameters.PIsInstance = false;
                     }
                 }
             }
+
             updatelistview();
 
-            foreach (ListViewItem i in listView2.Items)
-            {
-                foreach (ShParameters shParameters in Selectedlist)
-                {
-                    if (shParameters.PName == i.Text)
-                    {
-                        i.Selected = true;
-                    }
-                }
-            }
-
+            //foreach (ListViewItem i in listView2.Items)
+            //{
+            //    foreach (ShParameters shParameters in Selectedlist)
+            //    {
+            //        if (shParameters.PName == i.Text)
+            //        {
+            //            i.Checked = true;
+            //        }
+            //    }
+            //}
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
+            foreach (ListViewItem i in listView2.SelectedItems)
+            {
+                foreach (ShParameters shParameters in Program.SelectedParametersList)
+                {
+                    if (i.Text == shParameters.PName)
+                    {
+                        switch (comboBox2.SelectedItem)
+                        {
+                            case "Текст":
+                                shParameters.PDataCategory = BuiltInParameterGroup.PG_TEXT;
+                                break;
 
+                            case "Зависимости":
+                                shParameters.PDataCategory = BuiltInParameterGroup.PG_CONSTRAINTS;
+                                break;
+
+                            case "Конструкции":
+                                shParameters.PDataCategory = BuiltInParameterGroup.PG_CONSTRUCTION;
+                                break;
+
+                            case "Данные":
+                                shParameters.PDataCategory = BuiltInParameterGroup.PG_DATA;
+                                break;
+
+                            case "Идентификация":
+                                shParameters.PDataCategory = BuiltInParameterGroup.PG_IDENTITY_DATA;
+                                break;
+
+                            case "Материалы и отделка":
+                                shParameters.PDataCategory = BuiltInParameterGroup.PG_MATERIALS;
+                                break;
+
+                            case "Механизмы":
+                                shParameters.PDataCategory = BuiltInParameterGroup.PG_MECHANICAL;
+                                break;
+
+                            case "Механизмы - расход":
+                                shParameters.PDataCategory = BuiltInParameterGroup.PG_MECHANICAL_AIRFLOW;
+                                break;
+
+                            case "Механизмы - нагрузки":
+                                shParameters.PDataCategory = BuiltInParameterGroup.PG_MECHANICAL_LOADS;
+                                break;
+
+                            case "Сантехника":
+                                shParameters.PDataCategory = BuiltInParameterGroup.PG_PLUMBING;
+                                break;
+
+                            case "Несущие конструкции":
+                                shParameters.PDataCategory = BuiltInParameterGroup.PG_STRUCTURAL;
+                                break;
+
+                            case "Расчет несущих конструкций":
+                                shParameters.PDataCategory = BuiltInParameterGroup.PG_STRUCTURAL_ANALYSIS;
+                                break;
+
+                            case "Видимость":
+                                shParameters.PDataCategory = BuiltInParameterGroup.PG_VISIBILITY;
+                                break;
+
+                            case "Результаты анализа":
+                                shParameters.PDataCategory = BuiltInParameterGroup.PG_AREA;
+                                break;
+
+                            case "Электросети":
+                                shParameters.PDataCategory = BuiltInParameterGroup.PG_ELECTRICAL;
+                                break;
+
+                            case "Электросети - Создание цепей":
+                                shParameters.PDataCategory = BuiltInParameterGroup.PG_ELECTRICAL_CIRCUITING;
+                                break;
+
+                            case "Электросети - Освещение":
+                                shParameters.PDataCategory = BuiltInParameterGroup.PG_ELECTRICAL_LIGHTING;
+                                break;
+
+                            case "Электросети - Нагрузки":
+                                shParameters.PDataCategory = BuiltInParameterGroup.PG_ELECTRICAL_LOADS;
+                                break;
+
+                            case "Силы":
+                                shParameters.PDataCategory = BuiltInParameterGroup.PG_FORCES;
+                                break;
+
+                            case "Общие":
+                                shParameters.PDataCategory = BuiltInParameterGroup.PG_GENERAL;
+                                break;
+
+                            case "Графика":
+                                shParameters.PDataCategory = BuiltInParameterGroup.PG_GRAPHICS;
+                                break;
+                        }
+                    }
+                }
+            }
+
+            updatelistview();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            List<FamilyParameter> familyParametersList = new List<FamilyParameter>();
 
+            familyParametersList = (List<FamilyParameter>)Program.doc.FamilyManager.GetParameters();
+
+            List<string> familyParameterName = new List<string>();
+            List<string> SkippedName = new List<string>();
+            string stringSkippedNames;
+
+            foreach (FamilyParameter item in familyParametersList)
+            {
+                familyParameterName.Add(item.Definition.Name);
+            }
+            //Добавление выбранных параметров в семейство
+
+            if (Program.doc.IsFamilyDocument)
+            {
+                foreach (ShParameters shParameters in Program.SelectedParametersList)
+                {
+                    if (!familyParameterName.Contains(shParameters.PName))
+                    {
+                        Transaction transaction = new Transaction(Program.doc, shParameters.PName);
+                        transaction.Start();
+                        Program.doc.FamilyManager.AddParameter(shParameters.PexternalDefinition, shParameters.PDataCategory, shParameters.PIsInstance);
+                        transaction.Commit();
+                        familyParameterName.Add(shParameters.PName);
+                    }
+
+                    else  {SkippedName.Add(shParameters.PName);}
+                }
+                stringSkippedNames = string.Join(" ", SkippedName);
+                MessageBox.Show("Выбранные параметры добавлены в семейство, а параметры " + stringSkippedNames + " пропущены");
+            }
+            else { MessageBox.Show("Данный документ не является семейством, добавление параметров не возможно!"); }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -194,10 +327,6 @@ namespace AddShParameters
 
                     case BuiltInParameterGroup.PG_IDENTITY_DATA:
                         LvItem.SubItems.Add("Идентификация");
-                        break;
-
-                    case BuiltInParameterGroup.PG_LENGTH:
-                        LvItem.SubItems.Add("Длина");
                         break;
 
                     case BuiltInParameterGroup.PG_MATERIALS:

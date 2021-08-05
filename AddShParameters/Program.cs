@@ -20,13 +20,14 @@ namespace AddShParameters
         public static List<ShParameters> ParameterList = new List<ShParameters>();
         public static List<ShParameters> SelectedParametersList = new List<ShParameters>();
         public static List<string> BuildinParam = new List<string>();
+        public static Document doc;
 
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             //Get the name of the active document
             UIApplication uiapp = commandData.Application;
             UIDocument uidoc = uiapp.ActiveUIDocument;
-            Document doc = uidoc.Document;
+                        doc = uidoc.Document;
 
             //Get access to shared parameter file
             DefinitionFile file = uidoc.Application.Application.OpenSharedParameterFile();
@@ -67,28 +68,27 @@ namespace AddShParameters
             ParameterList = sortParamList;
 
             BuildinParam.Clear();
-            BuildinParam.Add(BuiltInParameterGroup.PG_CONSTRAINTS.ToString());
-            BuildinParam.Add(BuiltInParameterGroup.PG_CONSTRUCTION.ToString());
-            BuildinParam.Add(BuiltInParameterGroup.PG_DATA.ToString());
-            BuildinParam.Add(BuiltInParameterGroup.PG_IDENTITY_DATA.ToString());
-            BuildinParam.Add(BuiltInParameterGroup.PG_LENGTH.ToString());
-            BuildinParam.Add(BuiltInParameterGroup.PG_MATERIALS.ToString());
-            BuildinParam.Add(BuiltInParameterGroup.PG_MECHANICAL.ToString());
-            BuildinParam.Add(BuiltInParameterGroup.PG_MECHANICAL_AIRFLOW.ToString());
-            BuildinParam.Add(BuiltInParameterGroup.PG_MECHANICAL_LOADS.ToString());
-            BuildinParam.Add(BuiltInParameterGroup.PG_PLUMBING.ToString());
-            BuildinParam.Add(BuiltInParameterGroup.PG_STRUCTURAL.ToString());
-            BuildinParam.Add(BuiltInParameterGroup.PG_STRUCTURAL_ANALYSIS.ToString());
-            BuildinParam.Add(BuiltInParameterGroup.PG_TEXT.ToString());
-            BuildinParam.Add(BuiltInParameterGroup.PG_VISIBILITY.ToString());
-            BuildinParam.Add(BuiltInParameterGroup.PG_AREA.ToString());
-            BuildinParam.Add(BuiltInParameterGroup.PG_ELECTRICAL.ToString());
-            BuildinParam.Add(BuiltInParameterGroup.PG_ELECTRICAL_CIRCUITING.ToString());
-            BuildinParam.Add(BuiltInParameterGroup.PG_ELECTRICAL_LIGHTING.ToString());
-            BuildinParam.Add(BuiltInParameterGroup.PG_ELECTRICAL_LOADS.ToString());
-            BuildinParam.Add(BuiltInParameterGroup.PG_FORCES.ToString());
-            BuildinParam.Add(BuiltInParameterGroup.PG_GENERAL.ToString());
-            BuildinParam.Add(BuiltInParameterGroup.PG_GRAPHICS.ToString());
+            BuildinParam.Add("Зависимости");
+            BuildinParam.Add("Конструкции");
+            BuildinParam.Add("Данные");
+            BuildinParam.Add("Идентификация");
+            BuildinParam.Add("Материалы и отделка");
+            BuildinParam.Add("Механизмы");
+            BuildinParam.Add("Механизмы - расход");
+            BuildinParam.Add("Механизмы - нагрузки");
+            BuildinParam.Add("Сантехника");
+            BuildinParam.Add("Несущие конструкции");
+            BuildinParam.Add("Расчет несущих конструкций");
+            BuildinParam.Add("Текст");
+            BuildinParam.Add("Видимость");
+            BuildinParam.Add("Результаты анализа");
+            BuildinParam.Add("Электросети");
+            BuildinParam.Add("Электросети - Создание цепей");
+            BuildinParam.Add("Электросети - Освещение");
+            BuildinParam.Add("Электросети - Нагрузки");
+            BuildinParam.Add("Силы");
+            BuildinParam.Add("Общие");
+            BuildinParam.Add("Графика");
             BuildinParam.Sort();
 
 
@@ -135,10 +135,11 @@ namespace AddShParameters
                 }
             }
 
+            MainWindow.listView2.Items.Clear();
             SelectedParametersList.Clear();
 
             MainWindow.ShowDialog();
-                                               
+
             return Result.Succeeded;
         }
     }
