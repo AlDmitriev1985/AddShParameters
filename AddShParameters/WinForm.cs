@@ -5,11 +5,13 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Xml;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.UI;
+using System.IO;
 
 namespace AddShParameters
 {
@@ -210,22 +212,24 @@ namespace AddShParameters
 
         private void button1_Click(object sender, EventArgs e)
         {
-            List<FamilyParameter> familyParametersList = new List<FamilyParameter>();
-
-            familyParametersList = (List<FamilyParameter>)Program.doc.FamilyManager.GetParameters();
-
-            List<string> familyParameterName = new List<string>();
-            List<string> SkippedName = new List<string>();
-            string stringSkippedNames;
-
-            foreach (FamilyParameter item in familyParametersList)
-            {
-                familyParameterName.Add(item.Definition.Name);
-            }
-            //Добавление выбранных параметров в семейство
 
             if (Program.doc.IsFamilyDocument)
+
             {
+
+                List<FamilyParameter> familyParametersList = new List<FamilyParameter>();
+
+                familyParametersList = (List<FamilyParameter>)Program.doc.FamilyManager.GetParameters();
+
+                List<string> familyParameterName = new List<string>();
+                List<string> SkippedNamesList = new List<string>();
+                string SkippedNamesString;
+
+                foreach (FamilyParameter item in familyParametersList)
+                {
+                    familyParameterName.Add(item.Definition.Name);
+                }
+
                 foreach (ShParameters shParameters in Program.SelectedParametersList)
                 {
                     if (!familyParameterName.Contains(shParameters.PName))
@@ -237,10 +241,17 @@ namespace AddShParameters
                         familyParameterName.Add(shParameters.PName);
                     }
 
-                    else  {SkippedName.Add(shParameters.PName);}
+                    else { SkippedNamesList.Add(shParameters.PName); }
                 }
-                stringSkippedNames = string.Join(" ", SkippedName);
-                MessageBox.Show("Выбранные параметры добавлены в семейство, а параметры " + stringSkippedNames + " пропущены");
+
+                if (SkippedNamesList.Count != 0)
+                {
+                    SkippedNamesString = string.Join(", ", SkippedNamesList);
+
+                    MessageBox.Show("Выбранные параметры добавлены в семейство, а параметры " + SkippedNamesString + " пропущены");
+                }
+
+                else { MessageBox.Show("Выбранные параметры добавлены в семейство"); }
             }
             else { MessageBox.Show("Данный документ не является семейством, добавление параметров не возможно!"); }
         }
@@ -248,11 +259,51 @@ namespace AddShParameters
         private void button2_Click(object sender, EventArgs e)
         {
             //saving set of parameters
+            XmlDocument xmldoc = new XmlDocument();
+            XmlDeclaration xmlDeclaration = xmldoc.CreateXmlDeclaration("1.0", "UTF-8", null);
+
+            //create the root element
+            XmlElement root = xmldoc.DocumentElement;
+            xmldoc.InsertBefore(xmlDeclaration, root);
+
+            //string.Empty makes cleaner code
+            XmlElement element1 = xmldoc.CreateElement(string.Empty, "Mainbody", string.Empty);
+
+            xmldoc.AppendChild(element1);
+
+            XmlElement element2 = xmldoc.CreateElement(string.Empty, "level1", string.Empty);
+
+
+            XmlElement element3 = xmldoc.CreateElement(string.Empty, "level2", string.Empty);
+
+            XmlText text1 = xmldoc.CreateTextNode(Program.SelectedParametersList[0].PName);
+
+            element1.AppendChild(element2);
+            element2.AppendChild(element3);
+            element3.AppendChild(text1);
+
+
+            XmlElement element4 = xmldoc.CreateElement(string.Empty, "level2", string.Empty);
+            XmlText text2 = xmldoc.CreateTextNode(Program.SelectedParametersList[1].PName);
+            element4.AppendChild(text2);
+            element2.AppendChild(element4);
+
+            xmldoc.Save(Directory.GetCurrentDirectory() + "//document.xml");
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             //loading set of parameters
+
+
+
+
+
+
+
+
+
+
         }
 
         private void listView2_SelectedIndexChanged(object sender, EventArgs e)

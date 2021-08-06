@@ -136,6 +136,7 @@ namespace AddShParameters
             }
 
             MainWindow.listView2.Items.Clear();
+
             SelectedParametersList.Clear();
 
             MainWindow.ShowDialog();
