@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Xml;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
-using Autodesk.Revit.Attributes;
-using Autodesk.Revit.UI;
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Windows.Forms;
+using System.Xml;
 
 namespace AddShParameters
 {
@@ -214,7 +207,6 @@ namespace AddShParameters
         {
 
             if (Program.doc.IsFamilyDocument)
-
             {
 
                 List<FamilyParameter> familyParametersList = new List<FamilyParameter>();
@@ -248,7 +240,7 @@ namespace AddShParameters
                 {
                     SkippedNamesString = string.Join(", ", SkippedNamesList);
 
-                    MessageBox.Show("Выбранные параметры добавлены в семейство, а параметры " + SkippedNamesString + " пропущены");
+                    MessageBox.Show("Выбранные параметры добавлены в семейство, а параметры " + SkippedNamesString + " пропущены, так как уже есть в семействе");
                 }
 
                 else { MessageBox.Show("Выбранные параметры добавлены в семейство"); }
@@ -267,33 +259,46 @@ namespace AddShParameters
             xmldoc.InsertBefore(xmlDeclaration, root);
 
             //string.Empty makes cleaner code
-            XmlElement element1 = xmldoc.CreateElement(string.Empty, "Mainbody", string.Empty);
+            XmlElement element = xmldoc.CreateElement(string.Empty, "Параметры", string.Empty);
 
-            xmldoc.AppendChild(element1);
+            xmldoc.AppendChild(element);
 
-            XmlElement element2 = xmldoc.CreateElement(string.Empty, "level1", string.Empty);
+            foreach (ShParameters Item in Program.SelectedParametersList)
+            {
+                XmlElement ParamName = xmldoc.CreateElement(string.Empty, "Имя_параметра", string.Empty);
+                XmlText TextParamName = xmldoc.CreateTextNode(Item.PName);
+                XmlElement IsInstance = xmldoc.CreateElement(string.Empty, "Параметр_экземпляра", string.Empty);
+                XmlText TextIsInstance = xmldoc.CreateTextNode(Item.PIsInstance.ToString());
+                XmlElement DataCategory = xmldoc.CreateElement(string.Empty, "Группирование_параметров", string.Empty);
+                XmlText TextDataCategory = xmldoc.CreateTextNode(Item.PDataCategory.ToString());
+                element.AppendChild(ParamName);
+                ParamName.AppendChild(TextParamName);
+                element.AppendChild(IsInstance);
+                IsInstance.AppendChild(TextIsInstance);
+                element.AppendChild(DataCategory);
+                DataCategory.AppendChild(TextDataCategory);
 
+            }
 
-            XmlElement element3 = xmldoc.CreateElement(string.Empty, "level2", string.Empty);
+            SaveFileDialog saveFile = new SaveFileDialog();
 
-            XmlText text1 = xmldoc.CreateTextNode(Program.SelectedParametersList[0].PName);
+            saveFile.DefaultExt = "xml";
 
-            element1.AppendChild(element2);
-            element2.AppendChild(element3);
-            element3.AppendChild(text1);
+            saveFile.ShowDialog();
 
+            string filename = saveFile.FileName;
 
-            XmlElement element4 = xmldoc.CreateElement(string.Empty, "level2", string.Empty);
-            XmlText text2 = xmldoc.CreateTextNode(Program.SelectedParametersList[1].PName);
-            element4.AppendChild(text2);
-            element2.AppendChild(element4);
-
-            xmldoc.Save(Directory.GetCurrentDirectory() + "//document.xml");
+            if (filename != "")
+            {
+                xmldoc.Save(filename);
+                MessageBox.Show("Выбранные параметры сохранены");
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             //loading set of parameters
+
 
 
 
