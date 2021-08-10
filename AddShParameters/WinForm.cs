@@ -286,11 +286,9 @@ namespace AddShParameters
 
             saveFile.ShowDialog();
 
-            string filename = saveFile.FileName;
-
-            if (filename != "")
+            if (saveFile.FileName != "")
             {
-                xmldoc.Save(filename);
+                xmldoc.Save(saveFile.FileName);
                 MessageBox.Show("Выбранные параметры сохранены");
             }
         }
@@ -298,17 +296,137 @@ namespace AddShParameters
         private void button3_Click(object sender, EventArgs e)
         {
             //loading set of parameters
+            XmlDocument xmldoc = new XmlDocument();
 
+            xmldoc.PreserveWhitespace = true;
 
+            OpenFileDialog openFile = new OpenFileDialog();
 
+            openFile.ShowDialog();
 
+            xmldoc.Load(openFile.FileName);
 
+            foreach (XmlNode xmlnode in xmldoc.DocumentElement.GetElementsByTagName("Имя_параметра"))
+            {
+                foreach (ShParameters Item in Program.ParameterList)
+                {
+                    if ((Item.PName == xmlnode.InnerText) && (!Program.SelectedParametersList.Contains(Item.PName)));
+                    {
+                        Program.SelectedParametersList.Add(Item);
+                    }
+                }
+            }
 
+            foreach (XmlNode xmlnode in xmldoc.DocumentElement.GetElementsByTagName("Параметр_экземпляра"))
+            {
+                foreach (ShParameters Item in Program.SelectedParametersList)
+                {
+                    switch (xmlnode.InnerText)
+                    {
+                        case "True":
+                            Item.PIsInstance = true;
+                            break;
+                        case "False":
+                            Item.PIsInstance = false;
+                            break;
+                    }
+                }
+            }
 
+            foreach (XmlNode xmlnode in xmldoc.DocumentElement.GetElementsByTagName("Группирование_параметров"))
+            {
+                foreach (ShParameters Item in Program.SelectedParametersList)
+                {
+                    switch (xmlnode.InnerText)
+                    {
+                        case "PG_TEXT":
+                            Item.PDataCategory = BuiltInParameterGroup.PG_TEXT;
+                            break;
 
+                        case "PG_CONSTRAINTS":
+                            Item.PDataCategory = BuiltInParameterGroup.PG_CONSTRAINTS;
+                            break;
 
+                        case "PG_CONSTRUCTION":
+                            Item.PDataCategory = BuiltInParameterGroup.PG_CONSTRUCTION;
+                            break;
 
+                        case "PG_DATA":
+                            Item.PDataCategory = BuiltInParameterGroup.PG_DATA;
+                            break;
 
+                        case "PG_IDENTITY_DATA":
+                            Item.PDataCategory = BuiltInParameterGroup.PG_IDENTITY_DATA;
+                            break;
+
+                        case "PG_MATERIALS":
+                            Item.PDataCategory = BuiltInParameterGroup.PG_MATERIALS;
+                            break;
+
+                        case "PG_MECHANICAL":
+                            Item.PDataCategory = BuiltInParameterGroup.PG_MECHANICAL;
+                            break;
+
+                        case "PG_MECHANICAL_AIRFLOW":
+                            Item.PDataCategory = BuiltInParameterGroup.PG_MECHANICAL_AIRFLOW;
+                            break;
+
+                        case "PG_MECHANICAL_LOADS":
+                            Item.PDataCategory = BuiltInParameterGroup.PG_MECHANICAL_LOADS;
+                            break;
+
+                        case "PG_PLUMBING":
+                            Item.PDataCategory = BuiltInParameterGroup.PG_PLUMBING;
+                            break;
+
+                        case "PG_STRUCTURAL":
+                            Item.PDataCategory = BuiltInParameterGroup.PG_STRUCTURAL;
+                            break;
+
+                        case "PG_STRUCTURAL_ANALYSIS":
+                            Item.PDataCategory = BuiltInParameterGroup.PG_STRUCTURAL_ANALYSIS;
+                            break;
+
+                        case "PG_VISIBILITY":
+                            Item.PDataCategory = BuiltInParameterGroup.PG_VISIBILITY;
+                            break;
+
+                        case "PG_AREA":
+                            Item.PDataCategory = BuiltInParameterGroup.PG_AREA;
+                            break;
+
+                        case "PG_ELECTRICAL":
+                            Item.PDataCategory = BuiltInParameterGroup.PG_ELECTRICAL;
+                            break;
+
+                        case "PG_ELECTRICAL_CIRCUITING":
+                            Item.PDataCategory = BuiltInParameterGroup.PG_ELECTRICAL_CIRCUITING;
+                            break;
+
+                        case "PG_ELECTRICAL_LIGHTING":
+                            Item.PDataCategory = BuiltInParameterGroup.PG_ELECTRICAL_LIGHTING;
+                            break;
+
+                        case "PG_ELECTRICAL_LOADS":
+                            Item.PDataCategory = BuiltInParameterGroup.PG_ELECTRICAL_LOADS;
+                            break;
+
+                        case "PG_FORCES":
+                            Item.PDataCategory = BuiltInParameterGroup.PG_FORCES;
+                            break;
+
+                        case "PG_GENERAL":
+                            Item.PDataCategory = BuiltInParameterGroup.PG_GENERAL;
+                            break;
+
+                        case "PG_GRAPHICS":
+                            Item.PDataCategory = BuiltInParameterGroup.PG_GRAPHICS;
+                            break;
+                    }
+                }
+            }
+
+            updatelistview();
         }
 
         private void listView2_SelectedIndexChanged(object sender, EventArgs e)
