@@ -68,6 +68,8 @@ namespace AddShParameters
             ParameterList = sortParamList;
 
             BuildinParam.Clear();
+            BuildinParam.Add("Размеры");
+            BuildinParam.Add("Прочие");
             BuildinParam.Add("Зависимости");
             BuildinParam.Add("Конструкции");
             BuildinParam.Add("Данные");
