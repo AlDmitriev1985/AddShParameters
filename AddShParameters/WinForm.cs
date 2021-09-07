@@ -55,7 +55,7 @@ namespace AddShParameters
                 }
             }
 
-            updatelistview();          
+            updatelistview();
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
@@ -581,6 +581,11 @@ namespace AddShParameters
         }
 
         private void listView2_ItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
         {
 
         }

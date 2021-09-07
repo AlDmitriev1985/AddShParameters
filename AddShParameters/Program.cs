@@ -107,6 +107,7 @@ namespace AddShParameters
             }
 
             Listgroup.Sort();
+
             MainWindow.Listgroup = Listgroup;
 
             foreach (var Item in Listgroup)
