@@ -43,8 +43,6 @@ namespace AddShParameters
         }
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            //List<ShParameters> Selectedlist = new List<ShParameters>();
-
             foreach (ListViewItem i in listView2.SelectedItems)
             {
                 foreach (ShParameters shParameters in Program.SelectedParametersList)
@@ -57,25 +55,11 @@ namespace AddShParameters
                 }
             }
 
-            updatelistview();
-
-            //foreach (ListViewItem i in listView2.Items)
-            //{
-            //    foreach (ShParameters shParameters in Selectedlist)
-            //    {
-            //        if (shParameters.PName == i.Text)
-            //        {
-            //            i.Checked = true;
-            //        }
-            //    }
-            //}
-
+            updatelistview();          
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            //List<ShParameters> Selectedlist = new List<ShParameters>();
-
             foreach (ListViewItem i in listView2.SelectedItems)
             {
                 foreach (ShParameters shParameters in Program.SelectedParametersList)
@@ -89,17 +73,6 @@ namespace AddShParameters
             }
 
             updatelistview();
-
-            //foreach (ListViewItem i in listView2.Items)
-            //{
-            //    foreach (ShParameters shParameters in Selectedlist)
-            //    {
-            //        if (shParameters.PName == i.Text)
-            //        {
-            //            i.Checked = true;
-            //        }
-            //    }
-            //}
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -294,7 +267,7 @@ namespace AddShParameters
 
             saveFile.Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*";
 
-            if (saveFile.ShowDialog()==DialogResult.OK)
+            if (saveFile.ShowDialog() == DialogResult.OK)
             {
                 xmldoc.Save(saveFile.FileName);
                 MessageBox.Show("Выбранные параметры сохранены");
@@ -312,7 +285,7 @@ namespace AddShParameters
 
             openFile.Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*";
 
-            if (openFile.ShowDialog()==DialogResult.OK)
+            if (openFile.ShowDialog() == DialogResult.OK)
             {
                 xmldoc.Load(openFile.FileName);
 
