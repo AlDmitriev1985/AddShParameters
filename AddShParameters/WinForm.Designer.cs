@@ -299,7 +299,7 @@ namespace AddShParameters
             this.MinimizeBox = false;
             this.Name = "WinForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.Text = "Adding shared parameters to the family document";
+            this.Text = "Добавление общих параметров в семейство";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
