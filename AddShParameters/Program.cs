@@ -27,7 +27,7 @@ namespace AddShParameters
             //Get the name of the active document
             UIApplication uiapp = commandData.Application;
             UIDocument uidoc = uiapp.ActiveUIDocument;
-                        doc = uidoc.Document;
+            doc = uidoc.Document;
 
             //Get access to shared parameter file
             DefinitionFile file = uidoc.Application.Application.OpenSharedParameterFile();
@@ -140,7 +140,51 @@ namespace AddShParameters
 
             MainWindow.listView2.Items.Clear();
 
+            List<string> ListFamType = new List<string>();
+
+            foreach (FamilyType Item in doc.FamilyManager.Types)
+            {
+                ListFamType.Add(Item.Name);
+            }
+
+            ListFamType.Sort();
+
+            foreach (var Item in ListFamType)
+            {
+                MainWindow.comboBox3.Items.Add(Item);
+            }
+
             SelectedParametersList.Clear();
+
+            MainWindow.comboBox3.SelectedIndex = 0;
+
+            //doc.FamilyManager.Set();
+            //doc.FamilyManager.CurrentType;
+
+            foreach (FamilyParameter Item in doc.FamilyManager.GetParameters())
+            {
+                if (Item.IsShared)
+                {
+                    ListViewItem LvItem = new ListViewItem(Item.Definition.Name);
+
+                    FamilyTypeSetIterator familyTypeSetIterator = doc.FamilyManager.Types.ForwardIterator();
+
+                    familyTypeSetIterator.Reset();
+
+                    MainWindow.listView3.Items.Add(LvItem);
+
+                    while (familyTypeSetIterator.MoveNext())
+                    {
+                        FamilyType famType = familyTypeSetIterator.Current as FamilyType;
+
+                        LvItem.SubItems.Add(famType.AsString(Item));
+                        LvItem.SubItems.Add(Item.Formula);
+                    }
+                }
+
+            }
+
+            MainWindow.listView3.Sort();
 
             MainWindow.ShowDialog();
 
