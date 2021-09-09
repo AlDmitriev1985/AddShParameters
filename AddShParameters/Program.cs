@@ -21,6 +21,7 @@ namespace AddShParameters
         public static List<ShParameters> SelectedParametersList = new List<ShParameters>();
         public static List<string> BuildinParam = new List<string>();
         public static Document doc;
+        public static FamilyType famType;
 
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
@@ -156,40 +157,15 @@ namespace AddShParameters
 
             SelectedParametersList.Clear();
 
-            MainWindow.comboBox3.SelectedIndex = 0;
-
             //doc.FamilyManager.Set();
-            //doc.FamilyManager.CurrentType;
 
-            foreach (FamilyParameter Item in doc.FamilyManager.GetParameters())
-            {
-                if (Item.IsShared)
-                {
-                    ListViewItem LvItem = new ListViewItem(Item.Definition.Name);
-
-                    FamilyTypeSetIterator familyTypeSetIterator = doc.FamilyManager.Types.ForwardIterator();
-
-                    familyTypeSetIterator.Reset();
-
-                    MainWindow.listView3.Items.Add(LvItem);
-
-                    while (familyTypeSetIterator.MoveNext())
-                    {
-                        FamilyType famType = familyTypeSetIterator.Current as FamilyType;
-
-                        LvItem.SubItems.Add(famType.AsString(Item));
-                        LvItem.SubItems.Add(Item.Formula);
-                    }
-                }
-
-            }
-
-            MainWindow.listView3.Sort();
+            MainWindow.updatelistview2();
 
             MainWindow.ShowDialog();
 
             return Result.Succeeded;
         }
+                
     }
-
+      
 }

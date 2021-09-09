@@ -54,13 +54,13 @@ namespace AddShParameters
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.listView3 = new System.Windows.Forms.ListView();
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -298,6 +298,7 @@ namespace AddShParameters
             this.tabControl1.Size = new System.Drawing.Size(1250, 691);
             this.tabControl1.TabIndex = 22;
             this.tabControl1.Tag = "";
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -326,7 +327,6 @@ namespace AddShParameters
             this.tabPage1.Text = "Добавление параметров";
             this.tabPage1.ToolTipText = "Добавление общих параметров в семейство";
             this.tabPage1.UseVisualStyleBackColor = true;
-            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // tabPage2
             // 
@@ -343,26 +343,6 @@ namespace AddShParameters
             this.tabPage2.Text = "Перенос значений параметров";
             this.tabPage2.ToolTipText = "Перенос значений между общими параметрами";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(196, 8);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(316, 25);
-            this.comboBox3.TabIndex = 3;
-            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.label6.Location = new System.Drawing.Point(8, 11);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(182, 19);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "Типоразмеры в семействе :";
             // 
             // label7
             // 
@@ -401,12 +381,33 @@ namespace AddShParameters
             // 
             this.columnHeader8.Text = "Значение";
             this.columnHeader8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader8.Width = 500;
+            this.columnHeader8.Width = 300;
             // 
             // columnHeader9
             // 
             this.columnHeader9.Text = "Формула";
-            this.columnHeader9.Width = 150;
+            this.columnHeader9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader9.Width = 300;
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(196, 8);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(316, 25);
+            this.comboBox3.TabIndex = 3;
+            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label6.Location = new System.Drawing.Point(8, 11);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(182, 19);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Типоразмеры в семействе :";
             // 
             // WinForm
             // 

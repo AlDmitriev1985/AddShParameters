@@ -575,17 +575,48 @@ namespace AddShParameters
             }
         }
 
+        public void updatelistview2()
+        {
+            listView3.Items.Clear();
+
+            Program.famType = Program.doc.FamilyManager.CurrentType;
+
+            comboBox3.SelectedItem = Program.famType.Name;
+
+            foreach (FamilyParameter Item in Program.doc.FamilyManager.GetParameters())
+            {
+                if (Item.IsShared)
+                {
+                    ListViewItem LvItem = new ListViewItem(Item.Definition.Name);
+
+                    listView3.Items.Add(LvItem);
+
+                    if (Program.famType.HasValue(Item))
+                    {
+                        if (Item.StorageType == StorageType.Integer)
+                            { LvItem.SubItems.Add(Program.famType.AsInteger(Item).ToString()); }
+                        else if (Item.StorageType == StorageType.String)
+                            { LvItem.SubItems.Add(Program.famType.AsString(Item)); }
+                        else if (Item.StorageType == StorageType.Double)
+                            { LvItem.SubItems.Add((((double)Program.famType.AsDouble(Item)).ToString("F"))); }
+                        else if ((Item.StorageType == StorageType.Double) & (Item.DisplayUnitType == DisplayUnitType.DUT_VOLTS))
+                            { LvItem.SubItems.Add((((double)Program.famType.AsDouble(Item)) * Math.Pow(0.3048, 2)).ToString("F")); }
+                    }
+
+                    LvItem.SubItems.Add(Item.Formula);
+                }
+
+            }
+
+            listView3.Sort();
+        }
+
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
         private void listView2_ItemChecked(object sender, ItemCheckedEventArgs e)
-        {
-
-        }
-
-        private void tabPage1_Click(object sender, EventArgs e)
         {
 
         }
@@ -597,7 +628,31 @@ namespace AddShParameters
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             //listView3.Items.Clear();
+
+
+            //FamilyTypeSetIterator familyTypeSetIterator = doc.FamilyManager.Types.ForwardIterator();
+
+            //familyTypeSetIterator.Reset();
+
+            //familyTypeSetIterator.MoveNext();
+
+            //FamilyType famType = familyTypeSetIterator.Current as FamilyType;
+
+            //while (familyTypeSetIterator.MoveNext())
+            //{
+            //    FamilyType famType = familyTypeSetIterator.Current as FamilyType;
+
+            //    MainWindow.listView3.Items.Add(LvItem);
+            //    LvItem.SubItems.Add(famType.AsString(Item));
+            //    LvItem.SubItems.Add(Item.Formula);
+            //}
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            updatelistview2();
         }
     }
 }
