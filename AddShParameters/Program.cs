@@ -159,6 +159,10 @@ namespace AddShParameters
 
             //doc.FamilyManager.Set();
 
+            famType = doc.FamilyManager.CurrentType;
+
+            MainWindow.comboBox3.SelectedItem = famType.Name;
+
             MainWindow.updatelistview2();
 
             MainWindow.ShowDialog();

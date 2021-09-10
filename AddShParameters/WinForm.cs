@@ -579,35 +579,31 @@ namespace AddShParameters
         {
             listView3.Items.Clear();
 
-            Program.famType = Program.doc.FamilyManager.CurrentType;
-
-            comboBox3.SelectedItem = Program.famType.Name;
-
             foreach (FamilyParameter Item in Program.doc.FamilyManager.GetParameters())
             {
                 if (Item.IsShared)
                 {
                     ListViewItem LvItem = new ListViewItem(Item.Definition.Name);
 
-                    listView3.Items.Add(LvItem);
+                    if (!listView3.Items.Contains(LvItem))
+                    { listView3.Items.Add(LvItem); }
 
                     if (Program.famType.HasValue(Item))
                     {
                         if (Item.StorageType == StorageType.Integer)
-                            { LvItem.SubItems.Add(Program.famType.AsInteger(Item).ToString()); }
-                        else if (Item.StorageType == StorageType.String)
-                            { LvItem.SubItems.Add(Program.famType.AsString(Item)); }
-                        else if (Item.StorageType == StorageType.Double)
-                            { LvItem.SubItems.Add((((double)Program.famType.AsDouble(Item)).ToString("F"))); }
-                        else if ((Item.StorageType == StorageType.Double) & (Item.DisplayUnitType == DisplayUnitType.DUT_VOLTS))
-                            { LvItem.SubItems.Add((((double)Program.famType.AsDouble(Item)) * Math.Pow(0.3048, 2)).ToString("F")); }
+                        { LvItem.SubItems.Add(Program.famType.AsInteger(Item).ToString()); }
+                        if (Item.StorageType == StorageType.String)
+                        { LvItem.SubItems.Add(Program.famType.AsString(Item)); }
+                        if ((Item.StorageType == StorageType.Double) & (Item.Definition.UnitType != UnitType.UT_Electrical_Potential))
+                        { LvItem.SubItems.Add((((double)Program.famType.AsDouble(Item)).ToString("F"))); }
+                        if ((Item.StorageType == StorageType.Double) & (Item.Definition.UnitType == UnitType.UT_Electrical_Potential))
+                        { LvItem.SubItems.Add((((double)Program.famType.AsDouble(Item)) * Math.Pow(0.3048, 2)).ToString("F")); }
                     }
 
                     LvItem.SubItems.Add(Item.Formula);
                 }
 
             }
-
             listView3.Sort();
         }
 
@@ -628,9 +624,21 @@ namespace AddShParameters
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
+            FamilyTypeSet familyTypeSet = Program.doc.FamilyManager.Types;
 
-            //listView3.Items.Clear();
+            foreach (FamilyType Item in familyTypeSet)
+            {
+                if ((string)comboBox3.SelectedItem == Item.Name)
 
+                {
+                    Transaction transaction = new Transaction(Program.doc, Item.Name);
+                    transaction.Start();
+                    Program.doc.FamilyManager.CurrentType = Item;
+                    transaction.Commit();
+                }
+            }
+
+            updatelistview2();
 
             //FamilyTypeSetIterator familyTypeSetIterator = doc.FamilyManager.Types.ForwardIterator();
 
