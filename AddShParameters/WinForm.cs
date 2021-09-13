@@ -586,7 +586,9 @@ namespace AddShParameters
                     ListViewItem LvItem = new ListViewItem(Item.Definition.Name);
 
                     if (!listView3.Items.Contains(LvItem))
-                    { listView3.Items.Add(LvItem); }
+                    {
+                        listView3.Items.Add(LvItem);
+                    }
 
                     if (Program.famType.HasValue(Item))
                     {
@@ -634,6 +636,7 @@ namespace AddShParameters
                     Transaction transaction = new Transaction(Program.doc, Item.Name);
                     transaction.Start();
                     Program.doc.FamilyManager.CurrentType = Item;
+                    Program.famType = Item;
                     transaction.Commit();
                 }
             }

@@ -165,11 +165,19 @@ namespace AddShParameters
 
             MainWindow.updatelistview2();
 
+            foreach (FamilyParameter Item in doc.FamilyManager.GetParameters())
+            {
+                if (Item.IsShared)
+                {
+                    MainWindow.comboBox4.Items.Add(Item.Definition.Name);
+                }
+            }
+            
             MainWindow.ShowDialog();
 
             return Result.Succeeded;
         }
-                
+
     }
-      
+
 }

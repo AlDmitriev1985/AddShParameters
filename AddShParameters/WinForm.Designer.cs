@@ -61,6 +61,8 @@ namespace AddShParameters
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -106,6 +108,7 @@ namespace AddShParameters
             this.listView1.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
+            this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(10, 71);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(601, 587);
@@ -230,6 +233,7 @@ namespace AddShParameters
             this.listView2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.listView2.FullRowSelect = true;
             this.listView2.GridLines = true;
+            this.listView2.HideSelection = false;
             this.listView2.Location = new System.Drawing.Point(667, 71);
             this.listView2.Name = "listView2";
             this.listView2.Size = new System.Drawing.Size(574, 510);
@@ -330,6 +334,8 @@ namespace AddShParameters
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.comboBox4);
+            this.tabPage2.Controls.Add(this.label8);
             this.tabPage2.Controls.Add(this.label7);
             this.tabPage2.Controls.Add(this.listView3);
             this.tabPage2.Controls.Add(this.comboBox3);
@@ -363,9 +369,10 @@ namespace AddShParameters
             this.listView3.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.listView3.FullRowSelect = true;
             this.listView3.GridLines = true;
+            this.listView3.HideSelection = false;
             this.listView3.Location = new System.Drawing.Point(12, 69);
             this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(826, 578);
+            this.listView3.Size = new System.Drawing.Size(836, 578);
             this.listView3.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listView3.TabIndex = 11;
             this.listView3.UseCompatibleStateImageBehavior = false;
@@ -408,6 +415,25 @@ namespace AddShParameters
             this.label6.Size = new System.Drawing.Size(182, 19);
             this.label6.TabIndex = 2;
             this.label6.Text = "Типоразмеры в семействе :";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label8.Location = new System.Drawing.Point(899, 42);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(172, 19);
+            this.label8.TabIndex = 12;
+            this.label8.Text = "Параметры заменяемые :";
+            // 
+            // comboBox4
+            // 
+            this.comboBox4.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Location = new System.Drawing.Point(875, 114);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(316, 25);
+            this.comboBox4.TabIndex = 13;
             // 
             // WinForm
             // 
@@ -465,5 +491,7 @@ namespace AddShParameters
         public System.Windows.Forms.ColumnHeader columnHeader9;
         public System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Label label6;
+        public System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.Label label8;
     }
 }
