@@ -114,28 +114,38 @@ namespace AddShParameters
             foreach (var Item in Listgroup)
             {
                 MainWindow.comboBox1.Items.Add(Item);
+                MainWindow.comboBox5.Items.Add(Item);
             }
 
             MainWindow.comboBox1.SelectedIndex = 0;
+            MainWindow.comboBox5.SelectedIndex = 0;
 
             foreach (var Item in BuildinParam)
             {
                 MainWindow.comboBox2.Items.Add(Item);
+                MainWindow.comboBox6.Items.Add(Item);
             }
 
             MainWindow.comboBox2.SelectedIndex = 0;
+            MainWindow.comboBox6.SelectedIndex = 0;
 
             MainWindow.listView1.Items.Clear();
+            MainWindow.listView5.Items.Clear();
 
             foreach (ShParameters shParameters in ParameterList)
             {
                 if (shParameters.PGroup.Name == MainWindow.comboBox1.SelectedItem.ToString())
                 {
-                    ListViewItem LvItem = new ListViewItem(shParameters.PName);
+                    ListViewItem LvItem1 = new ListViewItem(shParameters.PName);
+                    ListViewItem LvItem2 = new ListViewItem(shParameters.PName);
 
-                    LvItem.SubItems.Add(shParameters.PDataType.ToString());
-                    LvItem.SubItems.Add(shParameters.PDescription);
-                    MainWindow.listView1.Items.Add(LvItem);
+                    LvItem1.SubItems.Add(shParameters.PDataType.ToString());
+                    LvItem1.SubItems.Add(shParameters.PDescription);
+                    MainWindow.listView1.Items.Add(LvItem1);
+                    
+                    LvItem2.SubItems.Add(shParameters.PDataType.ToString());
+                    LvItem2.SubItems.Add(shParameters.PDescription);
+                    MainWindow.listView5.Items.Add(LvItem2);
                 }
             }
 
@@ -143,9 +153,12 @@ namespace AddShParameters
 
             List<string> ListFamType = new List<string>();
 
-            foreach (FamilyType Item in doc.FamilyManager.Types)
+            if (doc.IsFamilyDocument)
             {
-                ListFamType.Add(Item.Name);
+                foreach (FamilyType Item in doc.FamilyManager.Types)
+                {
+                    ListFamType.Add(Item.Name);
+                }
             }
 
             ListFamType.Sort();
@@ -159,20 +172,36 @@ namespace AddShParameters
 
             //doc.FamilyManager.Set();
 
-            famType = doc.FamilyManager.CurrentType;
-
-            MainWindow.comboBox3.SelectedItem = famType.Name;
+            if (doc.IsFamilyDocument)
+            {
+                famType = doc.FamilyManager.CurrentType;
+                MainWindow.comboBox3.SelectedItem = famType.Name;
+            }
 
             MainWindow.updatelistview2();
 
-            foreach (FamilyParameter Item in doc.FamilyManager.GetParameters())
+            if (doc.IsFamilyDocument)
             {
-                if (Item.IsShared)
+                foreach (FamilyParameter Item in doc.FamilyManager.GetParameters())
                 {
-                    MainWindow.comboBox4.Items.Add(Item.Definition.Name);
+                    if (Item.IsShared)
+                    {
+                        MainWindow.comboBox4.Items.Add(Item.Definition.Name);
+                    }
                 }
             }
-            
+
+            foreach (Category Item in doc.Settings.Categories)
+            {
+                if ((Item.CategoryType==CategoryType.Model)|(Item.CategoryType == CategoryType.AnalyticalModel))
+                {
+                    ListViewItem LvItem = new ListViewItem(Item.Name);
+                    MainWindow.listView6.Items.Add(LvItem);
+                }
+            }
+
+            MainWindow.listView6.Sort();
+
             MainWindow.ShowDialog();
 
             return Result.Succeeded;

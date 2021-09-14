@@ -579,34 +579,37 @@ namespace AddShParameters
         {
             listView3.Items.Clear();
 
-            foreach (FamilyParameter Item in Program.doc.FamilyManager.GetParameters())
+            if (Program.doc.IsFamilyDocument)
             {
-                if (Item.IsShared)
+                foreach (FamilyParameter Item in Program.doc.FamilyManager.GetParameters())
                 {
-                    ListViewItem LvItem = new ListViewItem(Item.Definition.Name);
-
-                    if (!listView3.Items.Contains(LvItem))
+                    if (Item.IsShared)
                     {
-                        listView3.Items.Add(LvItem);
+                        ListViewItem LvItem = new ListViewItem(Item.Definition.Name);
+
+                        if (!listView3.Items.Contains(LvItem))
+                        {
+                            listView3.Items.Add(LvItem);
+                        }
+
+                        if (Program.famType.HasValue(Item))
+                        {
+                            if (Item.StorageType == StorageType.Integer)
+                            { LvItem.SubItems.Add(Program.famType.AsInteger(Item).ToString()); }
+                            if (Item.StorageType == StorageType.String)
+                            { LvItem.SubItems.Add(Program.famType.AsString(Item)); }
+                            if ((Item.StorageType == StorageType.Double) & (Item.Definition.UnitType != UnitType.UT_Electrical_Potential))
+                            { LvItem.SubItems.Add((((double)Program.famType.AsDouble(Item)).ToString("F"))); }
+                            if ((Item.StorageType == StorageType.Double) & (Item.Definition.UnitType == UnitType.UT_Electrical_Potential))
+                            { LvItem.SubItems.Add((((double)Program.famType.AsDouble(Item)) * Math.Pow(0.3048, 2)).ToString("F")); }
+                        }
+
+                        LvItem.SubItems.Add(Item.Formula);
                     }
 
-                    if (Program.famType.HasValue(Item))
-                    {
-                        if (Item.StorageType == StorageType.Integer)
-                        { LvItem.SubItems.Add(Program.famType.AsInteger(Item).ToString()); }
-                        if (Item.StorageType == StorageType.String)
-                        { LvItem.SubItems.Add(Program.famType.AsString(Item)); }
-                        if ((Item.StorageType == StorageType.Double) & (Item.Definition.UnitType != UnitType.UT_Electrical_Potential))
-                        { LvItem.SubItems.Add((((double)Program.famType.AsDouble(Item)).ToString("F"))); }
-                        if ((Item.StorageType == StorageType.Double) & (Item.Definition.UnitType == UnitType.UT_Electrical_Potential))
-                        { LvItem.SubItems.Add((((double)Program.famType.AsDouble(Item)) * Math.Pow(0.3048, 2)).ToString("F")); }
-                    }
-
-                    LvItem.SubItems.Add(Item.Formula);
                 }
-
+                listView3.Sort();
             }
-            listView3.Sort();
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -664,6 +667,23 @@ namespace AddShParameters
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             updatelistview2();
+        }
+
+        private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            listView5.Items.Clear();
+
+            foreach (ShParameters shParameters in Program.ParameterList)
+            {
+                if (shParameters.PGroup.Name == comboBox5.SelectedItem.ToString())
+                {
+                    ListViewItem LvItem = new ListViewItem(shParameters.PName);
+
+                    LvItem.SubItems.Add(shParameters.PDataType.ToString());
+                    LvItem.SubItems.Add(shParameters.PDescription);
+                    listView5.Items.Add(LvItem);
+                }
+            }
         }
     }
 }
