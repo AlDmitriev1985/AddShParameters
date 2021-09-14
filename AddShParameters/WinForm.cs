@@ -466,6 +466,7 @@ namespace AddShParameters
         private void updatelistview()
         {
             listView2.Items.Clear();
+            listView5.Items.Clear();
 
             foreach (ShParameters ParItem in Program.SelectedParametersList)
             {
@@ -572,6 +573,7 @@ namespace AddShParameters
                 }
 
                 listView2.Items.Add(LvItem);
+                listView5.Items.Add(LvItem);
             }
         }
 
@@ -684,6 +686,30 @@ namespace AddShParameters
                     listView5.Items.Add(LvItem);
                 }
             }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem i in listView5.SelectedItems)
+            {
+                foreach (ShParameters ParItem in Program.ParameterList)
+                {
+                    if (ParItem.PName == i.Text)
+                    {
+                        if (!Program.SelectedParametersList.Contains(ParItem))
+                        {
+                            Program.SelectedParametersList.Add(ParItem);
+                        }
+                    }
+                }
+            }
+
+            updatelistview();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            //remove
         }
     }
 }

@@ -200,8 +200,6 @@ namespace AddShParameters
                 }
             }
 
-            MainWindow.listView6.Sort();
-
             MainWindow.ShowDialog();
 
             return Result.Succeeded;
