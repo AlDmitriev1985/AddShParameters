@@ -466,16 +466,19 @@ namespace AddShParameters
         private void updatelistview()
         {
             listView2.Items.Clear();
-            listView5.Items.Clear();
 
             foreach (ShParameters ParItem in Program.SelectedParametersList)
             {
                 ListViewItem LvItem = new ListViewItem(ParItem.PName);
 
                 if (ParItem.PIsInstance == true)
-                { LvItem.SubItems.Add("Экземпляр"); }
+                {
+                    LvItem.SubItems.Add("Экземпляр");
+                }
                 else
-                { LvItem.SubItems.Add("Тип"); }
+                {
+                    LvItem.SubItems.Add("Тип");
+                }
 
                 switch (ParItem.PDataCategory)
                 {
@@ -573,7 +576,6 @@ namespace AddShParameters
                 }
 
                 listView2.Items.Add(LvItem);
-                listView5.Items.Add(LvItem);
             }
         }
 
@@ -612,21 +614,6 @@ namespace AddShParameters
                 }
                 listView3.Sort();
             }
-        }
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listView2_ItemChecked(object sender, ItemCheckedEventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
@@ -671,45 +658,23 @@ namespace AddShParameters
             updatelistview2();
         }
 
-        private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
+        private void button6_Click(object sender, EventArgs e)
         {
-            listView5.Items.Clear();
+            Program.CatWindow.listView6.Items.Clear();
 
-            foreach (ShParameters shParameters in Program.ParameterList)
+            foreach (Category Item in Program.doc.Settings.Categories)
             {
-                if (shParameters.PGroup.Name == comboBox5.SelectedItem.ToString())
+                if ((Item.CategoryType == CategoryType.Model) | (Item.CategoryType == CategoryType.AnalyticalModel))
                 {
-                    ListViewItem LvItem = new ListViewItem(shParameters.PName);
+                    ListViewItem LvItem = new ListViewItem(Item.Name);
 
-                    LvItem.SubItems.Add(shParameters.PDataType.ToString());
-                    LvItem.SubItems.Add(shParameters.PDescription);
-                    listView5.Items.Add(LvItem);
-                }
-            }
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-            foreach (ListViewItem i in listView5.SelectedItems)
-            {
-                foreach (ShParameters ParItem in Program.ParameterList)
-                {
-                    if (ParItem.PName == i.Text)
+                    if (!Program.CatWindow.listView6.Items.Contains(LvItem))
                     {
-                        if (!Program.SelectedParametersList.Contains(ParItem))
-                        {
-                            Program.SelectedParametersList.Add(ParItem);
-                        }
+                        Program.CatWindow.listView6.Items.Add(LvItem);
                     }
                 }
             }
-
-            updatelistview();
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-            //remove
+            Program.CatWindow.ShowDialog();
         }
     }
 }

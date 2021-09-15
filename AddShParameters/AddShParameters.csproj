@@ -60,10 +60,19 @@
     <Compile Include="WinForm.Designer.cs">
       <DependentUpon>WinForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinForm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm2.Designer.cs">
+      <DependentUpon>WinForm2.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="WinForm.resx">
       <DependentUpon>WinForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm2.resx">
+      <DependentUpon>WinForm2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

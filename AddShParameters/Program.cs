@@ -22,6 +22,8 @@ namespace AddShParameters
         public static List<string> BuildinParam = new List<string>();
         public static Document doc;
         public static FamilyType famType;
+        public static WinForm2 CatWindow = new WinForm2();
+        public static WinForm MainWindow = new WinForm();
 
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
@@ -95,8 +97,6 @@ namespace AddShParameters
             BuildinParam.Sort();
 
 
-            WinForm MainWindow = new WinForm();
-
             List<string> Listgroup = new List<string>();
 
             foreach (var shParameters in ParameterList)
@@ -114,38 +114,29 @@ namespace AddShParameters
             foreach (var Item in Listgroup)
             {
                 MainWindow.comboBox1.Items.Add(Item);
-                MainWindow.comboBox5.Items.Add(Item);
             }
 
             MainWindow.comboBox1.SelectedIndex = 0;
-            MainWindow.comboBox5.SelectedIndex = 0;
+
 
             foreach (var Item in BuildinParam)
             {
                 MainWindow.comboBox2.Items.Add(Item);
-                MainWindow.comboBox6.Items.Add(Item);
             }
 
             MainWindow.comboBox2.SelectedIndex = 0;
-            MainWindow.comboBox6.SelectedIndex = 0;
 
             MainWindow.listView1.Items.Clear();
-            MainWindow.listView5.Items.Clear();
 
             foreach (ShParameters shParameters in ParameterList)
             {
                 if (shParameters.PGroup.Name == MainWindow.comboBox1.SelectedItem.ToString())
                 {
-                    ListViewItem LvItem1 = new ListViewItem(shParameters.PName);
-                    ListViewItem LvItem2 = new ListViewItem(shParameters.PName);
+                    ListViewItem LvItem = new ListViewItem(shParameters.PName);
 
-                    LvItem1.SubItems.Add(shParameters.PDataType.ToString());
-                    LvItem1.SubItems.Add(shParameters.PDescription);
-                    MainWindow.listView1.Items.Add(LvItem1);
-                    
-                    LvItem2.SubItems.Add(shParameters.PDataType.ToString());
-                    LvItem2.SubItems.Add(shParameters.PDescription);
-                    MainWindow.listView5.Items.Add(LvItem2);
+                    LvItem.SubItems.Add(shParameters.PDataType.ToString());
+                    LvItem.SubItems.Add(shParameters.PDescription);
+                    MainWindow.listView1.Items.Add(LvItem);
                 }
             }
 
@@ -188,15 +179,6 @@ namespace AddShParameters
                     {
                         MainWindow.comboBox4.Items.Add(Item.Definition.Name);
                     }
-                }
-            }
-
-            foreach (Category Item in doc.Settings.Categories)
-            {
-                if ((Item.CategoryType==CategoryType.Model)|(Item.CategoryType == CategoryType.AnalyticalModel))
-                {
-                    ListViewItem LvItem = new ListViewItem(Item.Name);
-                    MainWindow.listView6.Items.Add(LvItem);
                 }
             }
 
