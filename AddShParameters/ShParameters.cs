@@ -20,10 +20,12 @@ namespace AddShParameters
         public BuiltInParameterGroup PDataCategory { get; set; }
         public bool PIsInstance { get; set; }
         public ExternalDefinition PexternalDefinition { get; set; }
-        public Category Pcategory { get; set; }
+        public List<string> Pcategories { get; set; }
 
         public ShParameters()
         {
+            Pcategories = new List<string> ();
+            Pcategories.Add("Не выбрано");
         }
     }
 

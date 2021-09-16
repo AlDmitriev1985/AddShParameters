@@ -31,11 +31,14 @@ namespace AddShParameters
                 {
                     if (shParameters.PName == i.Text)
                     {
-                        //Selectedlist.Add(shParameters);
-                        shParameters.PIsInstance = false;
+                        shParameters.Pcategories.Add(Program.CatWindow.listView6.SelectedItems.ToString());
                     }
                 }
             }
+
+            Program.MainWindow.UpdateListSelectedParameters();
+
+            Program.CatWindow.Close();
         }
     }
 }

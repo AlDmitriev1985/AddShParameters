@@ -55,7 +55,7 @@ namespace AddShParameters
                 }
             }
 
-            updatelistview();
+            UpdateListSelectedParameters();
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
@@ -72,7 +72,7 @@ namespace AddShParameters
                 }
             }
 
-            updatelistview();
+            UpdateListSelectedParameters();
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -181,7 +181,7 @@ namespace AddShParameters
                 }
             }
 
-            updatelistview();
+            UpdateListSelectedParameters();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -420,7 +420,7 @@ namespace AddShParameters
                 }
             }
 
-            updatelistview();
+            UpdateListSelectedParameters();
         }
 
 
@@ -445,7 +445,7 @@ namespace AddShParameters
                 }
             }
 
-            updatelistview();
+            UpdateListSelectedParameters();
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -460,10 +460,11 @@ namespace AddShParameters
                     }
                 }
             }
-            updatelistview();
+
+            UpdateListSelectedParameters();
         }
 
-        private void updatelistview()
+        public void UpdateListSelectedParameters()
         {
             listView2.Items.Clear();
 
@@ -575,11 +576,13 @@ namespace AddShParameters
                         break;
                 }
 
+                LvItem.SubItems.Add(string.Join(" ",ParItem.Pcategories));
+
                 listView2.Items.Add(LvItem);
             }
         }
 
-        public void updatelistview2()
+        public void UpdateListinFamily()
         {
             listView3.Items.Clear();
 
@@ -633,7 +636,7 @@ namespace AddShParameters
                 }
             }
 
-            updatelistview2();
+            UpdateListinFamily();
 
             //FamilyTypeSetIterator familyTypeSetIterator = doc.FamilyManager.Types.ForwardIterator();
 
@@ -655,7 +658,8 @@ namespace AddShParameters
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            updatelistview2();
+            UpdateListSelectedParameters();
+            UpdateListinFamily();
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -674,6 +678,7 @@ namespace AddShParameters
                     }
                 }
             }
+            
             Program.CatWindow.ShowDialog();
         }
     }

@@ -169,7 +169,7 @@ namespace AddShParameters
                 MainWindow.comboBox3.SelectedItem = famType.Name;
             }
 
-            MainWindow.updatelistview2();
+            MainWindow.UpdateListinFamily();
 
             if (doc.IsFamilyDocument)
             {
