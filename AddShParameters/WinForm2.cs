@@ -24,6 +24,7 @@ namespace AddShParameters
 
         private void button7_Click(object sender, EventArgs e)
         {
+
             //добавление категорий к параметрам
             foreach (ListViewItem i in Program.MainWindow.listView2.SelectedItems)
             {
@@ -31,7 +32,12 @@ namespace AddShParameters
                 {
                     if (shParameters.PName == i.Text)
                     {
-                        shParameters.Pcategories.Add(Program.CatWindow.listView6.SelectedItems.ToString());
+                        foreach (ListViewItem Item in Program.CatWindow.listView6.CheckedItems)
+                        {
+                            shParameters.Pcategories.Remove("Не выбрано");
+                            shParameters.Pcategories.Add(Item.Name);
+                            shParameters.Pcategories.Add(" ,");
+                        }
                     }
                 }
             }

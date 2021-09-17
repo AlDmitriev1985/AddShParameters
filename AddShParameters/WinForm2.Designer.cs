@@ -42,7 +42,6 @@ namespace AddShParameters
             this.listView6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.listView6.FullRowSelect = true;
             this.listView6.GridLines = true;
-            this.listView6.HideSelection = false;
             this.listView6.Location = new System.Drawing.Point(5, 5);
             this.listView6.Name = "listView6";
             this.listView6.Size = new System.Drawing.Size(237, 414);
