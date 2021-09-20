@@ -48,11 +48,13 @@ namespace AddShParameters
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
@@ -64,8 +66,6 @@ namespace AddShParameters
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button7 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -261,6 +261,11 @@ namespace AddShParameters
             this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader6.Width = 200;
             // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "Категория в проекте";
+            this.columnHeader10.Width = 1000;
+            // 
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("Segoe UI", 9.75F);
@@ -336,6 +341,17 @@ namespace AddShParameters
             this.tabPage1.ToolTipText = "Добавление общих параметров в семейство";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // button7
+            // 
+            this.button7.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.button7.Location = new System.Drawing.Point(1270, 631);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(158, 27);
+            this.button7.TabIndex = 43;
+            this.button7.Text = "Добавить в проект";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // button6
             // 
             this.button6.Font = new System.Drawing.Font("Segoe UI", 9.75F);
@@ -359,7 +375,7 @@ namespace AddShParameters
             this.tabPage2.Location = new System.Drawing.Point(4, 26);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1242, 661);
+            this.tabPage2.Size = new System.Drawing.Size(1446, 661);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Перенос значений параметров в семействе";
             this.tabPage2.ToolTipText = "Перенос значений между общими параметрами";
@@ -450,22 +466,6 @@ namespace AddShParameters
             this.label6.TabIndex = 2;
             this.label6.Text = "Типоразмеры в семействе :";
             // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "Категория в проекте";
-            this.columnHeader10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader10.Width = 200;
-            // 
-            // button7
-            // 
-            this.button7.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.button7.Location = new System.Drawing.Point(1270, 631);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(158, 27);
-            this.button7.TabIndex = 43;
-            this.button7.Text = "Добавить в проект";
-            this.button7.UseVisualStyleBackColor = true;
-            // 
             // WinForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -478,7 +478,7 @@ namespace AddShParameters
             this.Name = "WinForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Менеджер общих параметров";
+            this.Text = "н";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

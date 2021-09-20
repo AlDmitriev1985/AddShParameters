@@ -21,6 +21,7 @@ namespace AddShParameters
         public bool PIsInstance { get; set; }
         public ExternalDefinition PexternalDefinition { get; set; }
         public List<string> Pcategories { get; set; }
+        public CategorySet PcategorySet { get; set; }
 
         public ShParameters()
         {

@@ -575,9 +575,7 @@ namespace AddShParameters
                         LvItem.SubItems.Add("Графика");
                         break;
                 }
-
-                LvItem.SubItems.Add(string.Join(" ",ParItem.Pcategories));
-
+                LvItem.SubItems.Add(string.Join(", ", ParItem.Pcategories));
                 listView2.Items.Add(LvItem);
             }
         }
@@ -678,8 +676,29 @@ namespace AddShParameters
                     }
                 }
             }
-            
+
             Program.CatWindow.ShowDialog();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            //Добавление параметров в проект
+
+            foreach (ShParameters Item in Program.SelectedParametersList)
+            {
+                foreach (string i in Item.Pcategories)
+                {
+                    if (Program.doc.Settings.Categories.Contains(i))
+                    {
+                        CategorySet categorySet = Program.doc.Application.Create.NewCategorySet();
+
+                        //Category category = Category.GetCategory(Program.doc, );
+
+                        //categorySet.Insert(category);
+                    }
+                }
+            }
+
         }
     }
 }
