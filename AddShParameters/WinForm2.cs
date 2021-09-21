@@ -39,9 +39,7 @@ namespace AddShParameters
                             if (!shParameters.PcategorySet.Contains(Program.doc.Settings.Categories.get_Item(Item.Text)))
                             {
                                 shParameters.PcategorySet.Insert(Program.doc.Settings.Categories.get_Item(Item.Text));
-                                //shParameters.Pcategories.Remove("Не выбрано");
-                                //shParameters.Pcategories.Add(Item.Text);
-
+                                
                             }
                         }
                     }

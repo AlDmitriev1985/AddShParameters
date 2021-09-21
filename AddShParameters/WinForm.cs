@@ -1,6 +1,7 @@
 ﻿using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
@@ -575,7 +576,23 @@ namespace AddShParameters
                         LvItem.SubItems.Add("Графика");
                         break;
                 }
-                LvItem.SubItems.Add(ParItem.PcategorySet.ToString());
+
+                IEnumerable enumerable = ParItem.PcategorySet.GetEnumerator();
+
+                enumerable.Reset();
+
+                while (enumerable.MoveNext())
+                {
+                    Category Item = enumerable.Current as Category;
+
+                    LvItem.SubItems.Add(Item.Name+", ");
+                }
+
+                //foreach (Category Item in ParItem.PcategorySet)
+                //{
+                //    LvItem.SubItems.Add(Item.Name);
+                //}
+
                 listView2.Items.Add(LvItem);
             }
         }
