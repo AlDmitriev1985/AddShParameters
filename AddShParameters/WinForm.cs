@@ -16,6 +16,8 @@ namespace AddShParameters
     {
         public List<string> Listgroup = new List<string>();
 
+        public List<string> Categories = new List<string>();
+
         public WinForm()
         {
             InitializeComponent();
@@ -28,6 +30,8 @@ namespace AddShParameters
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Выпадающий список выбора групп из ФОПа
+
             listView1.Items.Clear();
 
             foreach (ShParameters shParameters in Program.ParameterList)
@@ -44,6 +48,8 @@ namespace AddShParameters
         }
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
+            //Выбор параметр типа или экземпляра
+
             foreach (ListViewItem i in listView2.SelectedItems)
             {
                 foreach (ShParameters shParameters in Program.SelectedParametersList)
@@ -61,6 +67,8 @@ namespace AddShParameters
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
+            //Выбор параметр типа или экземпляра
+
             foreach (ListViewItem i in listView2.SelectedItems)
             {
                 foreach (ShParameters shParameters in Program.SelectedParametersList)
@@ -78,6 +86,8 @@ namespace AddShParameters
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Выбор группы для параметров (видимость, данные и т.д.)
+
             foreach (ListViewItem i in listView2.SelectedItems)
             {
                 foreach (ShParameters shParameters in Program.SelectedParametersList)
@@ -188,6 +198,8 @@ namespace AddShParameters
         private void button1_Click(object sender, EventArgs e)
         {
 
+            //Добавление параметров из окна выбранных параметров в семейство
+
             if (Program.doc.IsFamilyDocument)
             {
 
@@ -232,6 +244,8 @@ namespace AddShParameters
 
         private void button2_Click(object sender, EventArgs e)
         {
+            //Сохранение набора параметров
+
             //saving set of parameters
             XmlDocument xmldoc = new XmlDocument();
             XmlDeclaration xmlDeclaration = xmldoc.CreateXmlDeclaration("1.0", "UTF-8", null);
@@ -253,12 +267,24 @@ namespace AddShParameters
                 XmlText TextIsInstance = xmldoc.CreateTextNode(Item.PIsInstance.ToString());
                 XmlElement DataCategory = xmldoc.CreateElement(string.Empty, "Группирование_параметров", string.Empty);
                 XmlText TextDataCategory = xmldoc.CreateTextNode(Item.PDataCategory.ToString());
+                XmlElement ParCategorySet = xmldoc.CreateElement(string.Empty, "Перечень_категорий", string.Empty);
+
+                Categories.Clear();
+
+                foreach (Category Itemcategory in Item.PcategorySet)
+                {
+                    Categories.Add(Itemcategory.Name);
+                }
+                XmlText TextCategorySet = xmldoc.CreateTextNode(string.Join(", ", Categories));
+
                 element.AppendChild(ParamName);
                 ParamName.AppendChild(TextParamName);
                 ParamName.AppendChild(IsInstance);
                 ParamName.AppendChild(TextIsInstance);
                 ParamName.AppendChild(DataCategory);
                 ParamName.AppendChild(TextDataCategory);
+                ParamName.AppendChild(ParCategorySet);
+                ParamName.AppendChild(TextCategorySet);
 
             }
 
@@ -277,6 +303,8 @@ namespace AddShParameters
 
         private void button3_Click(object sender, EventArgs e)
         {
+            //Загрузка набора параметров
+
             //loading set of parameters
             XmlDocument xmldoc = new XmlDocument();
 
@@ -432,6 +460,8 @@ namespace AddShParameters
 
         private void button4_Click(object sender, EventArgs e)
         {
+            //Кнопка переноса из окна параметров ФОПа в выбранные параметры
+
             foreach (ListViewItem i in listView1.SelectedItems)
             {
                 foreach (ShParameters ParItem in Program.ParameterList)
@@ -451,6 +481,8 @@ namespace AddShParameters
 
         private void button5_Click(object sender, EventArgs e)
         {
+            //Кнопка переноса из окна выбранных параметров в окно параметров ФОПа
+
             foreach (ListViewItem i in listView2.SelectedItems)
             {
                 for (int counter = 0; counter < Program.SelectedParametersList.Count; counter++)
@@ -467,9 +499,9 @@ namespace AddShParameters
 
         public void UpdateListSelectedParameters()
         {
-            listView2.Items.Clear();
+            //Метод обновления параметров в окне выбранных параметров
 
-            List<string> Categories = new List<string>();
+            listView2.Items.Clear();
 
             foreach (ShParameters ParItem in Program.SelectedParametersList)
             {
@@ -603,6 +635,8 @@ namespace AddShParameters
 
         public void UpdateListinFamily()
         {
+            //Обновление списка параметров и их значений в семействе
+
             listView3.Items.Clear();
 
             if (Program.doc.IsFamilyDocument)
@@ -640,6 +674,8 @@ namespace AddShParameters
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Переключение типоразмеров в семействе
+
             FamilyTypeSet familyTypeSet = Program.doc.FamilyManager.Types;
 
             foreach (FamilyType Item in familyTypeSet)
@@ -677,12 +713,16 @@ namespace AddShParameters
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Переключение вкладок основого окна
+
             UpdateListSelectedParameters();
             UpdateListinFamily();
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
+            //Кнопка выбора категории в проекте
+
             Program.CatWindow.listView6.Items.Clear();
 
             foreach (Category Item in Program.doc.Settings.Categories)
@@ -703,7 +743,7 @@ namespace AddShParameters
 
         private void button7_Click(object sender, EventArgs e)
         {
-            //Добавление параметров в проект
+            //Кнопка добавление параметров в проект
 
             foreach (ShParameters Item in Program.SelectedParametersList)
             {
