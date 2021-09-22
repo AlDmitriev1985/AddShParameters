@@ -469,8 +469,12 @@ namespace AddShParameters
         {
             listView2.Items.Clear();
 
+            List<string> Categories = new List<string>();
+
             foreach (ShParameters ParItem in Program.SelectedParametersList)
             {
+                Categories.Clear();
+
                 ListViewItem LvItem = new ListViewItem(ParItem.PName);
 
                 if (ParItem.PIsInstance == true)
@@ -577,21 +581,21 @@ namespace AddShParameters
                         break;
                 }
 
-                IEnumerable enumerable = ParItem.PcategorySet.GetEnumerator();
+                //CategorySetIterator categorySetIterator = ParItem.PcategorySet.ForwardIterator();
 
-                enumerable.Reset();
+                //categorySetIterator.Reset();
 
-                while (enumerable.MoveNext())
+                //while (categorySetIterator.MoveNext())
+                //{
+                //    Category Currentcategory = categorySetIterator.Current as Category;
+                //}
+
+                foreach (Category Item in ParItem.PcategorySet)
                 {
-                    Category Item = enumerable.Current as Category;
-
-                    LvItem.SubItems.Add(Item.Name+", ");
+                    Categories.Add(Item.Name);
                 }
 
-                //foreach (Category Item in ParItem.PcategorySet)
-                //{
-                //    LvItem.SubItems.Add(Item.Name);
-                //}
+                LvItem.SubItems.Add(string.Join(", ", Categories));
 
                 listView2.Items.Add(LvItem);
             }
@@ -683,7 +687,7 @@ namespace AddShParameters
 
             foreach (Category Item in Program.doc.Settings.Categories)
             {
-                if ((Item.CategoryType == CategoryType.Model) | (Item.CategoryType == CategoryType.AnalyticalModel))
+                if ((Item.AllowsBoundParameters) & (Item.IsVisibleInUI))
                 {
                     ListViewItem LvItem = new ListViewItem(Item.Name);
 
@@ -701,21 +705,34 @@ namespace AddShParameters
         {
             //Добавление параметров в проект
 
-            //foreach (ShParameters Item in Program.SelectedParametersList)
-            //{
-            //    foreach (string i in Item.Pcategories)
-            //    {
-            //        if (Program.doc.Settings.Categories.Contains(i))
-            //        {
-            //            CategorySet categorySet = Program.doc.Application.Create.NewCategorySet();
+            foreach (ShParameters Item in Program.SelectedParametersList)
+            {
+                if (Item.PcategorySet.IsEmpty)
+                { MessageBox.Show("Категории для параметра " + Item.PName + " не выбраны! Добавление в проект невозможно"); }
 
-            //            //Category category = Category.GetCategory(Program.doc, );
 
-            //            //categorySet.Insert(category);
-            //        }
-            //    }
-            //}
+                if (!Item.PcategorySet.IsEmpty)
+                {
+                    if (Item.PIsInstance == true)
+                    {
+                        Transaction transaction = new Transaction(Program.doc, Item.PName);
+                        transaction.Start();
+                        InstanceBinding instanceBinding = Program.doc.Application.Create.NewInstanceBinding(Item.PcategorySet);
+                        Program.doc.ParameterBindings.Insert(Item.PexternalDefinition, instanceBinding, Item.PDataCategory);
+                        transaction.Commit();
+                    }
+                    else
+                    {
+                        Transaction transaction = new Transaction(Program.doc, Item.PName);
+                        transaction.Start();
+                        TypeBinding typeBinding = Program.doc.Application.Create.NewTypeBinding(Item.PcategorySet);
+                        Program.doc.ParameterBindings.Insert(Item.PexternalDefinition, typeBinding, Item.PDataCategory);
+                        transaction.Commit();
+                    }
+                }
+            }
 
+            MessageBox.Show("Параметры из списка добавлены в проект");
         }
     }
 }

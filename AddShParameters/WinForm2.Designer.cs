@@ -42,6 +42,7 @@ namespace AddShParameters
             this.listView6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.listView6.FullRowSelect = true;
             this.listView6.GridLines = true;
+            this.listView6.HideSelection = false;
             this.listView6.Location = new System.Drawing.Point(5, 5);
             this.listView6.Name = "listView6";
             this.listView6.Size = new System.Drawing.Size(237, 414);
@@ -63,7 +64,7 @@ namespace AddShParameters
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(158, 27);
             this.button7.TabIndex = 43;
-            this.button7.Text = "Добавить";
+            this.button7.Text = "Принять";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 

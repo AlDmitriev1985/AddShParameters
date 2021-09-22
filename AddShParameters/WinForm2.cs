@@ -46,15 +46,6 @@ namespace AddShParameters
                 }
             }
 
-            foreach (ShParameters shParameters in Program.SelectedParametersList)
-            {
-                foreach (Category item in shParameters.PcategorySet)
-                {
-                    MessageBox.Show(item.Name);
-                }
-            }
-
-
             Program.MainWindow.UpdateListSelectedParameters();
 
             Program.CatWindow.Close();

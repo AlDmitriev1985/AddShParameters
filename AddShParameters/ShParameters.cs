@@ -26,7 +26,6 @@ namespace AddShParameters
         public ShParameters()
         {
             PcategorySet = Program.doc.Application.Create.NewCategorySet();
-            PcategorySet.Insert(Category.GetCategory(Program.doc,BuiltInCategory.INVALID));
         }
     }
 
