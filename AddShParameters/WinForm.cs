@@ -447,9 +447,23 @@ namespace AddShParameters
                         }
                     }
                 }
-            }
 
-            UpdateListSelectedParameters();
+                foreach (XmlNode xmlnode in xmldoc.DocumentElement.GetElementsByTagName("Имя_параметра"))
+                {
+                    foreach (ShParameters Item in Program.SelectedParametersList)
+                    {
+                        foreach (Category catitem in Program.doc.Settings.Categories)
+                        {
+                            if ((xmlnode.InnerText.Contains(Item.PName) & (xmlnode.InnerText.Contains(catitem.Name))))
+                            {
+                                Item.PcategorySet.Insert(catitem);
+                            }
+                        }
+                    }
+                }
+
+                UpdateListSelectedParameters();
+            }
         }
 
 
@@ -627,6 +641,8 @@ namespace AddShParameters
                     Categories.Add(Item.Name);
                 }
 
+                Categories.Sort();
+
                 LvItem.SubItems.Add(string.Join(", ", Categories));
 
                 listView2.Items.Add(LvItem);
@@ -773,6 +789,14 @@ namespace AddShParameters
             }
 
             MessageBox.Show("Параметры из списка добавлены в проект");
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            button3_Click(this.button3, EventArgs.Empty);
+
+            MessageBox.Show(Program.doc.ParameterBindings.get_Item());
+
         }
     }
 }

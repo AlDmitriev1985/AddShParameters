@@ -54,6 +54,7 @@ namespace AddShParameters
             this.label3 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -313,6 +314,7 @@ namespace AddShParameters
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button8);
             this.tabPage1.Controls.Add(this.button7);
             this.tabPage1.Controls.Add(this.button6);
             this.tabPage1.Controls.Add(this.comboBox1);
@@ -340,6 +342,17 @@ namespace AddShParameters
             this.tabPage1.Text = "Добавление параметров";
             this.tabPage1.ToolTipText = "Добавление общих параметров в семейство";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            this.button8.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.button8.Location = new System.Drawing.Point(930, 6);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(158, 53);
+            this.button8.TabIndex = 44;
+            this.button8.Text = "Проверить проект на параметры";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button7
             // 
@@ -528,5 +541,6 @@ namespace AddShParameters
         private System.Windows.Forms.Button button6;
         public System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
     }
 }
