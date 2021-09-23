@@ -793,9 +793,25 @@ namespace AddShParameters
 
         private void button8_Click(object sender, EventArgs e)
         {
-            button3_Click(this.button3, EventArgs.Empty);
+            //button3_Click(this.button3, EventArgs.Empty);
 
-            MessageBox.Show(Program.doc.ParameterBindings.get_Item());
+
+            BindingMap bindingMap = Program.doc.ParameterBindings;
+
+            DefinitionBindingMapIterator defBindMapIterator = bindingMap.ForwardIterator();
+
+            defBindMapIterator.Reset();
+
+            while (defBindMapIterator.MoveNext());
+            {
+                //ElementBinding elembinding = defBindMapIterator.Current as ElementBinding;
+
+                Definition definition = defBindMapIterator.Key;
+
+                MessageBox.Show(definition.Name.ToString());
+
+                //MessageBox.Show(defBindMapIterator.Key.Name);
+            }
 
         }
     }
