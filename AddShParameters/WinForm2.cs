@@ -50,5 +50,10 @@ namespace AddShParameters
 
             Program.CatWindow.Close();
         }
+
+        private void WinForm2_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

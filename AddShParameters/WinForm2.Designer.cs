@@ -81,6 +81,7 @@ namespace AddShParameters
             this.Name = "WinForm2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Категории";
+            this.Load += new System.EventHandler(this.WinForm2_Load);
             this.ResumeLayout(false);
 
         }

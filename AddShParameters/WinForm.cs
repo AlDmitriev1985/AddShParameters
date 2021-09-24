@@ -373,7 +373,7 @@ namespace AddShParameters
                         {
                             Item.PDataCategory = BuiltInParameterGroup.PG_CONSTRUCTION;
                         }
-                        else if ((xmlnode.InnerText.Contains(Item.PName) & (xmlnode.InnerText.Contains("PG_DATA"))))
+                        else if ((xmlnode.InnerText.Contains(Item.PName) & (xmlnode.InnerText.Equals("PG_DATA"))))
                         {
                             Item.PDataCategory = BuiltInParameterGroup.PG_DATA;
                         }
@@ -385,7 +385,7 @@ namespace AddShParameters
                         {
                             Item.PDataCategory = BuiltInParameterGroup.PG_MATERIALS;
                         }
-                        else if ((xmlnode.InnerText.Contains(Item.PName) & (xmlnode.InnerText.Contains("PG_MECHANICAL"))))
+                        else if ((xmlnode.InnerText.Contains(Item.PName) & (xmlnode.InnerText.Equals("PG_MECHANICAL"))))
                         {
                             Item.PDataCategory = BuiltInParameterGroup.PG_MECHANICAL;
                         }
@@ -401,7 +401,7 @@ namespace AddShParameters
                         {
                             Item.PDataCategory = BuiltInParameterGroup.PG_PLUMBING;
                         }
-                        else if ((xmlnode.InnerText.Contains(Item.PName) & (xmlnode.InnerText.Contains("PG_STRUCTURAL"))))
+                        else if ((xmlnode.InnerText.Equals(Item.PName) & (xmlnode.InnerText.Equals("PG_STRUCTURAL"))))
                         {
                             Item.PDataCategory = BuiltInParameterGroup.PG_STRUCTURAL;
                         }
@@ -417,7 +417,7 @@ namespace AddShParameters
                         {
                             Item.PDataCategory = BuiltInParameterGroup.PG_AREA;
                         }
-                        else if ((xmlnode.InnerText.Contains(Item.PName) & (xmlnode.InnerText.Contains("PG_ELECTRICAL"))))
+                        else if ((xmlnode.InnerText.Equals(Item.PName) & (xmlnode.InnerText.Equals("PG_ELECTRICAL"))))
                         {
                             Item.PDataCategory = BuiltInParameterGroup.PG_ELECTRICAL;
                         }
@@ -767,25 +767,36 @@ namespace AddShParameters
                 { MessageBox.Show("Категории для параметра " + Item.PName + " не выбраны! Добавление в проект невозможно"); }
 
 
-                if (!Item.PcategorySet.IsEmpty)
+                if (!Program.doc.ParameterBindings.Contains(Item.PexternalDefinition))
                 {
-                    if (Item.PIsInstance == true)
+
+                    if (!Item.PcategorySet.IsEmpty)
                     {
-                        Transaction transaction = new Transaction(Program.doc, Item.PName);
-                        transaction.Start();
-                        InstanceBinding instanceBinding = Program.doc.Application.Create.NewInstanceBinding(Item.PcategorySet);
-                        Program.doc.ParameterBindings.Insert(Item.PexternalDefinition, instanceBinding, Item.PDataCategory);
-                        transaction.Commit();
-                    }
-                    else
-                    {
-                        Transaction transaction = new Transaction(Program.doc, Item.PName);
-                        transaction.Start();
-                        TypeBinding typeBinding = Program.doc.Application.Create.NewTypeBinding(Item.PcategorySet);
-                        Program.doc.ParameterBindings.Insert(Item.PexternalDefinition, typeBinding, Item.PDataCategory);
-                        transaction.Commit();
+                        if (Item.PIsInstance == true)
+                        {
+                            Transaction transaction = new Transaction(Program.doc, Item.PName);
+                            transaction.Start();
+                            InstanceBinding instanceBinding = Program.doc.Application.Create.NewInstanceBinding(Item.PcategorySet);
+                            Program.doc.ParameterBindings.Insert(Item.PexternalDefinition, instanceBinding, Item.PDataCategory);
+                            transaction.Commit();
+                        }
+                        else
+                        {
+                            Transaction transaction = new Transaction(Program.doc, Item.PName);
+                            transaction.Start();
+                            TypeBinding typeBinding = Program.doc.Application.Create.NewTypeBinding(Item.PcategorySet);
+                            Program.doc.ParameterBindings.Insert(Item.PexternalDefinition, typeBinding, Item.PDataCategory);
+                            transaction.Commit();
+                        }
                     }
                 }
+                
+                MessageBox.Show(Program.doc.ParameterBindings.get_Item(Item.PexternalDefinition).GetType().ToString());
+
+                //else if ()
+                //{
+
+                //}
             }
 
             MessageBox.Show("Параметры из списка добавлены в проект");
@@ -793,26 +804,73 @@ namespace AddShParameters
 
         private void button8_Click(object sender, EventArgs e)
         {
-            //button3_Click(this.button3, EventArgs.Empty);
-
+            button3_Click(this.button3, EventArgs.Empty);
 
             BindingMap bindingMap = Program.doc.ParameterBindings;
 
-            DefinitionBindingMapIterator defBindMapIterator = bindingMap.ForwardIterator();
+            //DefinitionBindingMapIterator defBindMapIterator = bindingMap.ForwardIterator();
 
-            defBindMapIterator.Reset();
+            //defBindMapIterator.Reset();
 
-            while (defBindMapIterator.MoveNext());
+            //while (defBindMapIterator.MoveNext())
+            //{
+            //    Definition definition = (Definition) defBindMapIterator.Key;
+            //    Autodesk.Revit.DB.Binding binding = (Autodesk.Revit.DB.Binding) defBindMapIterator.Current;
+            //}
+
+            foreach (ShParameters Item in Program.SelectedParametersList)
             {
-                //ElementBinding elembinding = defBindMapIterator.Current as ElementBinding;
+                if (Item.PcategorySet.IsEmpty)
+                { MessageBox.Show("Категории для параметра " + Item.PName + " не выбраны! Добавление в проект невозможно"); }
 
-                Definition definition = defBindMapIterator.Key;
+                if (bindingMap.Contains(Item.PexternalDefinition))
+                {
+                    if (!Item.PcategorySet.IsEmpty)
+                    {
+                        if (Item.PIsInstance == true)
+                        {
+                            Transaction transaction = new Transaction(Program.doc, Item.PName);
+                            transaction.Start();
+                            InstanceBinding instanceBinding = Program.doc.Application.Create.NewInstanceBinding(Item.PcategorySet);
+                            Program.doc.ParameterBindings.ReInsert(Item.PexternalDefinition, instanceBinding, Item.PDataCategory);
+                            transaction.Commit();
+                        }
+                        else
+                        {
+                            Transaction transaction = new Transaction(Program.doc, Item.PName);
+                            transaction.Start();
+                            TypeBinding typeBinding = Program.doc.Application.Create.NewTypeBinding(Item.PcategorySet);
+                            Program.doc.ParameterBindings.ReInsert(Item.PexternalDefinition, typeBinding, Item.PDataCategory);
+                            transaction.Commit();
+                        }
+                    }
+                }
 
-                MessageBox.Show(definition.Name.ToString());
-
-                //MessageBox.Show(defBindMapIterator.Key.Name);
+                else if (!bindingMap.Contains(Item.PexternalDefinition))
+                {
+                    if (!Item.PcategorySet.IsEmpty)
+                    {
+                        if (Item.PIsInstance == true)
+                        {
+                            Transaction transaction = new Transaction(Program.doc, Item.PName);
+                            transaction.Start();
+                            InstanceBinding instanceBinding = Program.doc.Application.Create.NewInstanceBinding(Item.PcategorySet);
+                            Program.doc.ParameterBindings.Insert(Item.PexternalDefinition, instanceBinding, Item.PDataCategory);
+                            transaction.Commit();
+                        }
+                        else
+                        {
+                            Transaction transaction = new Transaction(Program.doc, Item.PName);
+                            transaction.Start();
+                            TypeBinding typeBinding = Program.doc.Application.Create.NewTypeBinding(Item.PcategorySet);
+                            Program.doc.ParameterBindings.Insert(Item.PexternalDefinition, typeBinding, Item.PDataCategory);
+                            transaction.Commit();
+                        }
+                    }
+                }
             }
 
+            MessageBox.Show("Параметры из списка добавлены в проект");
         }
     }
 }
