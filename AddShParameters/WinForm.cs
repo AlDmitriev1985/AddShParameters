@@ -761,49 +761,63 @@ namespace AddShParameters
         {
             //Кнопка добавление параметров в проект
 
+            List<string> SkippedList = new List<string>();
+
             foreach (ShParameters Item in Program.SelectedParametersList)
             {
                 if (Item.PcategorySet.IsEmpty)
-                { MessageBox.Show("Категории для параметра " + Item.PName + " не выбраны! Добавление в проект невозможно"); }
-
+                {
+                    SkippedList.Add(Item.PName);
+                }
 
                 if (!Program.doc.ParameterBindings.Contains(Item.PexternalDefinition))
                 {
 
-                    if (!Item.PcategorySet.IsEmpty)
+                    if (Item.PIsInstance == true)
                     {
-                        if (Item.PIsInstance == true)
-                        {
-                            Transaction transaction = new Transaction(Program.doc, Item.PName);
-                            transaction.Start();
-                            InstanceBinding instanceBinding = Program.doc.Application.Create.NewInstanceBinding(Item.PcategorySet);
-                            Program.doc.ParameterBindings.Insert(Item.PexternalDefinition, instanceBinding, Item.PDataCategory);
-                            transaction.Commit();
-                        }
-                        else
-                        {
-                            Transaction transaction = new Transaction(Program.doc, Item.PName);
-                            transaction.Start();
-                            TypeBinding typeBinding = Program.doc.Application.Create.NewTypeBinding(Item.PcategorySet);
-                            Program.doc.ParameterBindings.Insert(Item.PexternalDefinition, typeBinding, Item.PDataCategory);
-                            transaction.Commit();
-                        }
+                        Transaction transaction = new Transaction(Program.doc, Item.PName);
+                        transaction.Start();
+                        InstanceBinding instanceBinding = Program.doc.Application.Create.NewInstanceBinding(Item.PcategorySet);
+                        Program.doc.ParameterBindings.Insert(Item.PexternalDefinition, instanceBinding, Item.PDataCategory);
+                        transaction.Commit();
+                    }
+                    else
+                    {
+                        Transaction transaction = new Transaction(Program.doc, Item.PName);
+                        transaction.Start();
+                        TypeBinding typeBinding = Program.doc.Application.Create.NewTypeBinding(Item.PcategorySet);
+                        Program.doc.ParameterBindings.Insert(Item.PexternalDefinition, typeBinding, Item.PDataCategory);
+                        transaction.Commit();
                     }
                 }
-                
-                MessageBox.Show(Program.doc.ParameterBindings.get_Item(Item.PexternalDefinition).GetType().ToString());
 
-                //else if ()
-                //{
+                else
+                {
+                    if (Program.doc.ParameterBindings.get_Item(Item.PexternalDefinition).GetType() == Autodesk.Revit.DB.InstanceBinding)
 
-                //}
+                    {
+                        InstanceBinding newinstanceBinding = Program.doc.Application.Create.NewInstanceBinding(Item.PcategorySet);
+                    }
+
+                    else
+                    {
+                        TypeBinding newtypeBinding = Program.doc.Application.Create.NewTypeBinding(Item.PcategorySet);
+                    }
+
+                }
+
             }
 
-            MessageBox.Show("Параметры из списка добавлены в проект");
+            if (SkippedList.Count != 0)
+            {
+                MessageBox.Show("Параметры " + string.Join(", ", SkippedList) + " пропущены, так как для них не выбрана категория в проекте!");
+            }
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
+            //Кнопка проверка проекта на параметры
+
             button3_Click(this.button3, EventArgs.Empty);
 
             BindingMap bindingMap = Program.doc.ParameterBindings;
