@@ -763,6 +763,10 @@ namespace AddShParameters
 
             List<string> SkippedList = new List<string>();
 
+            BindingMap bindingMap = Program.doc.ParameterBindings;
+
+            int i = bindingMap.Size;
+
             foreach (ShParameters Item in Program.SelectedParametersList)
             {
                 if (Item.PcategorySet.IsEmpty)
@@ -770,7 +774,7 @@ namespace AddShParameters
                     SkippedList.Add(Item.PName);
                 }
 
-                if (!Program.doc.ParameterBindings.Contains(Item.PexternalDefinition))
+                if (!bindingMap.Contains(Item.PexternalDefinition))
                 {
 
                     if (Item.PIsInstance == true)
@@ -791,22 +795,36 @@ namespace AddShParameters
                     }
                 }
 
-                else
+                else if (0 < i)
                 {
-                    if (Program.doc.ParameterBindings.get_Item(Item.PexternalDefinition).GetType() == Autodesk.Revit.DB.InstanceBinding)
+                    DefinitionBindingMapIterator defBindMapIterator = bindingMap.ForwardIterator();
 
-                    {
-                        InstanceBinding newinstanceBinding = Program.doc.Application.Create.NewInstanceBinding(Item.PcategorySet);
-                    }
+                    defBindMapIterator.Reset();
 
-                    else
+                    while (defBindMapIterator.MoveNext())
                     {
-                        TypeBinding newtypeBinding = Program.doc.Application.Create.NewTypeBinding(Item.PcategorySet);
+                        Definition definition = (Definition) defBindMapIterator.Key;
+
+                        Autodesk.Revit.DB.Binding binding = (Autodesk.Revit.DB.Binding)defBindMapIterator.Current;
+
+
+                        if ()
+
+                        {
+                            InstanceBinding newinstanceBinding = Program.doc.Application.Create.NewInstanceBinding(Item.PcategorySet);
+                        }
+
+                        else
+                        {
+                            TypeBinding newtypeBinding = Program.doc.Application.Create.NewTypeBinding(Item.PcategorySet);
+                        }
                     }
 
                 }
 
             }
+
+            //Program.doc.ParameterBindings.get_Item(Item.PexternalDefinition).GetType();
 
             if (SkippedList.Count != 0)
             {
