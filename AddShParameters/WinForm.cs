@@ -688,6 +688,76 @@ namespace AddShParameters
             }
         }
 
+        public void AddSelectedParameterstoProject()
+        {
+            //Метод добавления параметров в окне выбранных параметров
+
+            List<string> SkippedList = new List<string>();
+
+            List<string> AddedCategoryList = new List<string>();
+
+            BindingMap bindingMap = Program.doc.ParameterBindings;
+
+            foreach (ShParameters Item in Program.SelectedParametersList)
+            {
+                if (Item.PcategorySet.IsEmpty)
+                {
+                    SkippedList.Add(Item.PName);
+                }
+
+                if ((!bindingMap.Contains(Item.PexternalDefinition)) & (!Item.PcategorySet.IsEmpty))
+                {
+
+                    if (Item.PIsInstance == true)
+                    {
+                        Transaction transaction = new Transaction(Program.doc, Item.PName);
+                        transaction.Start();
+                        InstanceBinding instanceBinding = Program.doc.Application.Create.NewInstanceBinding(Item.PcategorySet);
+                        bindingMap.Insert(Item.PexternalDefinition, instanceBinding, Item.PDataCategory);
+                        transaction.Commit();
+                    }
+                    else
+                    {
+                        Transaction transaction = new Transaction(Program.doc, Item.PName);
+                        transaction.Start();
+                        TypeBinding typeBinding = Program.doc.Application.Create.NewTypeBinding(Item.PcategorySet);
+                        bindingMap.Insert(Item.PexternalDefinition, typeBinding, Item.PDataCategory);
+                        transaction.Commit();
+                    }
+                }
+
+                else if (!Item.PcategorySet.IsEmpty)
+                {
+                    ElementBinding elementbinding = Program.doc.ParameterBindings.get_Item(Item.PexternalDefinition) as ElementBinding;
+
+                    foreach (Category cat in Item.PcategorySet)
+                    {
+                        if (!elementbinding.Categories.Contains(cat))
+                        {
+                            elementbinding.Categories.Insert(cat);
+                        }
+                    }
+
+                    Transaction transaction = new Transaction(Program.doc, Item.PName);
+                    transaction.Start();
+                    bindingMap.ReInsert(Item.PexternalDefinition, elementbinding, Item.PDataCategory);
+                    transaction.Commit();
+
+                    AddedCategoryList.Add(Item.PName);
+                }
+            }
+
+            if (SkippedList.Count != 0)
+            {
+                MessageBox.Show("Параметры " + string.Join(", ", SkippedList) + " пропущены, так как для них не выбрана категория в проекте!");
+            }
+
+            if (AddedCategoryList.Count != 0)
+            {
+                MessageBox.Show("Для параметров " + string.Join(", ", AddedCategoryList) + " добавлены дополнительные категории в проекте");
+            }
+        }
+
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Переключение типоразмеров в семействе
@@ -761,75 +831,7 @@ namespace AddShParameters
         {
             //Кнопка добавление параметров в проект
 
-            List<string> SkippedList = new List<string>();
-
-            BindingMap bindingMap = Program.doc.ParameterBindings;
-
-            int i = bindingMap.Size;
-
-            foreach (ShParameters Item in Program.SelectedParametersList)
-            {
-                if (Item.PcategorySet.IsEmpty)
-                {
-                    SkippedList.Add(Item.PName);
-                }
-
-                if (!bindingMap.Contains(Item.PexternalDefinition))
-                {
-
-                    if (Item.PIsInstance == true)
-                    {
-                        Transaction transaction = new Transaction(Program.doc, Item.PName);
-                        transaction.Start();
-                        InstanceBinding instanceBinding = Program.doc.Application.Create.NewInstanceBinding(Item.PcategorySet);
-                        Program.doc.ParameterBindings.Insert(Item.PexternalDefinition, instanceBinding, Item.PDataCategory);
-                        transaction.Commit();
-                    }
-                    else
-                    {
-                        Transaction transaction = new Transaction(Program.doc, Item.PName);
-                        transaction.Start();
-                        TypeBinding typeBinding = Program.doc.Application.Create.NewTypeBinding(Item.PcategorySet);
-                        Program.doc.ParameterBindings.Insert(Item.PexternalDefinition, typeBinding, Item.PDataCategory);
-                        transaction.Commit();
-                    }
-                }
-
-                else if (0 < i)
-                {
-                    DefinitionBindingMapIterator defBindMapIterator = bindingMap.ForwardIterator();
-
-                    defBindMapIterator.Reset();
-
-                    while (defBindMapIterator.MoveNext())
-                    {
-                        Definition definition = (Definition) defBindMapIterator.Key;
-
-                        Autodesk.Revit.DB.Binding binding = (Autodesk.Revit.DB.Binding)defBindMapIterator.Current;
-
-
-                        if ()
-
-                        {
-                            InstanceBinding newinstanceBinding = Program.doc.Application.Create.NewInstanceBinding(Item.PcategorySet);
-                        }
-
-                        else
-                        {
-                            TypeBinding newtypeBinding = Program.doc.Application.Create.NewTypeBinding(Item.PcategorySet);
-                        }
-                    }
-
-                }
-
-            }
-
-            //Program.doc.ParameterBindings.get_Item(Item.PexternalDefinition).GetType();
-
-            if (SkippedList.Count != 0)
-            {
-                MessageBox.Show("Параметры " + string.Join(", ", SkippedList) + " пропущены, так как для них не выбрана категория в проекте!");
-            }
+            AddSelectedParameterstoProject();
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -838,71 +840,7 @@ namespace AddShParameters
 
             button3_Click(this.button3, EventArgs.Empty);
 
-            BindingMap bindingMap = Program.doc.ParameterBindings;
-
-            //DefinitionBindingMapIterator defBindMapIterator = bindingMap.ForwardIterator();
-
-            //defBindMapIterator.Reset();
-
-            //while (defBindMapIterator.MoveNext())
-            //{
-            //    Definition definition = (Definition) defBindMapIterator.Key;
-            //    Autodesk.Revit.DB.Binding binding = (Autodesk.Revit.DB.Binding) defBindMapIterator.Current;
-            //}
-
-            foreach (ShParameters Item in Program.SelectedParametersList)
-            {
-                if (Item.PcategorySet.IsEmpty)
-                { MessageBox.Show("Категории для параметра " + Item.PName + " не выбраны! Добавление в проект невозможно"); }
-
-                if (bindingMap.Contains(Item.PexternalDefinition))
-                {
-                    if (!Item.PcategorySet.IsEmpty)
-                    {
-                        if (Item.PIsInstance == true)
-                        {
-                            Transaction transaction = new Transaction(Program.doc, Item.PName);
-                            transaction.Start();
-                            InstanceBinding instanceBinding = Program.doc.Application.Create.NewInstanceBinding(Item.PcategorySet);
-                            Program.doc.ParameterBindings.ReInsert(Item.PexternalDefinition, instanceBinding, Item.PDataCategory);
-                            transaction.Commit();
-                        }
-                        else
-                        {
-                            Transaction transaction = new Transaction(Program.doc, Item.PName);
-                            transaction.Start();
-                            TypeBinding typeBinding = Program.doc.Application.Create.NewTypeBinding(Item.PcategorySet);
-                            Program.doc.ParameterBindings.ReInsert(Item.PexternalDefinition, typeBinding, Item.PDataCategory);
-                            transaction.Commit();
-                        }
-                    }
-                }
-
-                else if (!bindingMap.Contains(Item.PexternalDefinition))
-                {
-                    if (!Item.PcategorySet.IsEmpty)
-                    {
-                        if (Item.PIsInstance == true)
-                        {
-                            Transaction transaction = new Transaction(Program.doc, Item.PName);
-                            transaction.Start();
-                            InstanceBinding instanceBinding = Program.doc.Application.Create.NewInstanceBinding(Item.PcategorySet);
-                            Program.doc.ParameterBindings.Insert(Item.PexternalDefinition, instanceBinding, Item.PDataCategory);
-                            transaction.Commit();
-                        }
-                        else
-                        {
-                            Transaction transaction = new Transaction(Program.doc, Item.PName);
-                            transaction.Start();
-                            TypeBinding typeBinding = Program.doc.Application.Create.NewTypeBinding(Item.PcategorySet);
-                            Program.doc.ParameterBindings.Insert(Item.PexternalDefinition, typeBinding, Item.PDataCategory);
-                            transaction.Commit();
-                        }
-                    }
-                }
-            }
-
-            MessageBox.Show("Параметры из списка добавлены в проект");
+            AddSelectedParameterstoProject();
         }
     }
 }

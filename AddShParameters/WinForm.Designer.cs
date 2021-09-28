@@ -197,7 +197,7 @@ namespace AddShParameters
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.button2.Location = new System.Drawing.Point(1126, 10);
+            this.button2.Location = new System.Drawing.Point(895, 10);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(139, 27);
             this.button2.TabIndex = 16;
@@ -208,7 +208,7 @@ namespace AddShParameters
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.button3.Location = new System.Drawing.Point(1310, 10);
+            this.button3.Location = new System.Drawing.Point(1061, 10);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(118, 27);
             this.button3.TabIndex = 17;
@@ -346,11 +346,11 @@ namespace AddShParameters
             // button8
             // 
             this.button8.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.button8.Location = new System.Drawing.Point(930, 6);
+            this.button8.Location = new System.Drawing.Point(1259, 594);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(158, 53);
+            this.button8.Size = new System.Drawing.Size(179, 27);
             this.button8.TabIndex = 44;
-            this.button8.Text = "Проверить проект на параметры";
+            this.button8.Text = "Добавить в проект набор";
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
@@ -368,11 +368,11 @@ namespace AddShParameters
             // button6
             // 
             this.button6.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.button6.Location = new System.Drawing.Point(1270, 594);
+            this.button6.Location = new System.Drawing.Point(1259, 10);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(158, 27);
             this.button6.TabIndex = 42;
-            this.button6.Text = "Категории в проекте";
+            this.button6.Text = "Выбор категории";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
