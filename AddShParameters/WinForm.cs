@@ -627,15 +627,6 @@ namespace AddShParameters
                         break;
                 }
 
-                //CategorySetIterator categorySetIterator = ParItem.PcategorySet.ForwardIterator();
-
-                //categorySetIterator.Reset();
-
-                //while (categorySetIterator.MoveNext())
-                //{
-                //    Category Currentcategory = categorySetIterator.Current as Category;
-                //}
-
                 foreach (Category Item in ParItem.PcategorySet)
                 {
                     Categories.Add(Item.Name);
@@ -681,8 +672,8 @@ namespace AddShParameters
                         }
 
                         LvItem.SubItems.Add(Item.Formula);
+                        LvItem.SubItems.Add("Не выбрано действие");
                     }
-
                 }
                 listView3.Sort();
             }
@@ -692,69 +683,72 @@ namespace AddShParameters
         {
             //Метод добавления параметров в окне выбранных параметров
 
-            List<string> SkippedList = new List<string>();
-
-            List<string> AddedCategoryList = new List<string>();
-
-            BindingMap bindingMap = Program.doc.ParameterBindings;
-
-            foreach (ShParameters Item in Program.SelectedParametersList)
+            if (!Program.doc.IsFamilyDocument)
             {
-                if (Item.PcategorySet.IsEmpty)
-                {
-                    SkippedList.Add(Item.PName);
-                }
+                List<string> SkippedList = new List<string>();
 
-                if ((!bindingMap.Contains(Item.PexternalDefinition)) & (!Item.PcategorySet.IsEmpty))
-                {
+                List<string> AddedCategoryList = new List<string>();
 
-                    if (Item.PIsInstance == true)
+                BindingMap bindingMap = Program.doc.ParameterBindings;
+
+                foreach (ShParameters Item in Program.SelectedParametersList)
+                {
+                    if (Item.PcategorySet.IsEmpty)
                     {
-                        Transaction transaction = new Transaction(Program.doc, Item.PName);
-                        transaction.Start();
-                        InstanceBinding instanceBinding = Program.doc.Application.Create.NewInstanceBinding(Item.PcategorySet);
-                        bindingMap.Insert(Item.PexternalDefinition, instanceBinding, Item.PDataCategory);
-                        transaction.Commit();
+                        SkippedList.Add(Item.PName);
                     }
-                    else
-                    {
-                        Transaction transaction = new Transaction(Program.doc, Item.PName);
-                        transaction.Start();
-                        TypeBinding typeBinding = Program.doc.Application.Create.NewTypeBinding(Item.PcategorySet);
-                        bindingMap.Insert(Item.PexternalDefinition, typeBinding, Item.PDataCategory);
-                        transaction.Commit();
-                    }
-                }
 
-                else if (!Item.PcategorySet.IsEmpty)
-                {
-                    ElementBinding elementbinding = Program.doc.ParameterBindings.get_Item(Item.PexternalDefinition) as ElementBinding;
-
-                    foreach (Category cat in Item.PcategorySet)
+                    if ((!bindingMap.Contains(Item.PexternalDefinition)) & (!Item.PcategorySet.IsEmpty))
                     {
-                        if (!elementbinding.Categories.Contains(cat))
+
+                        if (Item.PIsInstance == true)
                         {
-                            elementbinding.Categories.Insert(cat);
+                            Transaction transaction = new Transaction(Program.doc, Item.PName);
+                            transaction.Start();
+                            InstanceBinding instanceBinding = Program.doc.Application.Create.NewInstanceBinding(Item.PcategorySet);
+                            bindingMap.Insert(Item.PexternalDefinition, instanceBinding, Item.PDataCategory);
+                            transaction.Commit();
+                        }
+                        else
+                        {
+                            Transaction transaction = new Transaction(Program.doc, Item.PName);
+                            transaction.Start();
+                            TypeBinding typeBinding = Program.doc.Application.Create.NewTypeBinding(Item.PcategorySet);
+                            bindingMap.Insert(Item.PexternalDefinition, typeBinding, Item.PDataCategory);
+                            transaction.Commit();
                         }
                     }
 
-                    Transaction transaction = new Transaction(Program.doc, Item.PName);
-                    transaction.Start();
-                    bindingMap.ReInsert(Item.PexternalDefinition, elementbinding, Item.PDataCategory);
-                    transaction.Commit();
+                    else if (!Item.PcategorySet.IsEmpty)
+                    {
+                        ElementBinding elementbinding = Program.doc.ParameterBindings.get_Item(Item.PexternalDefinition) as ElementBinding;
 
-                    AddedCategoryList.Add(Item.PName);
+                        foreach (Category cat in Item.PcategorySet)
+                        {
+                            if (!elementbinding.Categories.Contains(cat))
+                            {
+                                elementbinding.Categories.Insert(cat);
+                            }
+                        }
+
+                        Transaction transaction = new Transaction(Program.doc, Item.PName);
+                        transaction.Start();
+                        bindingMap.ReInsert(Item.PexternalDefinition, elementbinding, Item.PDataCategory);
+                        transaction.Commit();
+
+                        AddedCategoryList.Add(Item.PName);
+                    }
                 }
-            }
 
-            if (SkippedList.Count != 0)
-            {
-                MessageBox.Show("Параметры " + string.Join(", ", SkippedList) + " пропущены, так как для них не выбрана категория в проекте!");
-            }
+                if (SkippedList.Count != 0)
+                {
+                    MessageBox.Show("Параметры " + string.Join(", ", SkippedList) + " пропущены, так как для них не выбрана категория в проекте!");
+                }
 
-            if (AddedCategoryList.Count != 0)
-            {
-                MessageBox.Show("Для параметров " + string.Join(", ", AddedCategoryList) + " добавлены дополнительные категории в проекте");
+                if (AddedCategoryList.Count != 0)
+                {
+                    MessageBox.Show("Для параметров " + string.Join(", ", AddedCategoryList) + " добавлены дополнительные категории в проекте");
+                }
             }
         }
 
@@ -779,22 +773,6 @@ namespace AddShParameters
 
             UpdateListinFamily();
 
-            //FamilyTypeSetIterator familyTypeSetIterator = doc.FamilyManager.Types.ForwardIterator();
-
-            //familyTypeSetIterator.Reset();
-
-            //familyTypeSetIterator.MoveNext();
-
-            //FamilyType famType = familyTypeSetIterator.Current as FamilyType;
-
-            //while (familyTypeSetIterator.MoveNext())
-            //{
-            //    FamilyType famType = familyTypeSetIterator.Current as FamilyType;
-
-            //    MainWindow.listView3.Items.Add(LvItem);
-            //    LvItem.SubItems.Add(famType.AsString(Item));
-            //    LvItem.SubItems.Add(Item.Formula);
-            //}
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)

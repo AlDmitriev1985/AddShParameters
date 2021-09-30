@@ -58,8 +58,6 @@ namespace AddShParameters
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.listView3 = new System.Windows.Forms.ListView();
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -67,6 +65,7 @@ namespace AddShParameters
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -378,8 +377,6 @@ namespace AddShParameters
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.comboBox4);
-            this.tabPage2.Controls.Add(this.label8);
             this.tabPage2.Controls.Add(this.label7);
             this.tabPage2.Controls.Add(this.listView3);
             this.tabPage2.Controls.Add(this.comboBox3);
@@ -393,25 +390,6 @@ namespace AddShParameters
             this.tabPage2.Text = "Перенос значений параметров в семействе";
             this.tabPage2.ToolTipText = "Перенос значений между общими параметрами";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // comboBox4
-            // 
-            this.comboBox4.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(875, 69);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(316, 25);
-            this.comboBox4.TabIndex = 13;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.label8.Location = new System.Drawing.Point(899, 42);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(172, 19);
-            this.label8.TabIndex = 12;
-            this.label8.Text = "Параметры заменяемые :";
             // 
             // label7
             // 
@@ -428,14 +406,15 @@ namespace AddShParameters
             this.listView3.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader7,
             this.columnHeader8,
-            this.columnHeader9});
+            this.columnHeader9,
+            this.columnHeader11});
             this.listView3.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.listView3.FullRowSelect = true;
             this.listView3.GridLines = true;
             this.listView3.HideSelection = false;
             this.listView3.Location = new System.Drawing.Point(12, 69);
             this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(836, 578);
+            this.listView3.Size = new System.Drawing.Size(1135, 578);
             this.listView3.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listView3.TabIndex = 11;
             this.listView3.UseCompatibleStateImageBehavior = false;
@@ -478,6 +457,12 @@ namespace AddShParameters
             this.label6.Size = new System.Drawing.Size(182, 19);
             this.label6.TabIndex = 2;
             this.label6.Text = "Типоразмеры в семействе :";
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "Действие";
+            this.columnHeader11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader11.Width = 300;
             // 
             // WinForm
             // 
@@ -536,11 +521,10 @@ namespace AddShParameters
         public System.Windows.Forms.ColumnHeader columnHeader9;
         public System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Label label6;
-        public System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button6;
         public System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
+        public System.Windows.Forms.ColumnHeader columnHeader11;
     }
 }

@@ -109,6 +109,8 @@ namespace AddShParameters
 
             Listgroup.Sort();
 
+            MainWindow.comboBox1.Items.Clear();
+
             MainWindow.Listgroup = Listgroup;
 
             foreach (var Item in Listgroup)
@@ -148,15 +150,19 @@ namespace AddShParameters
             {
                 foreach (FamilyType Item in doc.FamilyManager.Types)
                 {
-                    ListFamType.Add(Item.Name);
+                    if (!ListFamType.Contains(Item.Name))
+                    { ListFamType.Add(Item.Name); }
                 }
             }
 
             ListFamType.Sort();
 
+            MainWindow.comboBox3.Items.Clear();
+
             foreach (var Item in ListFamType)
             {
-                MainWindow.comboBox3.Items.Add(Item);
+                if (!MainWindow.comboBox3.Items.Contains(Item))
+                { MainWindow.comboBox3.Items.Add(Item); }
             }
 
             SelectedParametersList.Clear();
@@ -170,18 +176,7 @@ namespace AddShParameters
             }
 
             MainWindow.UpdateListinFamily();
-
-            if (doc.IsFamilyDocument)
-            {
-                foreach (FamilyParameter Item in doc.FamilyManager.GetParameters())
-                {
-                    if (Item.IsShared)
-                    {
-                        MainWindow.comboBox4.Items.Add(Item.Definition.Name);
-                    }
-                }
-            }
-
+                        
             MainWindow.ShowDialog();
 
             return Result.Succeeded;
