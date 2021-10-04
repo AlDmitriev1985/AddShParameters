@@ -63,9 +63,10 @@ namespace AddShParameters
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button9 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -185,7 +186,7 @@ namespace AddShParameters
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.button1.Location = new System.Drawing.Point(1081, 631);
+            this.button1.Location = new System.Drawing.Point(1081, 612);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(158, 27);
             this.button1.TabIndex = 15;
@@ -196,7 +197,7 @@ namespace AddShParameters
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.button2.Location = new System.Drawing.Point(895, 10);
+            this.button2.Location = new System.Drawing.Point(667, 10);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(139, 27);
             this.button2.TabIndex = 16;
@@ -207,7 +208,7 @@ namespace AddShParameters
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.button3.Location = new System.Drawing.Point(1061, 10);
+            this.button3.Location = new System.Drawing.Point(829, 10);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(118, 27);
             this.button3.TabIndex = 17;
@@ -345,7 +346,7 @@ namespace AddShParameters
             // button8
             // 
             this.button8.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.button8.Location = new System.Drawing.Point(1259, 594);
+            this.button8.Location = new System.Drawing.Point(1000, 10);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(179, 27);
             this.button8.TabIndex = 44;
@@ -356,7 +357,7 @@ namespace AddShParameters
             // button7
             // 
             this.button7.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.button7.Location = new System.Drawing.Point(1270, 631);
+            this.button7.Location = new System.Drawing.Point(1270, 612);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(158, 27);
             this.button7.TabIndex = 43;
@@ -377,6 +378,7 @@ namespace AddShParameters
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button9);
             this.tabPage2.Controls.Add(this.label7);
             this.tabPage2.Controls.Add(this.listView3);
             this.tabPage2.Controls.Add(this.comboBox3);
@@ -397,9 +399,9 @@ namespace AddShParameters
             this.label7.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.label7.Location = new System.Drawing.Point(8, 42);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(216, 19);
+            this.label7.Size = new System.Drawing.Size(267, 19);
             this.label7.TabIndex = 10;
-            this.label7.Text = "Общие параметры в семействе :";
+            this.label7.Text = "Список общих параметров в семействе :";
             // 
             // listView3
             // 
@@ -414,7 +416,7 @@ namespace AddShParameters
             this.listView3.HideSelection = false;
             this.listView3.Location = new System.Drawing.Point(12, 69);
             this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(1135, 578);
+            this.listView3.Size = new System.Drawing.Size(1434, 578);
             this.listView3.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listView3.TabIndex = 11;
             this.listView3.UseCompatibleStateImageBehavior = false;
@@ -438,6 +440,12 @@ namespace AddShParameters
             this.columnHeader9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader9.Width = 300;
             // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "Действие";
+            this.columnHeader11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader11.Width = 600;
+            // 
             // comboBox3
             // 
             this.comboBox3.Font = new System.Drawing.Font("Segoe UI", 10F);
@@ -458,11 +466,16 @@ namespace AddShParameters
             this.label6.TabIndex = 2;
             this.label6.Text = "Типоразмеры в семействе :";
             // 
-            // columnHeader11
+            // button9
             // 
-            this.columnHeader11.Text = "Действие";
-            this.columnHeader11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader11.Width = 300;
+            this.button9.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.button9.Location = new System.Drawing.Point(605, 11);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(179, 27);
+            this.button9.TabIndex = 45;
+            this.button9.Text = "Действие";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // WinForm
             // 
@@ -526,5 +539,6 @@ namespace AddShParameters
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
         public System.Windows.Forms.ColumnHeader columnHeader11;
+        public System.Windows.Forms.Button button9;
     }
 }

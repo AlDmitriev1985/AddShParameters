@@ -75,7 +75,6 @@ namespace AddShParameters
                 {
                     if (shParameters.PName == i.Text)
                     {
-                        //Selectedlist.Add(shParameters);
                         shParameters.PIsInstance = false;
                     }
                 }
@@ -819,6 +818,16 @@ namespace AddShParameters
             button3_Click(this.button3, EventArgs.Empty);
 
             AddSelectedParameterstoProject();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            //Добавление действий с общими параметрами в семействе
+            foreach (ListViewItem Item in listView3.SelectedItems)
+            {
+
+            }
+
         }
     }
 }
