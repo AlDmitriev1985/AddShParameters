@@ -167,7 +167,6 @@ namespace AddShParameters
 
             SelectedParametersList.Clear();
 
-            //doc.FamilyManager.Set();
 
             if (doc.IsFamilyDocument)
             {
@@ -175,13 +174,13 @@ namespace AddShParameters
                 MainWindow.comboBox3.SelectedItem = famType.Name;
             }
 
+            MainWindow.comboBox4.Items.Clear();
+
             MainWindow.UpdateListinFamily();
-                        
+
             MainWindow.ShowDialog();
 
             return Result.Succeeded;
         }
-
     }
-
 }

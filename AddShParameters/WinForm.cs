@@ -671,10 +671,22 @@ namespace AddShParameters
                         }
 
                         LvItem.SubItems.Add(Item.Formula);
+
                         LvItem.SubItems.Add("Не выбрано действие");
                     }
                 }
                 listView3.Sort();
+
+                foreach (FamilyParameter Item in Program.doc.FamilyManager.GetParameters())
+                {
+                    if (Item.IsShared)
+                    {
+                        if (!comboBox4.Items.Contains(Item.Definition.Name))
+                        { comboBox4.Items.Add(Item.Definition.Name); }
+                    }
+                }
+
+                comboBox4.SelectedIndex = 0;
             }
         }
 
@@ -820,13 +832,25 @@ namespace AddShParameters
             AddSelectedParameterstoProject();
         }
 
-        private void button9_Click(object sender, EventArgs e)
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            //Добавление действий с общими параметрами в семействе
-            foreach (ListViewItem Item in listView3.SelectedItems)
-            {
+            //Добавление действия удаления с выбранными общими параметрами в общем окне параметров
 
+            if (Program.doc.IsFamilyDocument)
+            {
+                foreach (ListViewItem Item in listView3.SelectedItems)
+                {
+                    if (Item.SubItems[3].Text == "Не выбрано действие")
+                    {
+                        Item.SubItems.Insert(3, Item.SubItems.Add("Удалить"));
+                    }
+                }
+                //UpdateListinFamily();
             }
+        }
+
+        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }

@@ -58,6 +58,9 @@ namespace AddShParameters
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.listView3 = new System.Windows.Forms.ListView();
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -66,7 +69,6 @@ namespace AddShParameters
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.button9 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -186,7 +188,7 @@ namespace AddShParameters
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.button1.Location = new System.Drawing.Point(1081, 612);
+            this.button1.Location = new System.Drawing.Point(1081, 630);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(158, 27);
             this.button1.TabIndex = 15;
@@ -357,7 +359,7 @@ namespace AddShParameters
             // button7
             // 
             this.button7.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.button7.Location = new System.Drawing.Point(1270, 612);
+            this.button7.Location = new System.Drawing.Point(1270, 630);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(158, 27);
             this.button7.TabIndex = 43;
@@ -378,7 +380,9 @@ namespace AddShParameters
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.button9);
+            this.tabPage2.Controls.Add(this.comboBox4);
+            this.tabPage2.Controls.Add(this.label8);
+            this.tabPage2.Controls.Add(this.checkBox1);
             this.tabPage2.Controls.Add(this.label7);
             this.tabPage2.Controls.Add(this.listView3);
             this.tabPage2.Controls.Add(this.comboBox3);
@@ -392,6 +396,38 @@ namespace AddShParameters
             this.tabPage2.Text = "Перенос значений параметров в семействе";
             this.tabPage2.ToolTipText = "Перенос значений между общими параметрами";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // comboBox4
+            // 
+            this.comboBox4.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Location = new System.Drawing.Point(803, 8);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(316, 25);
+            this.comboBox4.TabIndex = 48;
+            this.comboBox4.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label8.Location = new System.Drawing.Point(550, 11);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(238, 19);
+            this.label8.TabIndex = 47;
+            this.label8.Text = "Выбранный параметр заменить на :";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBox1.Location = new System.Drawing.Point(1155, 11);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(150, 21);
+            this.checkBox1.TabIndex = 46;
+            this.checkBox1.Text = "Удалить параметр";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // label7
             // 
@@ -466,17 +502,6 @@ namespace AddShParameters
             this.label6.TabIndex = 2;
             this.label6.Text = "Типоразмеры в семействе :";
             // 
-            // button9
-            // 
-            this.button9.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.button9.Location = new System.Drawing.Point(605, 11);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(179, 27);
-            this.button9.TabIndex = 45;
-            this.button9.Text = "Действие";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
-            // 
             // WinForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -539,6 +564,8 @@ namespace AddShParameters
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
         public System.Windows.Forms.ColumnHeader columnHeader11;
-        public System.Windows.Forms.Button button9;
+        public System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
