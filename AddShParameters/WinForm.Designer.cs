@@ -69,6 +69,9 @@ namespace AddShParameters
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -380,6 +383,9 @@ namespace AddShParameters
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button11);
+            this.tabPage2.Controls.Add(this.button10);
+            this.tabPage2.Controls.Add(this.button9);
             this.tabPage2.Controls.Add(this.comboBox4);
             this.tabPage2.Controls.Add(this.label8);
             this.tabPage2.Controls.Add(this.checkBox1);
@@ -433,7 +439,7 @@ namespace AddShParameters
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.label7.Location = new System.Drawing.Point(8, 42);
+            this.label7.Location = new System.Drawing.Point(8, 56);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(267, 19);
             this.label7.TabIndex = 10;
@@ -450,9 +456,9 @@ namespace AddShParameters
             this.listView3.FullRowSelect = true;
             this.listView3.GridLines = true;
             this.listView3.HideSelection = false;
-            this.listView3.Location = new System.Drawing.Point(12, 69);
+            this.listView3.Location = new System.Drawing.Point(12, 85);
             this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(1434, 578);
+            this.listView3.Size = new System.Drawing.Size(1434, 562);
             this.listView3.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listView3.TabIndex = 11;
             this.listView3.UseCompatibleStateImageBehavior = false;
@@ -501,6 +507,39 @@ namespace AddShParameters
             this.label6.Size = new System.Drawing.Size(182, 19);
             this.label6.TabIndex = 2;
             this.label6.Text = "Типоразмеры в семействе :";
+            // 
+            // button9
+            // 
+            this.button9.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.button9.Location = new System.Drawing.Point(1288, 48);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(150, 27);
+            this.button9.TabIndex = 49;
+            this.button9.Text = "Выполнить действия";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // button10
+            // 
+            this.button10.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.button10.Location = new System.Drawing.Point(1129, 48);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(140, 27);
+            this.button10.TabIndex = 50;
+            this.button10.Text = "Сохранить действия";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // button11
+            // 
+            this.button11.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.button11.Location = new System.Drawing.Point(638, 48);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(140, 27);
+            this.button11.TabIndex = 51;
+            this.button11.Text = "Загрузить действия";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // WinForm
             // 
@@ -567,5 +606,8 @@ namespace AddShParameters
         public System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button11;
     }
 }

@@ -24,6 +24,7 @@ namespace AddShParameters
         public static FamilyType famType;
         public static WinForm2 CatWindow = new WinForm2();
         public static WinForm MainWindow = new WinForm();
+        public DefinitionGroup myGroup;
 
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
@@ -48,7 +49,7 @@ namespace AddShParameters
             //Loop for creating clasess
             while (enumerator.MoveNext())
             {
-                DefinitionGroup myGroup = enumerator.Current;
+                myGroup = enumerator.Current;
 
                 foreach (ExternalDefinition externalDefinition in myGroup.Definitions)
                 {

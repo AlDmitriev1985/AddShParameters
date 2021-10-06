@@ -675,6 +675,7 @@ namespace AddShParameters
                         LvItem.SubItems.Add("Не выбрано действие");
                     }
                 }
+
                 listView3.Sort();
 
                 foreach (FamilyParameter Item in Program.doc.FamilyManager.GetParameters())
@@ -685,8 +686,8 @@ namespace AddShParameters
                         { comboBox4.Items.Add(Item.Definition.Name); }
                     }
                 }
-
-                comboBox4.SelectedIndex = 0;
+                if (comboBox4.Items.Count != 0)
+                { comboBox4.SelectedIndex = 0; }
             }
         }
 
@@ -847,11 +848,108 @@ namespace AddShParameters
                 }
                 //UpdateListinFamily();
             }
+
+            this.checkBox1.Checked = false;
         }
 
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Добавление действия замены на параметр из выпадающего списка
 
+            if (Program.doc.IsFamilyDocument)
+            {
+                foreach (ListViewItem Item in listView3.SelectedItems)
+                {
+                    if (Item.SubItems[3].Text != "Удалить")
+                    {
+                        Item.SubItems.Insert(3, Item.SubItems.Add("Заменить на " + comboBox4.Text));
+                    }
+                }
+            }
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            //Сохранение всех действий в .xml файл
+
+
+
+
+
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            //Загрузка действий из .xml файла
+
+
+
+
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            //Выполнение действий, заданных пользователем
+
+            if (Program.doc.IsFamilyDocument)
+            {
+                foreach (ListViewItem Item in listView3.Items)
+                {
+                    foreach (FamilyParameter familyParameter in Program.doc.FamilyManager.GetParameters())
+                    {
+                        if (familyParameter.IsShared)
+                        {
+                            if ((familyParameter.Definition.Name == Item.Text) & (Item.SubItems[3].Text == "Удалить"))
+                            {
+                                Transaction transaction = new Transaction(Program.doc, familyParameter.Definition.Name);
+                                transaction.Start();
+                                Program.doc.FamilyManager.RemoveParameter(familyParameter);
+                                transaction.Commit();
+                                Item.Remove();
+                            }
+                        }
+                    }
+                }
+
+                foreach (ListViewItem Item in listView3.Items)
+                {
+                    foreach (FamilyParameter familyParameter in Program.doc.FamilyManager.GetParameters())
+                    {
+                        if (familyParameter.IsShared)
+                        {
+                            if (Item.SubItems[3].Text.Contains(familyParameter.Definition.Name))
+                            {
+                                Transaction transaction = new Transaction(Program.doc, Item.Text);
+                                transaction.Start();
+                                Program.doc.FamilyManager.ReplaceParameter(Program.doc.FamilyManager.get_Parameter(Item.Text), 
+                                                                            Item.Text+"_family parameter",
+                                                                            Program.doc.FamilyManager.get_Parameter(Item.Text).Definition.ParameterGroup,
+                                                                            Program.doc.FamilyManager.get_Parameter(Item.Text).IsInstance);
+                                transaction.Commit();
+
+                                Transaction transaction2 = new Transaction(Program.doc, familyParameter.Definition.Name);
+                                transaction.Start();
+                                Program.doc.FamilyManager.ReplaceParameter(Program.doc.FamilyManager.get_Parameter(Item.Text + "_family parameter"),
+                                                                            Program.myGroup.Definitions.get_Item(familyParameter.Definition.Name),
+                                                                            Program.doc.FamilyManager.get_Parameter(Item.Text + "_family parameter").Definition.ParameterGroup,
+                                                                            Program.doc.FamilyManager.get_Parameter(Item.Text + "_family parameter").IsInstance);
+                                transaction.Commit();
+
+
+
+
+                            }
+
+
+
+
+                        }
+                    }
+                }
+
+
+                UpdateListinFamily();
+            }
         }
     }
 }
