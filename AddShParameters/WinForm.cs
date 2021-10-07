@@ -921,33 +921,34 @@ namespace AddShParameters
                             {
                                 Transaction transaction = new Transaction(Program.doc, Item.Text);
                                 transaction.Start();
-                                Program.doc.FamilyManager.ReplaceParameter(Program.doc.FamilyManager.get_Parameter(Item.Text), 
-                                                                            Item.Text+"_family parameter",
+                                Program.doc.FamilyManager.ReplaceParameter(Program.doc.FamilyManager.get_Parameter(Item.Text),
+                                                                            familyParameter.Definition.Name + "_family parameter",
                                                                             Program.doc.FamilyManager.get_Parameter(Item.Text).Definition.ParameterGroup,
                                                                             Program.doc.FamilyManager.get_Parameter(Item.Text).IsInstance);
                                 transaction.Commit();
 
-                                Transaction transaction2 = new Transaction(Program.doc, familyParameter.Definition.Name);
-                                transaction.Start();
-                                Program.doc.FamilyManager.ReplaceParameter(Program.doc.FamilyManager.get_Parameter(Item.Text + "_family parameter"),
-                                                                            Program.myGroup.Definitions.get_Item(familyParameter.Definition.Name),
-                                                                            Program.doc.FamilyManager.get_Parameter(Item.Text + "_family parameter").Definition.ParameterGroup,
-                                                                            Program.doc.FamilyManager.get_Parameter(Item.Text + "_family parameter").IsInstance);
-                                transaction.Commit();
-
-
-
-
                             }
+                        }
+                    }
 
-
-
+                    foreach (FamilyParameter familyParameter in Program.doc.FamilyManager.GetParameters())
+                    {
+                        foreach (ShParameters shParameters in Program.ParameterList)
+                        {
+                            if ((familyParameter.Definition.Name.Contains("_family parameter") & (familyParameter.Definition.Name.Contains(shParameters.PName))))
+                            {
+                                Transaction transaction2 = new Transaction(Program.doc, familyParameter.Definition.Name);
+                                transaction2.Start();
+                                //Program.doc.FamilyManager.RemoveParameter(familyParameter);
+                                Program.doc.FamilyManager.ReplaceParameter(Program.doc.FamilyManager.get_Parameter(familyParameter.Definition.Name),
+                                                                            shParameters.PexternalDefinition, shParameters.PDataCategory, shParameters.PIsInstance);
+                                transaction2.Commit();
+                            }
 
                         }
                     }
+
                 }
-
-
                 UpdateListinFamily();
             }
         }
