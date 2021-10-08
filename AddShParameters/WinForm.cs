@@ -925,6 +925,7 @@ namespace AddShParameters
                                                                             familyParameter.Definition.Name + "_family parameter",
                                                                             Program.doc.FamilyManager.get_Parameter(Item.Text).Definition.ParameterGroup,
                                                                             Program.doc.FamilyManager.get_Parameter(Item.Text).IsInstance);
+                                Program.doc.FamilyManager.RemoveParameter(familyParameter);
                                 transaction.Commit();
 
                             }
@@ -939,9 +940,8 @@ namespace AddShParameters
                             {
                                 Transaction transaction2 = new Transaction(Program.doc, familyParameter.Definition.Name);
                                 transaction2.Start();
-                                //Program.doc.FamilyManager.RemoveParameter(familyParameter);
                                 Program.doc.FamilyManager.ReplaceParameter(Program.doc.FamilyManager.get_Parameter(familyParameter.Definition.Name),
-                                                                            shParameters.PexternalDefinition, shParameters.PDataCategory, shParameters.PIsInstance);
+                                                                            shParameters.PexternalDefinition, familyParameter.Definition.ParameterGroup, familyParameter.IsInstance);
                                 transaction2.Commit();
                             }
 
