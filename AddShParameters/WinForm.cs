@@ -16,7 +16,7 @@ namespace AddShParameters
     {
         public List<string> Listgroup = new List<string>();
 
-        public List<string> Categories = new List<string>();
+        public List<string> CategoriesList = new List<string>();
 
         public WinForm()
         {
@@ -268,13 +268,13 @@ namespace AddShParameters
                 XmlText TextDataCategory = xmldoc.CreateTextNode(Item.PDataCategory.ToString());
                 XmlElement ParCategorySet = xmldoc.CreateElement(string.Empty, "Перечень_категорий", string.Empty);
 
-                Categories.Clear();
+                CategoriesList.Clear();
 
                 foreach (Category Itemcategory in Item.PcategorySet)
                 {
-                    Categories.Add(Itemcategory.Name);
+                    CategoriesList.Add(Itemcategory.Name);
                 }
-                XmlText TextCategorySet = xmldoc.CreateTextNode(string.Join(", ", Categories));
+                XmlText TextCategorySet = xmldoc.CreateTextNode(string.Join(", ", CategoriesList));
 
                 element.AppendChild(ParamName);
                 ParamName.AppendChild(TextParamName);
@@ -518,7 +518,7 @@ namespace AddShParameters
 
             foreach (ShParameters ParItem in Program.SelectedParametersList)
             {
-                Categories.Clear();
+                CategoriesList.Clear();
 
                 ListViewItem LvItem = new ListViewItem(ParItem.PName);
 
@@ -628,12 +628,12 @@ namespace AddShParameters
 
                 foreach (Category Item in ParItem.PcategorySet)
                 {
-                    Categories.Add(Item.Name);
+                    CategoriesList.Add(Item.Name);
                 }
 
-                Categories.Sort();
+                CategoriesList.Sort();
 
-                LvItem.SubItems.Add(string.Join(", ", Categories));
+                LvItem.SubItems.Add(string.Join(", ", CategoriesList));
 
                 listView2.Items.Add(LvItem);
             }
@@ -889,7 +889,7 @@ namespace AddShParameters
 
         private void button9_Click(object sender, EventArgs e)
         {
-            //Выполнение действий, заданных пользователем
+            //Выполнение действий, предварительно заданных пользователем
 
             if (Program.doc.IsFamilyDocument)
             {
@@ -897,59 +897,50 @@ namespace AddShParameters
                 {
                     foreach (FamilyParameter familyParameter in Program.doc.FamilyManager.GetParameters())
                     {
-                        if (familyParameter.IsShared)
+                        if (Item.SubItems[3].Text.Contains(familyParameter.Definition.Name))
                         {
-                            if ((familyParameter.Definition.Name == Item.Text) & (Item.SubItems[3].Text == "Удалить"))
-                            {
-                                Transaction transaction = new Transaction(Program.doc, familyParameter.Definition.Name);
-                                transaction.Start();
-                                Program.doc.FamilyManager.RemoveParameter(familyParameter);
-                                transaction.Commit();
-                                Item.Remove();
-                            }
+                            Transaction transaction = new Transaction(Program.doc, Item.Text);
+                            transaction.Start();
+                            Program.doc.FamilyManager.ReplaceParameter(Program.doc.FamilyManager.get_Parameter(Item.Text),
+                                                                        familyParameter.Definition.Name + "_family parameter",
+                                                                        Program.doc.FamilyManager.get_Parameter(Item.Text).Definition.ParameterGroup,
+                                                                        Program.doc.FamilyManager.get_Parameter(Item.Text).IsInstance);
+                            transaction.Commit();
                         }
+
+                        if ((familyParameter.Definition.Name == Item.Text) & (Item.SubItems[3].Text == "Удалить"))
+                        {
+                            Transaction transaction = new Transaction(Program.doc, familyParameter.Definition.Name);
+                            transaction.Start();
+                            Program.doc.FamilyManager.RemoveParameter(familyParameter);
+                            transaction.Commit();
+                        }
+
                     }
                 }
 
-                foreach (ListViewItem Item in listView3.Items)
-                {
-                    foreach (FamilyParameter familyParameter in Program.doc.FamilyManager.GetParameters())
-                    {
-                        if (familyParameter.IsShared)
-                        {
-                            if (Item.SubItems[3].Text.Contains(familyParameter.Definition.Name))
-                            {
-                                Transaction transaction = new Transaction(Program.doc, Item.Text);
-                                transaction.Start();
-                                Program.doc.FamilyManager.ReplaceParameter(Program.doc.FamilyManager.get_Parameter(Item.Text),
-                                                                            familyParameter.Definition.Name + "_family parameter",
-                                                                            Program.doc.FamilyManager.get_Parameter(Item.Text).Definition.ParameterGroup,
-                                                                            Program.doc.FamilyManager.get_Parameter(Item.Text).IsInstance);
-                                Program.doc.FamilyManager.RemoveParameter(familyParameter);
-                                transaction.Commit();
+                //foreach (ListViewItem Item in listView3.Items)
+                //{
+                //    foreach (FamilyParameter familyParameter in Program.doc.FamilyManager.GetParameters())
+                //    {
+                //        if ((familyParameter.Definition.Name.Contains("_family parameter") & (Item.SubItems[3].Text.Contains("Заменить на"))))
+                //        {
+                //            foreach (ShParameters shParameters in Program.ParameterList)
+                //            {
+                //                Transaction transaction2 = new Transaction(Program.doc, familyParameter.Definition.Name);
+                //                transaction2.Start();
+                //                Program.doc.FamilyManager.ReplaceParameter(Program.doc.FamilyManager.get_Parameter(familyParameter.Definition.Name),
+                //                                                            shParameters.PexternalDefinition, shParameters.PDataCategory, shParameters.PIsInstance);
+                //                transaction2.Commit();
+                //            }
+                //        }
 
-                            }
-                        }
-                    }
+                //    }
+                //}
 
-                    foreach (FamilyParameter familyParameter in Program.doc.FamilyManager.GetParameters())
-                    {
-                        foreach (ShParameters shParameters in Program.ParameterList)
-                        {
-                            if ((familyParameter.Definition.Name.Contains("_family parameter") & (familyParameter.Definition.Name.Contains(shParameters.PName))))
-                            {
-                                Transaction transaction2 = new Transaction(Program.doc, familyParameter.Definition.Name);
-                                transaction2.Start();
-                                Program.doc.FamilyManager.ReplaceParameter(Program.doc.FamilyManager.get_Parameter(familyParameter.Definition.Name),
-                                                                            shParameters.PexternalDefinition, familyParameter.Definition.ParameterGroup, familyParameter.IsInstance);
-                                transaction2.Commit();
-                            }
-
-                        }
-                    }
-
-                }
-                UpdateListinFamily();
+                //ShParameters shP = Program.ParameterList.Find(name => name.PName.Contains(familyParameter.Definition.Name));
+                //MessageBox.Show(shP.PName);
+                //UpdateListinFamily();
             }
         }
     }
