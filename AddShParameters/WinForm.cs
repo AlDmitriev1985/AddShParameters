@@ -671,6 +671,8 @@ namespace AddShParameters
                             { LvItem.SubItems.Add((((double)Program.famType.AsDouble(Item)) * Math.Pow(0.3048, 2)).ToString("F")); }
                         }
 
+                        else { LvItem.SubItems.Add("Значение не определено"); }
+
                         LvItem.SubItems.Add(Item.Formula);
 
                         LvItem.SubItems.Add("Не выбрано действие");
@@ -863,7 +865,7 @@ namespace AddShParameters
                 {
                     if (Item.SubItems[3].Text != "Удалить")
                     {
-                        Item.SubItems.Insert(3, Item.SubItems.Add("Заменить на " + comboBox4.Text));
+                         Item.SubItems.Insert(3, Item.SubItems.Add("Заменить на " + comboBox4.Text));
                     }
                 }
             }
@@ -941,42 +943,16 @@ namespace AddShParameters
 
                     foreach (XmlNode xmlnode in xmldoc.DocumentElement.GetElementsByTagName("Имя_параметра"))
                     {
-                        if ((!listView3.Items.ContainsKey(xmlnode.FirstChild.InnerText)))
+                        foreach (ListViewItem Item in listView3.Items)
                         {
-                            listView3.Items.Add(xmlnode.FirstChild.InnerText);
+                            if ((Item.Text == xmlnode.FirstChild.InnerText) & (Item.SubItems[3].Text == "Не выбрано действие"))
+                            {
+                                    string text = xmlnode.InnerText.Replace(xmlnode.FirstChild.InnerText, "");
 
+                                    Item.SubItems.Insert(3, Item.SubItems.Add(text));                              
+                            }
                         }
                     }
-
-                    //foreach (XmlNode xmlnode in xmldoc.DocumentElement.GetElementsByTagName("Имя_параметра"))
-                    //{
-                    //    foreach (ShParameters Item in Program.SelectedParametersList)
-                    //    {
-                    //        if ((xmlnode.InnerText.Contains(Item.PName) & (xmlnode.InnerText.Contains("True"))))
-                    //        {
-                    //            Item.PIsInstance = true;
-                    //        }
-                    //        else if (xmlnode.InnerText.Contains(Item.PName) & (xmlnode.InnerText.Contains("False")))
-                    //        {
-                    //            Item.PIsInstance = false;
-                    //        }
-                    //    }
-                    //}
-
-                    //foreach (XmlNode xmlnode in xmldoc.DocumentElement.GetElementsByTagName("Имя_параметра"))
-                    //{
-                    //    foreach (ShParameters Item in Program.SelectedParametersList)
-                    //    {
-
-                    //        if ((xmlnode.InnerText.Contains(Item.PName) & (xmlnode.InnerText.Contains("PG_GEOMETRY"))))
-                    //        {
-                    //            Item.PDataCategory = BuiltInParameterGroup.PG_GEOMETRY;
-                    //        }
-                    //    }
-                    //}
-
-
-                    UpdateListinFamily();
                 }
             }
         }
@@ -1003,15 +979,16 @@ namespace AddShParameters
 
                             string Familyparametername = familyParameter.Definition.Name + "_family parameter";
 
-                            string Sharedhparametername = Familyparametername.Replace("_family parameter", "");
+                            string Sharedparametername = Familyparametername.Replace("_family parameter", "");
 
-                            Transaction transaction2 = new Transaction(Program.doc, Sharedhparametername);
+                            bool IsInstance = familyParameter.IsInstance;
+
+                            Transaction transaction2 = new Transaction(Program.doc, Sharedparametername);
                             transaction2.Start();
                             Program.doc.FamilyManager.RemoveParameter(familyParameter);
                             Program.doc.FamilyManager.ReplaceParameter(Program.doc.FamilyManager.get_Parameter(Familyparametername),
-                                            Program.ParameterList.Find(name => name.PName == Sharedhparametername).PexternalDefinition,
-                                            Program.ParameterList.Find(name => name.PName == Sharedhparametername).PDataCategory,
-                                            Program.ParameterList.Find(name => name.PName == Sharedhparametername).PIsInstance);
+                                            Program.ParameterList.Find(name => name.PName == Sharedparametername).PexternalDefinition,
+                                            Program.ParameterList.Find(name => name.PName == Sharedparametername).PDataCategory, IsInstance);
                             transaction2.Commit();
                         }
                     }
