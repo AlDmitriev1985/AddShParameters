@@ -14,7 +14,7 @@ namespace AddShParameters
     {
         public Guid PGUID { get; set; }
         public string PName { get; set; }
-        public ParameterType PDataType { get; set; }
+        public ForgeTypeId PDataType { get; set; }
         public DefinitionGroup PGroup { get; set; }
         public string PDescription { get; set; }
         public BuiltInParameterGroup PDataCategory { get; set; }

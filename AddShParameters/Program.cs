@@ -57,7 +57,7 @@ namespace AddShParameters
                     ShParameters Shparameter = new ShParameters();
 
                     Shparameter.PDataCategory = BuiltInParameterGroup.PG_TEXT;
-                    Shparameter.PDataType = externalDefinition.ParameterType;
+                    Shparameter.PDataType = externalDefinition.GetDataType();
                     Shparameter.PDescription = externalDefinition.Description;
                     Shparameter.PexternalDefinition = externalDefinition;
                     Shparameter.PGroup = externalDefinition.OwnerGroup;
@@ -172,8 +172,20 @@ namespace AddShParameters
 
             if (doc.IsFamilyDocument)
             {
-                famType = doc.FamilyManager.CurrentType;
-                MainWindow.comboBox3.SelectedItem = famType.Name;
+                if (famType != null)
+                {
+                    famType = doc.FamilyManager.CurrentType;
+                    MainWindow.comboBox3.SelectedItem = famType.Name;
+                }
+                else
+                {
+                    Transaction transaction = new Transaction(doc, "New family type creation");
+                    transaction.Start();
+                    famType = doc.FamilyManager.NewType(doc.Title);
+                    transaction.Commit();
+
+                    MainWindow.comboBox3.SelectedItem = famType.Name;
+                }
             }
 
             MainWindow.comboBox4.Items.Clear();

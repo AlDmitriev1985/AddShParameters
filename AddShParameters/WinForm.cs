@@ -665,10 +665,10 @@ namespace AddShParameters
                             { LvItem.SubItems.Add(Program.famType.AsInteger(Item).ToString()); }
                             if (Item.StorageType == StorageType.String)
                             { LvItem.SubItems.Add(Program.famType.AsString(Item)); }
-                            if ((Item.StorageType == StorageType.Double) & (Item.Definition.UnitType != UnitType.UT_Electrical_Potential))
+                            if (Item.StorageType == StorageType.Double)
                             { LvItem.SubItems.Add((((double)Program.famType.AsDouble(Item)).ToString("F"))); }
-                            if ((Item.StorageType == StorageType.Double) & (Item.Definition.UnitType == UnitType.UT_Electrical_Potential))
-                            { LvItem.SubItems.Add((((double)Program.famType.AsDouble(Item)) * Math.Pow(0.3048, 2)).ToString("F")); }
+                            if (Item.StorageType == StorageType.ElementId)
+                            { LvItem.SubItems.Add(Program.famType.AsElementId(Item).ToString()); }
                         }
 
                         else { LvItem.SubItems.Add("Значение не определено"); }
@@ -865,7 +865,7 @@ namespace AddShParameters
                 {
                     if (Item.SubItems[3].Text != "Удалить")
                     {
-                         Item.SubItems.Insert(3, Item.SubItems.Add("Заменить на " + comboBox4.Text));
+                        Item.SubItems.Insert(3, Item.SubItems.Add("Заменить на " + comboBox4.Text));
                     }
                 }
             }
@@ -947,9 +947,9 @@ namespace AddShParameters
                         {
                             if ((Item.Text == xmlnode.FirstChild.InnerText) & (Item.SubItems[3].Text == "Не выбрано действие"))
                             {
-                                    string text = xmlnode.InnerText.Replace(xmlnode.FirstChild.InnerText, "");
+                                string text = xmlnode.InnerText.Replace(xmlnode.FirstChild.InnerText, "");
 
-                                    Item.SubItems.Insert(3, Item.SubItems.Add(text));                              
+                                Item.SubItems.Insert(3, Item.SubItems.Add(text));
                             }
                         }
                     }
@@ -969,6 +969,9 @@ namespace AddShParameters
                     {
                         if ((Item.SubItems[3].Text.StartsWith("Заменить на ")) & ((Item.SubItems[3].Text.EndsWith(familyParameter.Definition.Name))))
                         {
+
+                            bool IsInstance = Program.doc.FamilyManager.get_Parameter(Item.Text).IsInstance;
+
                             Transaction transaction = new Transaction(Program.doc, Item.Text);
                             transaction.Start();
                             Program.doc.FamilyManager.ReplaceParameter(Program.doc.FamilyManager.get_Parameter(Item.Text),
@@ -980,8 +983,6 @@ namespace AddShParameters
                             string Familyparametername = familyParameter.Definition.Name + "_family parameter";
 
                             string Sharedparametername = Familyparametername.Replace("_family parameter", "");
-
-                            bool IsInstance = familyParameter.IsInstance;
 
                             Transaction transaction2 = new Transaction(Program.doc, Sharedparametername);
                             transaction2.Start();

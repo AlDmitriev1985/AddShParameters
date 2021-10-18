@@ -501,25 +501,25 @@ namespace AddShParameters
             // 
             this.columnHeader7.Tag = "";
             this.columnHeader7.Text = "Имя общего параметра";
-            this.columnHeader7.Width = 230;
+            this.columnHeader7.Width = 270;
             // 
             // columnHeader8
             // 
             this.columnHeader8.Text = "Значение";
             this.columnHeader8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader8.Width = 300;
+            this.columnHeader8.Width = 360;
             // 
             // columnHeader9
             // 
             this.columnHeader9.Text = "Формула";
             this.columnHeader9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader9.Width = 300;
+            this.columnHeader9.Width = 480;
             // 
             // columnHeader11
             // 
             this.columnHeader11.Text = "Действие";
             this.columnHeader11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader11.Width = 600;
+            this.columnHeader11.Width = 315;
             // 
             // comboBox3
             // 
