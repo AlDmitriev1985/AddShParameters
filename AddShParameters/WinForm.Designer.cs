@@ -406,7 +406,7 @@ namespace AddShParameters
             // button11
             // 
             this.button11.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.button11.Location = new System.Drawing.Point(638, 48);
+            this.button11.Location = new System.Drawing.Point(1128, 48);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(140, 27);
             this.button11.TabIndex = 51;
@@ -417,7 +417,7 @@ namespace AddShParameters
             // button10
             // 
             this.button10.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.button10.Location = new System.Drawing.Point(1129, 48);
+            this.button10.Location = new System.Drawing.Point(648, 48);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(140, 27);
             this.button10.TabIndex = 50;

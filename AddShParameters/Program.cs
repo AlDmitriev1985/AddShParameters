@@ -57,7 +57,7 @@ namespace AddShParameters
                     ShParameters Shparameter = new ShParameters();
 
                     Shparameter.PDataCategory = BuiltInParameterGroup.PG_TEXT;
-                    Shparameter.PDataType = externalDefinition.GetDataType();
+                    Shparameter.PDataType = externalDefinition.ParameterType;
                     Shparameter.PDescription = externalDefinition.Description;
                     Shparameter.PexternalDefinition = externalDefinition;
                     Shparameter.PGroup = externalDefinition.OwnerGroup;
@@ -172,7 +172,7 @@ namespace AddShParameters
 
             if (doc.IsFamilyDocument)
             {
-                if (famType != null)
+                if (doc.FamilyManager.CurrentType != null)
                 {
                     famType = doc.FamilyManager.CurrentType;
                     MainWindow.comboBox3.SelectedItem = famType.Name;
