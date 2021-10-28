@@ -172,7 +172,7 @@ namespace AddShParameters
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.label4.Location = new System.Drawing.Point(663, 634);
+            this.label4.Location = new System.Drawing.Point(652, 634);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(188, 19);
             this.label4.TabIndex = 13;
@@ -182,9 +182,9 @@ namespace AddShParameters
             // 
             this.comboBox2.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(857, 631);
+            this.comboBox2.Location = new System.Drawing.Point(843, 631);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(205, 25);
+            this.comboBox2.Size = new System.Drawing.Size(232, 25);
             this.comboBox2.TabIndex = 14;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
@@ -298,7 +298,7 @@ namespace AddShParameters
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.label3.Location = new System.Drawing.Point(663, 597);
+            this.label3.Location = new System.Drawing.Point(652, 597);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(174, 19);
             this.label3.TabIndex = 11;
