@@ -73,29 +73,29 @@ namespace AddShParameters
             ParameterList = sortParamList;
 
             BuildinParam.Clear();
-            BuildinParam.Add("Размеры");
-            BuildinParam.Add("Прочие");
-            BuildinParam.Add("Зависимости");
-            BuildinParam.Add("Конструкции");
-            BuildinParam.Add("Данные");
-            BuildinParam.Add("Идентификация");
-            BuildinParam.Add("Материалы и отделка");
-            BuildinParam.Add("Механизмы");
-            BuildinParam.Add("Механизмы - расход");
-            BuildinParam.Add("Механизмы - нагрузки");
-            BuildinParam.Add("Сантехника");
-            BuildinParam.Add("Несущие конструкции");
-            BuildinParam.Add("Расчет несущих конструкций");
-            BuildinParam.Add("Текст");
-            BuildinParam.Add("Видимость");
-            BuildinParam.Add("Результаты анализа");
-            BuildinParam.Add("Электросети");
-            BuildinParam.Add("Электросети - Создание цепей");
-            BuildinParam.Add("Электросети - Освещение");
-            BuildinParam.Add("Электросети - Нагрузки");
-            BuildinParam.Add("Силы");
-            BuildinParam.Add("Общие");
-            BuildinParam.Add("Графика");
+            BuildinParam.Add("Размеры / Dimensions");
+            BuildinParam.Add("Прочие / Others");
+            BuildinParam.Add("Зависимости / Consraints");
+            BuildinParam.Add("Конструкции / Construction");
+            BuildinParam.Add("Данные / Data");
+            BuildinParam.Add("Идентификация / Identity Data");
+            BuildinParam.Add("Материалы и отделка / Materials and Finishes");
+            BuildinParam.Add("Механизмы / Mechanical");
+            BuildinParam.Add("Механизмы - расход / Mechanical-Airflow");
+            BuildinParam.Add("Механизмы - нагрузки / Mechanical-Loads");
+            BuildinParam.Add("Сантехника / Plumbing");
+            BuildinParam.Add("Несущие конструкции / Structural");
+            BuildinParam.Add("Расчет несущих конструкций / Structural Analysis");
+            BuildinParam.Add("Текст / Text");
+            BuildinParam.Add("Видимость / Visibility");
+            BuildinParam.Add("Результаты анализа / Area");
+            BuildinParam.Add("Электросети / Electrical");
+            BuildinParam.Add("Электросети - Создание цепей / Electrical-Circuiting");
+            BuildinParam.Add("Электросети - Освещение / Electrical-Lighting");
+            BuildinParam.Add("Электросети - Нагрузки / Electrical-Loads");
+            BuildinParam.Add("Силы / Forces");
+            BuildinParam.Add("Общие / General");
+            BuildinParam.Add("Графика / Graphics");
             BuildinParam.Sort();
 
 
@@ -122,6 +122,7 @@ namespace AddShParameters
 
             MainWindow.comboBox1.SelectedIndex = 0;
 
+            MainWindow.comboBox2.Items.Clear();
 
             foreach (var Item in BuildinParam)
             {

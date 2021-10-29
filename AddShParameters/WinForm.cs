@@ -96,95 +96,95 @@ namespace AddShParameters
                     {
                         switch (comboBox2.SelectedItem)
                         {
-                            case "Размеры":
+                            case "Размеры / Dimensions":
                                 shParameters.PDataCategory = BuiltInParameterGroup.PG_GEOMETRY;
                                 break;
 
-                            case "Прочие":
+                            case "Прочие / Others":
                                 shParameters.PDataCategory = BuiltInParameterGroup.INVALID;
                                 break;
 
-                            case "Текст":
+                            case "Текст / Text":
                                 shParameters.PDataCategory = BuiltInParameterGroup.PG_TEXT;
                                 break;
 
-                            case "Зависимости":
+                            case "Зависимости / Consraints":
                                 shParameters.PDataCategory = BuiltInParameterGroup.PG_CONSTRAINTS;
                                 break;
 
-                            case "Конструкции":
+                            case "Конструкции / Construction":
                                 shParameters.PDataCategory = BuiltInParameterGroup.PG_CONSTRUCTION;
                                 break;
 
-                            case "Данные":
+                            case "Данные / Data":
                                 shParameters.PDataCategory = BuiltInParameterGroup.PG_DATA;
                                 break;
 
-                            case "Идентификация":
+                            case "Идентификация / Identity Data":
                                 shParameters.PDataCategory = BuiltInParameterGroup.PG_IDENTITY_DATA;
                                 break;
 
-                            case "Материалы и отделка":
+                            case "Материалы и отделка / Materials and Finishes":
                                 shParameters.PDataCategory = BuiltInParameterGroup.PG_MATERIALS;
                                 break;
 
-                            case "Механизмы":
+                            case "Механизмы / Mechanical":
                                 shParameters.PDataCategory = BuiltInParameterGroup.PG_MECHANICAL;
                                 break;
 
-                            case "Механизмы - расход":
+                            case "Механизмы - расход / Mechanical-Airflow":
                                 shParameters.PDataCategory = BuiltInParameterGroup.PG_MECHANICAL_AIRFLOW;
                                 break;
 
-                            case "Механизмы - нагрузки":
+                            case "Механизмы - нагрузки / Mechanical-Loads":
                                 shParameters.PDataCategory = BuiltInParameterGroup.PG_MECHANICAL_LOADS;
                                 break;
 
-                            case "Сантехника":
+                            case "Сантехника / Plumbing":
                                 shParameters.PDataCategory = BuiltInParameterGroup.PG_PLUMBING;
                                 break;
 
-                            case "Несущие конструкции":
+                            case "Несущие конструкции / Structural":
                                 shParameters.PDataCategory = BuiltInParameterGroup.PG_STRUCTURAL;
                                 break;
 
-                            case "Расчет несущих конструкций":
+                            case "Расчет несущих конструкций / Structural Analysis":
                                 shParameters.PDataCategory = BuiltInParameterGroup.PG_STRUCTURAL_ANALYSIS;
                                 break;
 
-                            case "Видимость":
+                            case "Видимость / Visibility":
                                 shParameters.PDataCategory = BuiltInParameterGroup.PG_VISIBILITY;
                                 break;
 
-                            case "Результаты анализа":
+                            case "Результаты анализа / Area":
                                 shParameters.PDataCategory = BuiltInParameterGroup.PG_AREA;
                                 break;
 
-                            case "Электросети":
+                            case "Электросети / Electrical":
                                 shParameters.PDataCategory = BuiltInParameterGroup.PG_ELECTRICAL;
                                 break;
 
-                            case "Электросети - Создание цепей":
+                            case "Электросети - Создание цепей / Electrical-Circuiting":
                                 shParameters.PDataCategory = BuiltInParameterGroup.PG_ELECTRICAL_CIRCUITING;
                                 break;
 
-                            case "Электросети - Освещение":
+                            case "Электросети - Освещение / Electrical-Lighting":
                                 shParameters.PDataCategory = BuiltInParameterGroup.PG_ELECTRICAL_LIGHTING;
                                 break;
 
-                            case "Электросети - Нагрузки":
+                            case "Электросети - Нагрузки / Electrical-Loads":
                                 shParameters.PDataCategory = BuiltInParameterGroup.PG_ELECTRICAL_LOADS;
                                 break;
 
-                            case "Силы":
+                            case "Силы / Forces":
                                 shParameters.PDataCategory = BuiltInParameterGroup.PG_FORCES;
                                 break;
 
-                            case "Общие":
+                            case "Общие / General":
                                 shParameters.PDataCategory = BuiltInParameterGroup.PG_GENERAL;
                                 break;
 
-                            case "Графика":
+                            case "Графика / Graphics":
                                 shParameters.PDataCategory = BuiltInParameterGroup.PG_GRAPHICS;
                                 break;
                         }
@@ -335,118 +335,121 @@ namespace AddShParameters
                 {
                     foreach (ShParameters Item in Program.SelectedParametersList)
                     {
-                        if ((xmlnode.InnerText.Contains(Item.PName) & (xmlnode.InnerText.Contains("True"))))
+                        if ((xmlnode.InnerText.Contains(Item.PName + "True")))
                         {
                             Item.PIsInstance = true;
                         }
-                        else if (xmlnode.InnerText.Contains(Item.PName) & (xmlnode.InnerText.Contains("False")))
+                        if ((xmlnode.InnerText.Contains(Item.PName+ "False")))
                         {
                             Item.PIsInstance = false;
                         }
                     }
                 }
 
-                foreach (XmlNode xmlnode in xmldoc.DocumentElement.GetElementsByTagName("Имя_параметра"))
-                {
-                    foreach (ShParameters Item in Program.SelectedParametersList)
-                    {
+                //((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("False")))
 
-                        if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_GEOMETRY")))
-                        {
-                            Item.PDataCategory = BuiltInParameterGroup.PG_GEOMETRY;
-                        }
 
-                        if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("INVALID")))
-                        {
-                            Item.PDataCategory = BuiltInParameterGroup.INVALID;
-                        }
+                //foreach (XmlNode xmlnode in xmldoc.DocumentElement.GetElementsByTagName("Имя_параметра"))
+                //{
+                //    foreach (ShParameters Item in Program.SelectedParametersList)
+                //    {
 
-                        if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_TEXT")))
-                        {
-                            Item.PDataCategory = BuiltInParameterGroup.PG_TEXT;
-                        }
-                        else if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_CONSTRAINTS")))
-                        {
-                            Item.PDataCategory = BuiltInParameterGroup.PG_CONSTRAINTS;
-                        }
-                        else if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_CONSTRUCTION")))
-                        {
-                            Item.PDataCategory = BuiltInParameterGroup.PG_CONSTRUCTION;
-                        }
-                        else if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Equals("PG_DATA")))
-                        {
-                            Item.PDataCategory = BuiltInParameterGroup.PG_DATA;
-                        }
-                        else if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_IDENTITY_DATA")))
-                        {
-                            Item.PDataCategory = BuiltInParameterGroup.PG_IDENTITY_DATA;
-                        }
-                        else if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_MATERIALS")))
-                        {
-                            Item.PDataCategory = BuiltInParameterGroup.PG_MATERIALS;
-                        }
-                        else if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Equals("PG_MECHANICAL")))
-                        {
-                            Item.PDataCategory = BuiltInParameterGroup.PG_MECHANICAL;
-                        }
-                        else if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_MECHANICAL_AIRFLOW")))
-                        {
-                            Item.PDataCategory = BuiltInParameterGroup.PG_MECHANICAL_AIRFLOW;
-                        }
-                        else if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_MECHANICAL_LOADS")))
-                        {
-                            Item.PDataCategory = BuiltInParameterGroup.PG_MECHANICAL_LOADS;
-                        }
-                        else if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_PLUMBING")))
-                        {
-                            Item.PDataCategory = BuiltInParameterGroup.PG_PLUMBING;
-                        }
-                        else if ((xmlnode.InnerText.Equals(Item.PName)) & (xmlnode.InnerText.Equals("PG_STRUCTURAL")))
-                        {
-                            Item.PDataCategory = BuiltInParameterGroup.PG_STRUCTURAL;
-                        }
-                        else if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_STRUCTURAL_ANALYSIS")))
-                        {
-                            Item.PDataCategory = BuiltInParameterGroup.PG_STRUCTURAL_ANALYSIS;
-                        }
-                        else if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_VISIBILITY")))
-                        {
-                            Item.PDataCategory = BuiltInParameterGroup.PG_VISIBILITY;
-                        }
-                        else if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_AREA")))
-                        {
-                            Item.PDataCategory = BuiltInParameterGroup.PG_AREA;
-                        }
-                        else if ((xmlnode.InnerText.Equals(Item.PName)) & (xmlnode.InnerText.Equals("PG_ELECTRICAL")))
-                        {
-                            Item.PDataCategory = BuiltInParameterGroup.PG_ELECTRICAL;
-                        }
-                        else if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_ELECTRICAL_CIRCUITING")))
-                        {
-                            Item.PDataCategory = BuiltInParameterGroup.PG_ELECTRICAL_CIRCUITING;
-                        }
-                        else if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_ELECTRICAL_LIGHTING")))
-                        {
-                            Item.PDataCategory = BuiltInParameterGroup.PG_ELECTRICAL_LIGHTING;
-                        }
-                        else if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_ELECTRICAL_LOADS")))
-                        {
-                            Item.PDataCategory = BuiltInParameterGroup.PG_ELECTRICAL_LOADS;
-                        }
-                        else if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_FORCES")))
-                        {
-                            Item.PDataCategory = BuiltInParameterGroup.PG_FORCES;
-                        }
-                        else if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_GENERAL")))
-                        {
-                            Item.PDataCategory = BuiltInParameterGroup.PG_GENERAL;
-                        }
-                        else if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_GRAPHICS")))
-                        {
-                            Item.PDataCategory = BuiltInParameterGroup.PG_GRAPHICS;
-                        }
-                    }
-                }
+                //        if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_GEOMETRY")))
+                //        {
+                //            Item.PDataCategory = BuiltInParameterGroup.PG_GEOMETRY;
+                //        }
+
+                //        if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("INVALID")))
+                //        {
+                //            Item.PDataCategory = BuiltInParameterGroup.INVALID;
+                //        }
+
+                //        if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_TEXT")))
+                //        {
+                //            Item.PDataCategory = BuiltInParameterGroup.PG_TEXT;
+                //        }
+                //        if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_CONSTRAINTS")))
+                //        {
+                //            Item.PDataCategory = BuiltInParameterGroup.PG_CONSTRAINTS;
+                //        }
+                //        if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_CONSTRUCTION")))
+                //        {
+                //            Item.PDataCategory = BuiltInParameterGroup.PG_CONSTRUCTION;
+                //        }
+                //        if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_DATA")))
+                //        {
+                //            Item.PDataCategory = BuiltInParameterGroup.PG_DATA;
+                //        }
+                //        if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_IDENTITY_DATA")))
+                //        {
+                //            Item.PDataCategory = BuiltInParameterGroup.PG_IDENTITY_DATA;
+                //        }
+                //        if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_MATERIALS")))
+                //        {
+                //            Item.PDataCategory = BuiltInParameterGroup.PG_MATERIALS;
+                //        }
+                //        if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_MECHANICAL")))
+                //        {
+                //            Item.PDataCategory = BuiltInParameterGroup.PG_MECHANICAL;
+                //        }
+                //        if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_MECHANICAL_AIRFLOW")))
+                //        {
+                //            Item.PDataCategory = BuiltInParameterGroup.PG_MECHANICAL_AIRFLOW;
+                //        }
+                //        if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_MECHANICAL_LOADS")))
+                //        {
+                //            Item.PDataCategory = BuiltInParameterGroup.PG_MECHANICAL_LOADS;
+                //        }
+                //        if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_PLUMBING")))
+                //        {
+                //            Item.PDataCategory = BuiltInParameterGroup.PG_PLUMBING;
+                //        }
+                //        if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_STRUCTURAL")))
+                //        {
+                //            Item.PDataCategory = BuiltInParameterGroup.PG_STRUCTURAL;
+                //        }
+                //        if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_STRUCTURAL_ANALYSIS")))
+                //        {
+                //            Item.PDataCategory = BuiltInParameterGroup.PG_STRUCTURAL_ANALYSIS;
+                //        }
+                //        if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_VISIBILITY")))
+                //        {
+                //            Item.PDataCategory = BuiltInParameterGroup.PG_VISIBILITY;
+                //        }
+                //        if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_AREA")))
+                //        {
+                //            Item.PDataCategory = BuiltInParameterGroup.PG_AREA;
+                //        }
+                //        if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_ELECTRICAL")))
+                //        {
+                //            Item.PDataCategory = BuiltInParameterGroup.PG_ELECTRICAL;
+                //        }
+                //        if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_ELECTRICAL_CIRCUITING")))
+                //        {
+                //            Item.PDataCategory = BuiltInParameterGroup.PG_ELECTRICAL_CIRCUITING;
+                //        }
+                //        if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_ELECTRICAL_LIGHTING")))
+                //        {
+                //            Item.PDataCategory = BuiltInParameterGroup.PG_ELECTRICAL_LIGHTING;
+                //        }
+                //        if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_ELECTRICAL_LOADS")))
+                //        {
+                //            Item.PDataCategory = BuiltInParameterGroup.PG_ELECTRICAL_LOADS;
+                //        }
+                //        if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_FORCES")))
+                //        {
+                //            Item.PDataCategory = BuiltInParameterGroup.PG_FORCES;
+                //        }
+                //        if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_GENERAL")))
+                //        {
+                //            Item.PDataCategory = BuiltInParameterGroup.PG_GENERAL;
+                //        }
+                //        if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains("PG_GRAPHICS")))
+                //        {
+                //            Item.PDataCategory = BuiltInParameterGroup.PG_GRAPHICS;
+                //        }
+                //    }
+                //}
 
                 foreach (XmlNode xmlnode in xmldoc.DocumentElement.GetElementsByTagName("Имя_параметра"))
                 {
