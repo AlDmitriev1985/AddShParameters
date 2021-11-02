@@ -350,119 +350,119 @@ namespace AddShParameters
                 {
                     foreach (ShParameters Item in Program.SelectedParametersList)
                     {
-                        if (xmlnode.InnerText.StartsWith(Item.PName))
+                        if (xmlnode.FirstChild.InnerText == Item.PName)
                         {
-                            if (xmlnode.InnerText.EndsWith("PG_GEOMETRY"))
+                            if (xmlnode.InnerText.Contains("PG_GEOMETRY"))
                             {
                                 Item.PDataCategory = BuiltInParameterGroup.PG_GEOMETRY;
                             }
 
-                            if (xmlnode.InnerText.EndsWith("INVALID"))
+                            if (xmlnode.InnerText.Contains("INVALID"))
                             {
                                 Item.PDataCategory = BuiltInParameterGroup.INVALID;
                             }
 
-                            if (xmlnode.InnerText.EndsWith("PG_TEXT"))
+                            if (xmlnode.InnerText.Contains("PG_TEXT"))
                             {
                                 Item.PDataCategory = BuiltInParameterGroup.PG_TEXT;
                             }
 
-                            if (xmlnode.InnerText.EndsWith("PG_CONSTRAINTS"))
+                            if (xmlnode.InnerText.Contains("PG_CONSTRAINTS"))
                             {
                                 Item.PDataCategory = BuiltInParameterGroup.PG_CONSTRAINTS;
                             }
 
-                            if (xmlnode.InnerText.EndsWith("PG_CONSTRUCTION"))
+                            if (xmlnode.InnerText.Contains("PG_CONSTRUCTION"))
                             {
                                 Item.PDataCategory = BuiltInParameterGroup.PG_CONSTRUCTION;
                             }
 
-                            if (xmlnode.InnerText.EndsWith("PG_DATA"))
+                            if (xmlnode.InnerText.Contains("PG_DATA"))
                             {
                                 Item.PDataCategory = BuiltInParameterGroup.PG_DATA;
                             }
 
-                            if (xmlnode.InnerText.EndsWith("PG_IDENTITY_DATA"))
+                            if (xmlnode.InnerText.Contains("PG_IDENTITY_DATA"))
                             {
                                 Item.PDataCategory = BuiltInParameterGroup.PG_IDENTITY_DATA;
                             }
 
-                            if (xmlnode.InnerText.EndsWith("PG_MATERIALS"))
+                            if (xmlnode.InnerText.Contains("PG_MATERIALS"))
                             {
                                 Item.PDataCategory = BuiltInParameterGroup.PG_MATERIALS;
                             }
 
-                            if (xmlnode.InnerText.EndsWith("PG_MECHANICAL"))
+                            if (xmlnode.InnerText.Contains("PG_MECHANICAL"))
                             {
                                 Item.PDataCategory = BuiltInParameterGroup.PG_MECHANICAL;
                             }
 
-                            if (xmlnode.InnerText.EndsWith("PG_MECHANICAL_AIRFLOW"))
+                            if (xmlnode.InnerText.Contains("PG_MECHANICAL_AIRFLOW"))
                             {
                                 Item.PDataCategory = BuiltInParameterGroup.PG_MECHANICAL_AIRFLOW;
                             }
 
-                            if (xmlnode.InnerText.EndsWith("PG_MECHANICAL_LOADS"))
+                            if (xmlnode.InnerText.Contains("PG_MECHANICAL_LOADS"))
                             {
                                 Item.PDataCategory = BuiltInParameterGroup.PG_MECHANICAL_LOADS;
                             }
 
-                            if (xmlnode.InnerText.EndsWith("PG_PLUMBING"))
+                            if (xmlnode.InnerText.Contains("PG_PLUMBING"))
                             {
                                 Item.PDataCategory = BuiltInParameterGroup.PG_PLUMBING;
                             }
 
-                            if (xmlnode.InnerText.EndsWith("PG_STRUCTURAL"))
+                            if (xmlnode.InnerText.Contains("PG_STRUCTURAL"))
                             {
                                 Item.PDataCategory = BuiltInParameterGroup.PG_STRUCTURAL;
                             }
 
-                            if (xmlnode.InnerText.EndsWith("PG_STRUCTURAL_ANALYSIS"))
+                            if (xmlnode.InnerText.Contains("PG_STRUCTURAL_ANALYSIS"))
                             {
                                 Item.PDataCategory = BuiltInParameterGroup.PG_STRUCTURAL_ANALYSIS;
                             }
 
-                            if (xmlnode.InnerText.EndsWith("PG_VISIBILITY"))
+                            if (xmlnode.InnerText.Contains("PG_VISIBILITY"))
                             {
                                 Item.PDataCategory = BuiltInParameterGroup.PG_VISIBILITY;
                             }
 
-                            if (xmlnode.InnerText.EndsWith("PG_AREA"))
+                            if (xmlnode.InnerText.Contains("PG_AREA"))
                             {
                                 Item.PDataCategory = BuiltInParameterGroup.PG_AREA;
                             }
 
-                            if (xmlnode.InnerText.EndsWith("PG_ELECTRICAL"))
+                            if (xmlnode.InnerText.Contains("PG_ELECTRICAL"))
                             {
                                 Item.PDataCategory = BuiltInParameterGroup.PG_ELECTRICAL;
                             }
 
-                            if (xmlnode.InnerText.EndsWith("PG_ELECTRICAL_CIRCUITING"))
+                            if (xmlnode.InnerText.Contains("PG_ELECTRICAL_CIRCUITING"))
                             {
                                 Item.PDataCategory = BuiltInParameterGroup.PG_ELECTRICAL_CIRCUITING;
                             }
 
-                            if (xmlnode.InnerText.EndsWith("PG_ELECTRICAL_LIGHTING"))
+                            if (xmlnode.InnerText.Contains("PG_ELECTRICAL_LIGHTING"))
                             {
                                 Item.PDataCategory = BuiltInParameterGroup.PG_ELECTRICAL_LIGHTING;
                             }
 
-                            if (xmlnode.InnerText.EndsWith("PG_ELECTRICAL_LOADS"))
+                            if (xmlnode.InnerText.Contains("PG_ELECTRICAL_LOADS"))
                             {
                                 Item.PDataCategory = BuiltInParameterGroup.PG_ELECTRICAL_LOADS;
                             }
 
-                            if (xmlnode.InnerText.EndsWith("PG_FORCES"))
+                            if (xmlnode.InnerText.Contains("PG_FORCES"))
                             {
                                 Item.PDataCategory = BuiltInParameterGroup.PG_FORCES;
                             }
 
-                            if (xmlnode.InnerText.EndsWith("PG_GENERAL"))
+                            if (xmlnode.InnerText.Contains("PG_GENERAL"))
                             {
                                 Item.PDataCategory = BuiltInParameterGroup.PG_GENERAL;
                             }
 
-                            if (xmlnode.InnerText.EndsWith("PG_GRAPHICS"))
+                            if (xmlnode.InnerText.Contains("PG_GRAPHICS"))
                             {
                                 Item.PDataCategory = BuiltInParameterGroup.PG_GRAPHICS;
                             }
@@ -1151,7 +1151,7 @@ namespace AddShParameters
 
             foreach (ShParameters shParameters in Program.ParameterList)
             {
-                if (shParameters.PName.Contains(textBox1.Text))
+                if (shParameters.PName.ToLower().Contains(textBox1.Text.ToLower()))
                 {
                     ListViewItem LvItem = new ListViewItem(shParameters.PName);
 
@@ -1160,6 +1160,15 @@ namespace AddShParameters
                     listView1.Items.Add(LvItem);
                 }
             }
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            //Очистка окна listview2, удаление всех параметров в списке выбранных параметров
+
+            listView2.Items.Clear();
+
+            Program.SelectedParametersList.Clear();
         }
     }
 }

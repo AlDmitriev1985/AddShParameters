@@ -73,6 +73,7 @@ namespace AddShParameters
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.button12 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -146,13 +147,11 @@ namespace AddShParameters
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
             this.radioButton1.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.radioButton1.Location = new System.Drawing.Point(864, 594);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(50, 23);
             this.radioButton1.TabIndex = 10;
-            this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Тип";
             this.radioButton1.UseVisualStyleBackColor = true;
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
@@ -320,6 +319,7 @@ namespace AddShParameters
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button12);
             this.tabPage1.Controls.Add(this.textBox1);
             this.tabPage1.Controls.Add(this.button8);
             this.tabPage1.Controls.Add(this.button7);
@@ -552,6 +552,17 @@ namespace AddShParameters
             this.label6.TabIndex = 2;
             this.label6.Text = "Типоразмеры в семействе :";
             // 
+            // button12
+            // 
+            this.button12.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.button12.Location = new System.Drawing.Point(1060, 589);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(158, 31);
+            this.button12.TabIndex = 46;
+            this.button12.Text = "Очистить окно";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
             // WinForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -621,5 +632,6 @@ namespace AddShParameters
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button12;
     }
 }
