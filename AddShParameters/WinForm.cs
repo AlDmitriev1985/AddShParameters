@@ -49,26 +49,7 @@ namespace AddShParameters
         }
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            //Выбор параметр типа или экземпляра
-
-            foreach (ListViewItem i in listView2.SelectedItems)
-            {
-                foreach (ShParameters shParameters in Program.SelectedParametersList)
-                {
-                    if (shParameters.PName == i.Text)
-                    {
-                        //Selectedlist.Add(shParameters);
-                        shParameters.PIsInstance = true;
-                    }
-                }
-            }
-
-            UpdateListSelectedParameters();
-        }
-
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-            //Выбор параметр типа или экземпляра
+            //Выбор параметр типа          
 
             foreach (ListViewItem i in listView2.SelectedItems)
             {
@@ -80,6 +61,28 @@ namespace AddShParameters
                     }
                 }
             }
+
+            radioButton1.Checked = false;
+
+            UpdateListSelectedParameters();
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            //Выбор параметра экземпляра
+
+            foreach (ListViewItem i in listView2.SelectedItems)
+            {
+                foreach (ShParameters shParameters in Program.SelectedParametersList)
+                {
+                    if (shParameters.PName == i.Text)
+                    {
+                        shParameters.PIsInstance = true;
+                    }
+                }
+            }
+
+            radioButton2.Checked = false;
 
             UpdateListSelectedParameters();
         }

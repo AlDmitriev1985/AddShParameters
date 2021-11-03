@@ -54,6 +54,7 @@ namespace AddShParameters
             this.label3 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button12 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
@@ -73,7 +74,6 @@ namespace AddShParameters
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.button12 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -96,6 +96,7 @@ namespace AddShParameters
             this.comboBox1.Location = new System.Drawing.Point(295, 7);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(316, 25);
+            this.comboBox1.Sorted = true;
             this.comboBox1.TabIndex = 1;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -350,6 +351,17 @@ namespace AddShParameters
             this.tabPage1.ToolTipText = "Добавление общих параметров в семейство";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // button12
+            // 
+            this.button12.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.button12.Location = new System.Drawing.Point(1060, 589);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(158, 31);
+            this.button12.TabIndex = 46;
+            this.button12.Text = "Очистить окно";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -551,17 +563,6 @@ namespace AddShParameters
             this.label6.Size = new System.Drawing.Size(182, 19);
             this.label6.TabIndex = 2;
             this.label6.Text = "Типоразмеры в семействе :";
-            // 
-            // button12
-            // 
-            this.button12.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.button12.Location = new System.Drawing.Point(1060, 589);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(158, 31);
-            this.button12.TabIndex = 46;
-            this.button12.Text = "Очистить окно";
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // WinForm
             // 
