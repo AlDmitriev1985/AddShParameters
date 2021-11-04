@@ -474,113 +474,6 @@ namespace AddShParameters
                 }
 
 
-
-
-
-
-
-
-                //foreach (XmlNode xmlnode in xmldoc.DocumentElement.GetElementsByTagName("Имя_параметра"))
-                //{
-                //    foreach (ShParameters Item in Program.SelectedParametersList)
-                //    {
-                //        if ((xmlnode.InnerText.StartsWith(Item.PName)) & (xmlnode.InnerText.EndsWith("PG_GEOMETRY")))
-                //        {
-                //            Item.PDataCategory = BuiltInParameterGroup.PG_GEOMETRY;
-                //        }
-
-                //        if ((xmlnode.InnerText.StartsWith(Item.PName)) & (xmlnode.InnerText.EndsWith("INVALID")))
-                //        {
-                //            Item.PDataCategory = BuiltInParameterGroup.INVALID;
-                //        }
-
-                //        if ((xmlnode.InnerText.StartsWith(Item.PName)) & (xmlnode.InnerText.EndsWith("PG_TEXT")))
-                //        {
-                //            Item.PDataCategory = BuiltInParameterGroup.PG_TEXT;
-                //        }
-                //        if ((xmlnode.InnerText.StartsWith(Item.PName)) & (xmlnode.InnerText.EndsWith("PG_CONSTRAINTS")))
-                //        {
-                //            Item.PDataCategory = BuiltInParameterGroup.PG_CONSTRAINTS;
-                //        }
-                //        if ((xmlnode.InnerText.StartsWith(Item.PName)) & (xmlnode.InnerText.EndsWith("PG_CONSTRUCTION")))
-                //        {
-                //            Item.PDataCategory = BuiltInParameterGroup.PG_CONSTRUCTION;
-                //        }
-                //        if ((xmlnode.InnerText.StartsWith(Item.PName)) & (xmlnode.InnerText.EndsWith("PG_DATA")))
-                //        {
-                //            Item.PDataCategory = BuiltInParameterGroup.PG_DATA;
-                //        }
-                //        if ((xmlnode.InnerText.StartsWith(Item.PName)) & (xmlnode.InnerText.EndsWith("PG_IDENTITY_DATA")))
-                //        {
-                //            Item.PDataCategory = BuiltInParameterGroup.PG_IDENTITY_DATA;
-                //        }
-                //        if ((xmlnode.InnerText.StartsWith(Item.PName)) & (xmlnode.InnerText.EndsWith("PG_MATERIALS")))
-                //        {
-                //            Item.PDataCategory = BuiltInParameterGroup.PG_MATERIALS;
-                //        }
-                //        if ((xmlnode.InnerText.StartsWith(Item.PName)) & (xmlnode.InnerText.EndsWith("PG_MECHANICAL")))
-                //        {
-                //            Item.PDataCategory = BuiltInParameterGroup.PG_MECHANICAL;
-                //        }
-                //        if ((xmlnode.InnerText.StartsWith(Item.PName)) & (xmlnode.InnerText.EndsWith("PG_MECHANICAL_AIRFLOW")))
-                //        {
-                //            Item.PDataCategory = BuiltInParameterGroup.PG_MECHANICAL_AIRFLOW;
-                //        }
-                //        if ((xmlnode.InnerText.StartsWith(Item.PName)) & (xmlnode.InnerText.EndsWith("PG_MECHANICAL_LOADS")))
-                //        {
-                //            Item.PDataCategory = BuiltInParameterGroup.PG_MECHANICAL_LOADS;
-                //        }
-                //        if ((xmlnode.InnerText.StartsWith(Item.PName)) & (xmlnode.InnerText.EndsWith("PG_PLUMBING")))
-                //        {
-                //            Item.PDataCategory = BuiltInParameterGroup.PG_PLUMBING;
-                //        }
-                //        if ((xmlnode.InnerText.StartsWith(Item.PName)) & (xmlnode.InnerText.EndsWith("PG_STRUCTURAL")))
-                //        {
-                //            Item.PDataCategory = BuiltInParameterGroup.PG_STRUCTURAL;
-                //        }
-                //        if ((xmlnode.InnerText.StartsWith(Item.PName)) & (xmlnode.InnerText.EndsWith("PG_STRUCTURAL_ANALYSIS")))
-                //        {
-                //            Item.PDataCategory = BuiltInParameterGroup.PG_STRUCTURAL_ANALYSIS;
-                //        }
-                //        if ((xmlnode.InnerText.StartsWith(Item.PName)) & (xmlnode.InnerText.EndsWith("PG_VISIBILITY")))
-                //        {
-                //            Item.PDataCategory = BuiltInParameterGroup.PG_VISIBILITY;
-                //        }
-                //        if ((xmlnode.InnerText.StartsWith(Item.PName)) & (xmlnode.InnerText.EndsWith("PG_AREA")))
-                //        {
-                //            Item.PDataCategory = BuiltInParameterGroup.PG_AREA;
-                //        }
-                //        if ((xmlnode.InnerText.StartsWith(Item.PName)) & (xmlnode.InnerText.EndsWith("PG_ELECTRICAL")))
-                //        {
-                //            Item.PDataCategory = BuiltInParameterGroup.PG_ELECTRICAL;
-                //        }
-                //        if ((xmlnode.InnerText.StartsWith(Item.PName)) & (xmlnode.InnerText.EndsWith("PG_ELECTRICAL_CIRCUITING")))
-                //        {
-                //            Item.PDataCategory = BuiltInParameterGroup.PG_ELECTRICAL_CIRCUITING;
-                //        }
-                //        if ((xmlnode.InnerText.StartsWith(Item.PName)) & (xmlnode.InnerText.EndsWith("PG_ELECTRICAL_LIGHTING")))
-                //        {
-                //            Item.PDataCategory = BuiltInParameterGroup.PG_ELECTRICAL_LIGHTING;
-                //        }
-                //        if ((xmlnode.InnerText.StartsWith(Item.PName)) & (xmlnode.InnerText.EndsWith("PG_ELECTRICAL_LOADS")))
-                //        {
-                //            Item.PDataCategory = BuiltInParameterGroup.PG_ELECTRICAL_LOADS;
-                //        }
-                //        if ((xmlnode.InnerText.StartsWith(Item.PName)) & (xmlnode.InnerText.EndsWith("PG_FORCES")))
-                //        {
-                //            Item.PDataCategory = BuiltInParameterGroup.PG_FORCES;
-                //        }
-                //        if ((xmlnode.InnerText.StartsWith(Item.PName)) & (xmlnode.InnerText.EndsWith("PG_GENERAL")))
-                //        {
-                //            Item.PDataCategory = BuiltInParameterGroup.PG_GENERAL;
-                //        }
-                //        if ((xmlnode.InnerText.StartsWith(Item.PName)) & (xmlnode.InnerText.EndsWith("PG_GRAPHICS")))
-                //        {
-                //            Item.PDataCategory = BuiltInParameterGroup.PG_GRAPHICS;
-                //        }
-                //    }
-                //}
-
                 foreach (XmlNode xmlnode in xmldoc.DocumentElement.GetElementsByTagName("Имя_параметра"))
                 {
                     foreach (ShParameters Item in Program.SelectedParametersList)
@@ -1100,30 +993,33 @@ namespace AddShParameters
                 {
                     foreach (FamilyParameter familyParameter in Program.doc.FamilyManager.GetParameters())
                     {
-                        if ((Item.SubItems[3].Text.StartsWith("Заменить на ")) & ((Item.SubItems[3].Text.EndsWith(familyParameter.Definition.Name))))
+                        if (familyParameter.IsShared)
                         {
+                            if ((Item.SubItems[3].Text.StartsWith("Заменить на ")) & ((Item.SubItems[3].Text.EndsWith(familyParameter.Definition.Name))))
+                            {
 
-                            bool IsInstance = Program.doc.FamilyManager.get_Parameter(Item.Text).IsInstance;
+                                bool IsInstance = Program.doc.FamilyManager.get_Parameter(Item.Text).IsInstance;
 
-                            Transaction transaction = new Transaction(Program.doc, Item.Text);
-                            transaction.Start();
-                            Program.doc.FamilyManager.ReplaceParameter(Program.doc.FamilyManager.get_Parameter(Item.Text),
-                                                                        familyParameter.Definition.Name + "_family parameter",
-                                                                        Program.doc.FamilyManager.get_Parameter(Item.Text).Definition.ParameterGroup,
-                                                                        Program.doc.FamilyManager.get_Parameter(Item.Text).IsInstance);
-                            transaction.Commit();
+                                Transaction transaction = new Transaction(Program.doc, Item.Text);
+                                transaction.Start();
+                                Program.doc.FamilyManager.ReplaceParameter(Program.doc.FamilyManager.get_Parameter(Item.Text),
+                                                                            familyParameter.Definition.Name + "_family parameter",
+                                                                            Program.doc.FamilyManager.get_Parameter(Item.Text).Definition.ParameterGroup,
+                                                                            Program.doc.FamilyManager.get_Parameter(Item.Text).IsInstance);
+                                transaction.Commit();
 
-                            string Familyparametername = familyParameter.Definition.Name + "_family parameter";
+                                string Familyparametername = familyParameter.Definition.Name + "_family parameter";
 
-                            string Sharedparametername = Familyparametername.Replace("_family parameter", "");
+                                string Sharedparametername = Familyparametername.Replace("_family parameter", "");
 
-                            Transaction transaction2 = new Transaction(Program.doc, Sharedparametername);
-                            transaction2.Start();
-                            Program.doc.FamilyManager.RemoveParameter(familyParameter);
-                            Program.doc.FamilyManager.ReplaceParameter(Program.doc.FamilyManager.get_Parameter(Familyparametername),
-                                            Program.ParameterList.Find(name => name.PName == Sharedparametername).PexternalDefinition,
-                                            Program.ParameterList.Find(name => name.PName == Sharedparametername).PDataCategory, IsInstance);
-                            transaction2.Commit();
+                                Transaction transaction2 = new Transaction(Program.doc, Sharedparametername);
+                                transaction2.Start();
+                                Program.doc.FamilyManager.RemoveParameter(familyParameter);
+                                Program.doc.FamilyManager.ReplaceParameter(Program.doc.FamilyManager.get_Parameter(Familyparametername),
+                                                Program.ParameterList.Find(name => name.PName == Sharedparametername).PexternalDefinition,
+                                                Program.ParameterList.Find(name => name.PName == Sharedparametername).PDataCategory, IsInstance);
+                                transaction2.Commit();
+                            }
                         }
                     }
                 }
