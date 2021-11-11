@@ -676,33 +676,30 @@ namespace AddShParameters
             {
                 foreach (FamilyParameter Item in Program.doc.FamilyManager.GetParameters())
                 {
-                    if (Item.IsShared)
+                    ListViewItem LvItem = new ListViewItem(Item.Definition.Name);
+
+                    if (!listView3.Items.Contains(LvItem))
                     {
-                        ListViewItem LvItem = new ListViewItem(Item.Definition.Name);
-
-                        if (!listView3.Items.Contains(LvItem))
-                        {
-                            listView3.Items.Add(LvItem);
-                        }
-
-                        if (Program.famType.HasValue(Item))
-                        {
-                            if (Item.StorageType == StorageType.Integer)
-                            { LvItem.SubItems.Add(Program.famType.AsInteger(Item).ToString()); }
-                            if (Item.StorageType == StorageType.String)
-                            { LvItem.SubItems.Add(Program.famType.AsString(Item)); }
-                            if (Item.StorageType == StorageType.Double)
-                            { LvItem.SubItems.Add((((double)Program.famType.AsDouble(Item)).ToString("F"))); }
-                            if (Item.StorageType == StorageType.ElementId)
-                            { LvItem.SubItems.Add(Program.famType.AsElementId(Item).ToString()); }
-                        }
-
-                        else { LvItem.SubItems.Add("Значение не определено"); }
-
-                        LvItem.SubItems.Add(Item.Formula);
-
-                        LvItem.SubItems.Add("Не выбрано действие");
+                        listView3.Items.Add(LvItem);
                     }
+
+                    if (Program.famType.HasValue(Item))
+                    {
+                        if (Item.StorageType == StorageType.Integer)
+                        { LvItem.SubItems.Add(Program.famType.AsInteger(Item).ToString()); }
+                        if (Item.StorageType == StorageType.String)
+                        { LvItem.SubItems.Add(Program.famType.AsString(Item)); }
+                        if (Item.StorageType == StorageType.Double)
+                        { LvItem.SubItems.Add((((double)Program.famType.AsDouble(Item)).ToString("F"))); }
+                        if (Item.StorageType == StorageType.ElementId)
+                        { LvItem.SubItems.Add(Program.doc.GetElement(Program.famType.AsElementId(Item)).Name); }
+                    }
+
+                    else { LvItem.SubItems.Add("Значение не определено"); }
+
+                    LvItem.SubItems.Add(Item.Formula);
+
+                    LvItem.SubItems.Add("Не выбрано действие");
                 }
 
                 listView3.Sort();
@@ -997,7 +994,6 @@ namespace AddShParameters
                         {
                             if ((Item.SubItems[3].Text.StartsWith("Заменить на ")) & ((Item.SubItems[3].Text.EndsWith(familyParameter.Definition.Name))))
                             {
-
                                 bool IsInstance = Program.doc.FamilyManager.get_Parameter(Item.Text).IsInstance;
 
                                 Transaction transaction = new Transaction(Program.doc, Item.Text);
