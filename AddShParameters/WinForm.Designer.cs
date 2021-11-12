@@ -74,6 +74,7 @@ namespace AddShParameters
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -226,7 +227,7 @@ namespace AddShParameters
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.label5.Location = new System.Drawing.Point(663, 44);
+            this.label5.Location = new System.Drawing.Point(669, 44);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(161, 19);
             this.label5.TabIndex = 18;
@@ -320,6 +321,7 @@ namespace AddShParameters
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label9);
             this.tabPage1.Controls.Add(this.button12);
             this.tabPage1.Controls.Add(this.textBox1);
             this.tabPage1.Controls.Add(this.button8);
@@ -497,9 +499,9 @@ namespace AddShParameters
             this.label7.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.label7.Location = new System.Drawing.Point(8, 56);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(267, 19);
+            this.label7.Size = new System.Drawing.Size(344, 19);
             this.label7.TabIndex = 10;
-            this.label7.Text = "Список общих параметров в семействе :";
+            this.label7.Text = "Список параметров семейства и общих параметров:";
             // 
             // listView3
             // 
@@ -563,6 +565,16 @@ namespace AddShParameters
             this.label6.Size = new System.Drawing.Size(182, 19);
             this.label6.TabIndex = 2;
             this.label6.Text = "Типоразмеры в семействе :";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label9.Location = new System.Drawing.Point(560, 43);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(48, 19);
+            this.label9.TabIndex = 47;
+            this.label9.Text = "Поиск";
             // 
             // WinForm
             // 
@@ -634,5 +646,6 @@ namespace AddShParameters
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Label label9;
     }
 }

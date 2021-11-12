@@ -676,30 +676,34 @@ namespace AddShParameters
             {
                 foreach (FamilyParameter Item in Program.doc.FamilyManager.GetParameters())
                 {
-                    ListViewItem LvItem = new ListViewItem(Item.Definition.Name);
 
-                    if (!listView3.Items.Contains(LvItem))
+                    if (Item.Id.IntegerValue > 0)
                     {
-                        listView3.Items.Add(LvItem);
+                        ListViewItem LvItem = new ListViewItem(Item.Definition.Name);
+
+                        if (!listView3.Items.Contains(LvItem))
+                        {
+                            listView3.Items.Add(LvItem);
+                        }
+
+                        if (Program.famType.HasValue(Item))
+                        {
+                            if (Item.StorageType == StorageType.Integer)
+                            { LvItem.SubItems.Add(Program.famType.AsInteger(Item).ToString()); }
+                            if (Item.StorageType == StorageType.String)
+                            { LvItem.SubItems.Add(Program.famType.AsString(Item)); }
+                            if (Item.StorageType == StorageType.Double)
+                            { LvItem.SubItems.Add((((double)Program.famType.AsDouble(Item)).ToString("F"))); }
+                            if (Item.StorageType == StorageType.ElementId)
+                            { LvItem.SubItems.Add(Program.famType.AsElementId(Item).ToString()); }
+                        }
+
+                        else { LvItem.SubItems.Add("Значение не определено"); }
+
+                        LvItem.SubItems.Add(Item.Formula);
+
+                        LvItem.SubItems.Add("Не выбрано действие");
                     }
-
-                    if (Program.famType.HasValue(Item))
-                    {
-                        if (Item.StorageType == StorageType.Integer)
-                        { LvItem.SubItems.Add(Program.famType.AsInteger(Item).ToString()); }
-                        if (Item.StorageType == StorageType.String)
-                        { LvItem.SubItems.Add(Program.famType.AsString(Item)); }
-                        if (Item.StorageType == StorageType.Double)
-                        { LvItem.SubItems.Add((((double)Program.famType.AsDouble(Item)).ToString("F"))); }
-                        if (Item.StorageType == StorageType.ElementId)
-                        { LvItem.SubItems.Add(Program.doc.GetElement(Program.famType.AsElementId(Item)).Name); }
-                    }
-
-                    else { LvItem.SubItems.Add("Значение не определено"); }
-
-                    LvItem.SubItems.Add(Item.Formula);
-
-                    LvItem.SubItems.Add("Не выбрано действие");
                 }
 
                 listView3.Sort();
@@ -995,26 +999,64 @@ namespace AddShParameters
                             if ((Item.SubItems[3].Text.StartsWith("Заменить на ")) & ((Item.SubItems[3].Text.EndsWith(familyParameter.Definition.Name))))
                             {
                                 bool IsInstance = Program.doc.FamilyManager.get_Parameter(Item.Text).IsInstance;
+                                bool IsShared = Program.doc.FamilyManager.get_Parameter(Item.Text).IsShared;
 
-                                Transaction transaction = new Transaction(Program.doc, Item.Text);
-                                transaction.Start();
-                                Program.doc.FamilyManager.ReplaceParameter(Program.doc.FamilyManager.get_Parameter(Item.Text),
-                                                                            familyParameter.Definition.Name + "_family parameter",
-                                                                            Program.doc.FamilyManager.get_Parameter(Item.Text).Definition.ParameterGroup,
-                                                                            Program.doc.FamilyManager.get_Parameter(Item.Text).IsInstance);
-                                transaction.Commit();
+                                if (IsShared == true)
+                                {
+                                    try
+                                    {
+                                        Transaction transaction = new Transaction(Program.doc, Item.Text);
+                                        transaction.Start();
+                                        Program.doc.FamilyManager.ReplaceParameter(Program.doc.FamilyManager.get_Parameter(Item.Text),
+                                                                                    familyParameter.Definition.Name + "_family parameter",
+                                                                                    Program.doc.FamilyManager.get_Parameter(Item.Text).Definition.ParameterGroup,
+                                                                                    Program.doc.FamilyManager.get_Parameter(Item.Text).IsInstance);
+                                        transaction.Commit();
 
-                                string Familyparametername = familyParameter.Definition.Name + "_family parameter";
+                                        string Familyparametername = familyParameter.Definition.Name + "_family parameter";
 
-                                string Sharedparametername = Familyparametername.Replace("_family parameter", "");
+                                        string Sharedparametername = Familyparametername.Replace("_family parameter", "");
 
-                                Transaction transaction2 = new Transaction(Program.doc, Sharedparametername);
-                                transaction2.Start();
-                                Program.doc.FamilyManager.RemoveParameter(familyParameter);
-                                Program.doc.FamilyManager.ReplaceParameter(Program.doc.FamilyManager.get_Parameter(Familyparametername),
-                                                Program.ParameterList.Find(name => name.PName == Sharedparametername).PexternalDefinition,
-                                                Program.ParameterList.Find(name => name.PName == Sharedparametername).PDataCategory, IsInstance);
-                                transaction2.Commit();
+
+                                        Transaction transaction2 = new Transaction(Program.doc, Sharedparametername);
+                                        transaction2.Start();
+                                        Program.doc.FamilyManager.RemoveParameter(familyParameter);
+                                        Program.doc.FamilyManager.ReplaceParameter(Program.doc.FamilyManager.get_Parameter(Familyparametername),
+                                                        Program.ParameterList.Find(name => name.PName == Sharedparametername).PexternalDefinition,
+                                                        Program.ParameterList.Find(name => name.PName == Sharedparametername).PDataCategory, IsInstance);
+                                        transaction2.Commit();
+                                    }
+
+                                    catch (Autodesk.Revit.Exceptions.ArgumentException ex)
+                                    {
+                                        string message = ex.Message;
+
+                                        MessageBox.Show(message);
+                                    }
+                                }
+
+                                else
+                                {
+                                    string Familyparametername2 = familyParameter.Definition.Name;
+
+                                    try
+                                    {
+                                        Transaction transaction3 = new Transaction(Program.doc, Item.Text);
+                                        transaction3.Start();
+                                        Program.doc.FamilyManager.RemoveParameter(familyParameter);
+                                        Program.doc.FamilyManager.ReplaceParameter(Program.doc.FamilyManager.get_Parameter(Item.Text),
+                                                        Program.ParameterList.Find(name => name.PName == Familyparametername2).PexternalDefinition,
+                                                        Program.ParameterList.Find(name => name.PName == Familyparametername2).PDataCategory, IsInstance);
+                                        transaction3.Commit();
+                                    }
+
+                                    catch (Autodesk.Revit.Exceptions.ArgumentException ex)
+                                    {
+                                        string message = ex.Message;
+
+                                        MessageBox.Show(message);
+                                    }
+                                }
                             }
                         }
                     }
