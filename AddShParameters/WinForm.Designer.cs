@@ -54,6 +54,7 @@ namespace AddShParameters
             this.label3 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label9 = new System.Windows.Forms.Label();
             this.button12 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button8 = new System.Windows.Forms.Button();
@@ -74,7 +75,6 @@ namespace AddShParameters
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -353,6 +353,16 @@ namespace AddShParameters
             this.tabPage1.ToolTipText = "Добавление общих параметров в семейство";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.label9.Location = new System.Drawing.Point(563, 44);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(42, 15);
+            this.label9.TabIndex = 47;
+            this.label9.Text = "Поиск";
+            // 
             // button12
             // 
             this.button12.Font = new System.Drawing.Font("Segoe UI", 9.75F);
@@ -565,16 +575,6 @@ namespace AddShParameters
             this.label6.Size = new System.Drawing.Size(182, 19);
             this.label6.TabIndex = 2;
             this.label6.Text = "Типоразмеры в семействе :";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.label9.Location = new System.Drawing.Point(560, 43);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(48, 19);
-            this.label9.TabIndex = 47;
-            this.label9.Text = "Поиск";
             // 
             // WinForm
             // 
