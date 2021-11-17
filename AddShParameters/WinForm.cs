@@ -276,7 +276,7 @@ namespace AddShParameters
 
                 foreach (Category Itemcategory in Item.PcategorySet)
                 {
-                    CategoriesList.Add(Itemcategory.Name);
+                    CategoriesList.Add(Itemcategory.Name + " ("+Itemcategory.Id.ToString()+")");
                 }
                 XmlText TextCategorySet = xmldoc.CreateTextNode(string.Join(", ", CategoriesList));
 
@@ -480,7 +480,7 @@ namespace AddShParameters
                     {
                         foreach (Category catitem in Program.doc.Settings.Categories)
                         {
-                            if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains(catitem.Name)))
+                            if ((xmlnode.InnerText.Contains(Item.PName)) & (xmlnode.InnerText.Contains(catitem.Id.ToString())))
                             {
                                 Item.PcategorySet.Insert(catitem);
                             }
