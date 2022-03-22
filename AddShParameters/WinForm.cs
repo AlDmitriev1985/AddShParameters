@@ -41,7 +41,7 @@ namespace AddShParameters
                 {
                     ListViewItem LvItem = new ListViewItem(shParameters.PName);
 
-                    LvItem.SubItems.Add(shParameters.PDataType.ToString());
+                    LvItem.SubItems.Add(shParameters.PDataType.TypeId);
                     LvItem.SubItems.Add(shParameters.PDescription);
                     listView1.Items.Add(LvItem);
                 }
@@ -320,8 +320,6 @@ namespace AddShParameters
             if (openFile.ShowDialog() == DialogResult.OK)
             {
                 xmldoc.Load(openFile.FileName);
-
-                MessageBox.Show("Файл " + openFile.FileName + " успешно загружен");
 
                 foreach (XmlNode xmlnode in xmldoc.DocumentElement.GetElementsByTagName("Имя_параметра"))
                 {
@@ -1092,7 +1090,7 @@ namespace AddShParameters
                 {
                     ListViewItem LvItem = new ListViewItem(shParameters.PName);
 
-                    LvItem.SubItems.Add(shParameters.PDataType.ToString());
+                    LvItem.SubItems.Add(shParameters.PDataType.TypeId);
                     LvItem.SubItems.Add(shParameters.PDescription);
                     listView1.Items.Add(LvItem);
                 }

@@ -34,38 +34,50 @@ namespace AddShParameters
             UIDocument uidoc = uiapp.ActiveUIDocument;
             doc = uidoc.Document;
 
-            //Get access to shared parameter file
-            DefinitionFile file = uidoc.Application.Application.OpenSharedParameterFile();
-
-            //Get groups from shared parameter file
-            DefinitionGroups myGroups = file.Groups;
-
-            IEnumerator<DefinitionGroup> enumerator = myGroups.GetEnumerator();
-
-            enumerator.Reset();
-
-            //Clearing list of shared parameters
-            ParameterList.Clear();
-
-            //Loop for creating clasess
-            while (enumerator.MoveNext())
+            try
             {
-                myGroup = enumerator.Current;
+                //Get access to shared parameter file
+                DefinitionFile file = uidoc.Application.Application.OpenSharedParameterFile();
 
-                foreach (ExternalDefinition externalDefinition in myGroup.Definitions)
+                //Get groups from shared parameter file
+                DefinitionGroups myGroups = file.Groups;
+
+                IEnumerator<DefinitionGroup> enumerator = myGroups.GetEnumerator();
+
+                enumerator.Reset();
+
+                //Clearing list of shared parameters
+                ParameterList.Clear();
+
+                //Loop for creating clasess
+                while (enumerator.MoveNext())
                 {
-                    ShParameters Shparameter = new ShParameters();
+                    myGroup = enumerator.Current;
 
-                    Shparameter.PDataCategory = BuiltInParameterGroup.PG_TEXT;
-                    Shparameter.PDataType = externalDefinition.ParameterType;
-                    Shparameter.PDescription = externalDefinition.Description;
-                    Shparameter.PexternalDefinition = externalDefinition;
-                    Shparameter.PGroup = externalDefinition.OwnerGroup;
-                    Shparameter.PGUID = externalDefinition.GUID;
-                    Shparameter.PIsInstance = false;
-                    Shparameter.PName = externalDefinition.Name;
-                    ParameterList.Add(Shparameter);
+                    foreach (ExternalDefinition externalDefinition in myGroup.Definitions)
+                    {
+                        ShParameters Shparameter = new ShParameters();
+
+                        Shparameter.PDataCategory = BuiltInParameterGroup.PG_TEXT;
+                        Shparameter.PDataType = externalDefinition.GetDataType();
+                        Shparameter.PDescription = externalDefinition.Description;
+                        Shparameter.PexternalDefinition = externalDefinition;
+                        Shparameter.PGroup = externalDefinition.OwnerGroup;
+                        Shparameter.PGUID = externalDefinition.GUID;
+                        Shparameter.PIsInstance = false;
+                        Shparameter.PName = externalDefinition.Name;
+                        ParameterList.Add(Shparameter);
+                    }
                 }
+            }
+
+            catch (Autodesk.Revit.Exceptions.InternalException ex)
+            {
+                MessageBox.Show("Revit не смог прочитать файл общих параметров! Проверьте правильно ли вы указали расположение файла Управление->Файл общих параметров");
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show("Укажите файл общих параметров во вкладке Управление->Файл общих параметров");
             }
 
             List<ShParameters> sortParamList = ParameterList.OrderBy(name => name.PName).ToList();
@@ -120,7 +132,8 @@ namespace AddShParameters
                 MainWindow.comboBox1.Items.Add(Item);
             }
 
-            MainWindow.comboBox1.SelectedIndex = 0;
+            if (MainWindow.comboBox1.Items.Count>0)
+            { MainWindow.comboBox1.SelectedIndex = 0; }
 
             MainWindow.comboBox2.Items.Clear();
 
@@ -139,7 +152,7 @@ namespace AddShParameters
                 {
                     ListViewItem LvItem = new ListViewItem(shParameters.PName);
 
-                    LvItem.SubItems.Add(shParameters.PDataType.ToString());
+                    LvItem.SubItems.Add(shParameters.PDataType.TypeId);
                     LvItem.SubItems.Add(shParameters.PDescription);
                     MainWindow.listView1.Items.Add(LvItem);
                 }
