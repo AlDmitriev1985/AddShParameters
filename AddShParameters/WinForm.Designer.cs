@@ -94,9 +94,9 @@ namespace AddShParameters
             // 
             this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(295, 7);
+            this.comboBox1.Location = new System.Drawing.Point(294, 7);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(316, 25);
+            this.comboBox1.Size = new System.Drawing.Size(396, 25);
             this.comboBox1.Sorted = true;
             this.comboBox1.TabIndex = 1;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
@@ -123,7 +123,7 @@ namespace AddShParameters
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(10, 71);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(601, 587);
+            this.listView1.Size = new System.Drawing.Size(682, 587);
             this.listView1.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listView1.TabIndex = 9;
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -139,7 +139,7 @@ namespace AddShParameters
             // 
             this.columnHeader2.Text = "Тип данных";
             this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader2.Width = 150;
+            this.columnHeader2.Width = 232;
             // 
             // columnHeader3
             // 
@@ -150,7 +150,7 @@ namespace AddShParameters
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.radioButton1.Location = new System.Drawing.Point(864, 594);
+            this.radioButton1.Location = new System.Drawing.Point(943, 594);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(50, 23);
             this.radioButton1.TabIndex = 10;
@@ -162,7 +162,7 @@ namespace AddShParameters
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.radioButton2.Location = new System.Drawing.Point(937, 594);
+            this.radioButton2.Location = new System.Drawing.Point(1016, 594);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(96, 23);
             this.radioButton2.TabIndex = 12;
@@ -174,7 +174,7 @@ namespace AddShParameters
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.label4.Location = new System.Drawing.Point(668, 634);
+            this.label4.Location = new System.Drawing.Point(747, 634);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(188, 19);
             this.label4.TabIndex = 13;
@@ -184,7 +184,7 @@ namespace AddShParameters
             // 
             this.comboBox2.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(873, 631);
+            this.comboBox2.Location = new System.Drawing.Point(952, 631);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(367, 25);
             this.comboBox2.TabIndex = 14;
@@ -193,7 +193,7 @@ namespace AddShParameters
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.button1.Location = new System.Drawing.Point(1280, 589);
+            this.button1.Location = new System.Drawing.Point(1359, 589);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(158, 27);
             this.button1.TabIndex = 15;
@@ -204,7 +204,7 @@ namespace AddShParameters
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.button2.Location = new System.Drawing.Point(667, 10);
+            this.button2.Location = new System.Drawing.Point(746, 10);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(139, 27);
             this.button2.TabIndex = 16;
@@ -215,7 +215,7 @@ namespace AddShParameters
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.button3.Location = new System.Drawing.Point(829, 10);
+            this.button3.Location = new System.Drawing.Point(908, 10);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(118, 27);
             this.button3.TabIndex = 17;
@@ -227,7 +227,7 @@ namespace AddShParameters
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.label5.Location = new System.Drawing.Point(669, 44);
+            this.label5.Location = new System.Drawing.Point(748, 44);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(161, 19);
             this.label5.TabIndex = 18;
@@ -244,7 +244,7 @@ namespace AddShParameters
             this.listView2.FullRowSelect = true;
             this.listView2.GridLines = true;
             this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(667, 71);
+            this.listView2.Location = new System.Drawing.Point(746, 71);
             this.listView2.Name = "listView2";
             this.listView2.Size = new System.Drawing.Size(773, 510);
             this.listView2.TabIndex = 19;
@@ -277,7 +277,7 @@ namespace AddShParameters
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.button4.Location = new System.Drawing.Point(619, 233);
+            this.button4.Location = new System.Drawing.Point(698, 233);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(41, 27);
             this.button4.TabIndex = 20;
@@ -288,7 +288,7 @@ namespace AddShParameters
             // button5
             // 
             this.button5.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.button5.Location = new System.Drawing.Point(619, 437);
+            this.button5.Location = new System.Drawing.Point(698, 437);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(41, 27);
             this.button5.TabIndex = 21;
@@ -300,7 +300,7 @@ namespace AddShParameters
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.label3.Location = new System.Drawing.Point(668, 597);
+            this.label3.Location = new System.Drawing.Point(747, 597);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(174, 19);
             this.label3.TabIndex = 11;
@@ -314,7 +314,7 @@ namespace AddShParameters
             this.tabControl1.Location = new System.Drawing.Point(0, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1454, 691);
+            this.tabControl1.Size = new System.Drawing.Size(1534, 691);
             this.tabControl1.TabIndex = 22;
             this.tabControl1.Tag = "";
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
@@ -347,7 +347,7 @@ namespace AddShParameters
             this.tabPage1.Location = new System.Drawing.Point(4, 26);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1446, 661);
+            this.tabPage1.Size = new System.Drawing.Size(1526, 661);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Добавление параметров";
             this.tabPage1.ToolTipText = "Добавление общих параметров в семейство";
@@ -357,7 +357,7 @@ namespace AddShParameters
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.label9.Location = new System.Drawing.Point(563, 44);
+            this.label9.Location = new System.Drawing.Point(642, 44);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(42, 15);
             this.label9.TabIndex = 47;
@@ -366,7 +366,7 @@ namespace AddShParameters
             // button12
             // 
             this.button12.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.button12.Location = new System.Drawing.Point(1060, 589);
+            this.button12.Location = new System.Drawing.Point(1139, 589);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(158, 31);
             this.button12.TabIndex = 46;
@@ -377,16 +377,16 @@ namespace AddShParameters
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(357, 40);
+            this.textBox1.Location = new System.Drawing.Point(390, 40);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(254, 25);
+            this.textBox1.Size = new System.Drawing.Size(300, 25);
             this.textBox1.TabIndex = 45;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // button8
             // 
             this.button8.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.button8.Location = new System.Drawing.Point(1000, 10);
+            this.button8.Location = new System.Drawing.Point(1079, 10);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(179, 27);
             this.button8.TabIndex = 44;
@@ -397,7 +397,7 @@ namespace AddShParameters
             // button7
             // 
             this.button7.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.button7.Location = new System.Drawing.Point(1280, 630);
+            this.button7.Location = new System.Drawing.Point(1359, 630);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(158, 27);
             this.button7.TabIndex = 43;
@@ -408,7 +408,7 @@ namespace AddShParameters
             // button6
             // 
             this.button6.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.button6.Location = new System.Drawing.Point(1259, 10);
+            this.button6.Location = new System.Drawing.Point(1338, 10);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(158, 27);
             this.button6.TabIndex = 42;
@@ -432,7 +432,7 @@ namespace AddShParameters
             this.tabPage2.Location = new System.Drawing.Point(4, 26);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1446, 661);
+            this.tabPage2.Size = new System.Drawing.Size(1526, 661);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Перенос значений параметров в семействе";
             this.tabPage2.ToolTipText = "Перенос значений между общими параметрами";
@@ -580,7 +580,7 @@ namespace AddShParameters
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1454, 692);
+            this.ClientSize = new System.Drawing.Size(1532, 692);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;

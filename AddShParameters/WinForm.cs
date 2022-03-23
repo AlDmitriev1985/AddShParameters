@@ -964,8 +964,6 @@ namespace AddShParameters
                 {
                     xmldoc.Load(openFile.FileName);
 
-                    MessageBox.Show("Файл с настройками действий с параметрами" + openFile.FileName + " успешно загружен");
-
                     foreach (XmlNode xmlnode in xmldoc.DocumentElement.GetElementsByTagName("Имя_параметра"))
                     {
                         foreach (ListViewItem Item in listView3.Items)

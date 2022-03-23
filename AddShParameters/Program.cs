@@ -64,7 +64,9 @@ namespace AddShParameters
                         Shparameter.PexternalDefinition = externalDefinition;
                         Shparameter.PGroup = externalDefinition.OwnerGroup;
                         Shparameter.PGUID = externalDefinition.GUID;
-                        Shparameter.PIsInstance = false;
+                        if (externalDefinition.Name.Contains("SW_02"))
+                        { Shparameter.PIsInstance = true; }
+                        else { Shparameter.PIsInstance = false; }
                         Shparameter.PName = externalDefinition.Name;
                         ParameterList.Add(Shparameter);
                     }
