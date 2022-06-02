@@ -276,7 +276,7 @@ namespace AddShParameters
 
                 foreach (Category Itemcategory in Item.PcategorySet)
                 {
-                    CategoriesList.Add(Itemcategory.Name + " ("+Itemcategory.Id.ToString()+")");
+                    CategoriesList.Add(Itemcategory.Name + " (" + Itemcategory.Id.ToString() + ")");
                 }
                 XmlText TextCategorySet = xmldoc.CreateTextNode(string.Join(", ", CategoriesList));
 

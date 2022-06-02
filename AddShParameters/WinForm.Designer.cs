@@ -29,6 +29,8 @@ namespace AddShParameters
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WinForm));
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -75,6 +77,7 @@ namespace AddShParameters
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.newFormStyle1 = new WindowsFormsApp1.newFormStyle(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -576,6 +579,11 @@ namespace AddShParameters
             this.label6.TabIndex = 2;
             this.label6.Text = "Типоразмеры в семействе :";
             // 
+            // newFormStyle1
+            // 
+            this.newFormStyle1.Form = this;
+            this.newFormStyle1.FormStyle = WindowsFormsApp1.newFormStyle.fStyle.None;
+            // 
             // WinForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -583,6 +591,7 @@ namespace AddShParameters
             this.ClientSize = new System.Drawing.Size(1532, 692);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "WinForm";
@@ -647,5 +656,6 @@ namespace AddShParameters
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Label label9;
+        private WindowsFormsApp1.newFormStyle newFormStyle1;
     }
 }

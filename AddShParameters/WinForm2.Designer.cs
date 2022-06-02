@@ -29,9 +29,12 @@ namespace AddShParameters
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WinForm2));
             this.listView6 = new System.Windows.Forms.ListView();
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button7 = new System.Windows.Forms.Button();
+            this.newFormStyle1 = new WindowsFormsApp1.newFormStyle(this.components);
             this.SuspendLayout();
             // 
             // listView6
@@ -68,6 +71,11 @@ namespace AddShParameters
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
+            // newFormStyle1
+            // 
+            this.newFormStyle1.Form = this;
+            this.newFormStyle1.FormStyle = WindowsFormsApp1.newFormStyle.fStyle.None;
+            // 
             // WinForm2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -76,6 +84,7 @@ namespace AddShParameters
             this.Controls.Add(this.button7);
             this.Controls.Add(this.listView6);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "WinForm2";
@@ -91,5 +100,6 @@ namespace AddShParameters
         public System.Windows.Forms.ListView listView6;
         public System.Windows.Forms.ColumnHeader columnHeader12;
         private System.Windows.Forms.Button button7;
+        private WindowsFormsApp1.newFormStyle newFormStyle1;
     }
 }
